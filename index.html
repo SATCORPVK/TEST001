@@ -2,477 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Planet 420 — Smoke & Vape Shop (La Vernia)</title>
-  <meta name="description" content="Planet 420 Smoke & Vape Shop in La Vernia, TX. Vapes, CBD, glass, accessories, and friendly staff. Call, get directions, and see hours." />
+
+  <meta name="description" content="Planet 420 Smoke & Vape Shop in La Vernia, TX. Vapes, CBD, glass, and accessories. Open late." />
   <meta name="theme-color" content="#07080C" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg:#07080C;
-      --panel: rgba(10, 12, 18, .62);
-      --panel2: rgba(10, 12, 18, .42);
-      --stroke: rgba(140, 170, 255, .22);
-      --txt:#EAF0FF;
-      --muted: rgba(234,240,255,.72);
-      --blue:#1FB6FF;
-      --purple:#7C4DFF;
-      --green:#2DFF9A;
-      --shadow: 0 20px 60px rgba(0,0,0,.55);
-      --glowB: 0 0 22px rgba(31,182,255,.45), 0 0 48px rgba(31,182,255,.18);
-      --glowP: 0 0 22px rgba(124,77,255,.42), 0 0 48px rgba(124,77,255,.16);
-      --radius: 18px;
-      --max: 1120px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--txt);
-      background: radial-gradient(1200px 700px at 20% 0%, rgba(124,77,255,.18), transparent 60%),
-                  radial-gradient(900px 600px at 90% 10%, rgba(31,182,255,.16), transparent 55%),
-                  radial-gradient(700px 500px at 70% 90%, rgba(45,255,154,.09), transparent 55%),
-                  var(--bg);
-      overflow-x:hidden;
-    }
-
-    /* Background layers */
-    .bg{
-      position:fixed;
-      inset:0;
-      z-index:-3;
-      pointer-events:none;
-    }
-    #smokeCanvas{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      opacity:.55;
-      filter: blur(6px) contrast(105%) saturate(115%);
-      z-index:-2;
-    }
-    .stars{
-      position:absolute;
-      inset:0;
-      background-image:
-        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.18) 50%, transparent 52%),
-        radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,.14) 50%, transparent 52%),
-        radial-gradient(1px 1px at 40% 30%, rgba(255,255,255,.12) 50%, transparent 52%),
-        radial-gradient(1px 1px at 55% 75%, rgba(255,255,255,.10) 50%, transparent 52%),
-        radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,.12) 50%, transparent 52%),
-        radial-gradient(1px 1px at 85% 25%, rgba(255,255,255,.16) 50%, transparent 52%),
-        radial-gradient(1px 1px at 92% 65%, rgba(255,255,255,.12) 50%, transparent 52%),
-        radial-gradient(2px 2px at 15% 80%, rgba(255,255,255,.10) 50%, transparent 52%),
-        radial-gradient(2px 2px at 78% 86%, rgba(255,255,255,.10) 50%, transparent 52%);
-      opacity:.75;
-      z-index:-3;
-    }
-    .vignette{
-      position:absolute; inset:-1px;
-      background: radial-gradient(900px 600px at 50% 30%, transparent 35%, rgba(0,0,0,.55) 78%),
-                  linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.55));
-      z-index:-1;
-    }
-
-    /* Layout */
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px;}
-    header{
-      position:sticky; top:0;
-      z-index:50;
-      backdrop-filter: blur(12px);
-      background: linear-gradient(to bottom, rgba(7,8,12,.72), rgba(7,8,12,.22));
-      border-bottom: 1px solid rgba(140,170,255,.14);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px; min-width: 220px;
-      text-decoration:none; color:var(--txt);
-    }
-    .logo{
-      width:38px; height:38px; border-radius:12px;
-      background:
-        radial-gradient(16px 16px at 30% 30%, rgba(31,182,255,.65), transparent 60%),
-        radial-gradient(18px 18px at 70% 65%, rgba(124,77,255,.55), transparent 62%),
-        linear-gradient(135deg, rgba(31,182,255,.18), rgba(124,77,255,.16));
-      border:1px solid rgba(140,170,255,.20);
-      box-shadow: var(--glowB), var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-    .logo:after{
-      content:"";
-      position:absolute; inset:-30%;
-      background: conic-gradient(from 90deg, transparent 0 60%, rgba(31,182,255,.28) 65%, transparent 78%, rgba(124,77,255,.22) 86%, transparent 100%);
-      animation: spin 6s linear infinite;
-      opacity:.8;
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    .brand b{
-      font-family: Orbitron, Inter, sans-serif;
-      letter-spacing:.6px;
-      font-size:14px;
-      text-transform:uppercase;
-      display:block;
-      line-height:1.05;
-      text-shadow: 0 0 18px rgba(31,182,255,.25);
-    }
-    .brand span{
-      display:block;
-      font-size:12px;
-      color:var(--muted);
-      margin-top:2px;
-    }
-
-    .links{
-      display:flex; gap:14px; align-items:center;
-    }
-    .links a{
-      color:var(--muted);
-      text-decoration:none;
-      font-size:13px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
-      transition: .2s ease;
-    }
-    .links a:hover{
-      color:var(--txt);
-      border-color: rgba(140,170,255,.18);
-      background: rgba(10,12,18,.35);
-      box-shadow: 0 0 0 2px rgba(31,182,255,.06);
-    }
-
-    .ctaRow{display:flex; gap:10px; align-items:center; justify-content:flex-end; flex-wrap:wrap;}
-    .btn{
-      border:1px solid rgba(140,170,255,.22);
-      background: rgba(10,12,18,.45);
-      color:var(--txt);
-      padding:10px 14px;
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:600;
-      font-size:13px;
-      display:inline-flex; align-items:center; gap:8px;
-      box-shadow: 0 0 0 2px rgba(31,182,255,.06);
-      transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
-      backdrop-filter: blur(10px);
-      user-select:none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .btn:hover{transform: translateY(-1px); border-color: rgba(31,182,255,.32); box-shadow: var(--glowB);}
-    .btn:active{transform: translateY(0px) scale(.99);}
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(31,182,255,.22), rgba(124,77,255,.18));
-      border-color: rgba(31,182,255,.42);
-      box-shadow: var(--glowB);
-    }
-    .btn.primary:hover{box-shadow: var(--glowB), var(--glowP);}
-    .pill{
-      font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(45,255,154,.28);
-      background: rgba(45,255,154,.10);
-      color: rgba(234,240,255,.92);
-      box-shadow: 0 0 18px rgba(45,255,154,.18);
-      display:inline-flex; gap:8px; align-items:center;
-    }
-    .dot{
-      width:8px; height:8px; border-radius:50%;
-      background: var(--green);
-      box-shadow: 0 0 14px rgba(45,255,154,.65);
-      animation: pulse 1.6s ease-in-out infinite;
-    }
-    @keyframes pulse{
-      0%,100%{transform:scale(1); opacity:1}
-      50%{transform:scale(1.25); opacity:.75}
-    }
-
-    /* Hero */
-    .hero{
-      padding:58px 0 26px;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    .card{
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(10,12,18,.70), rgba(10,12,18,.35));
-      border:1px solid rgba(140,170,255,.18);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      overflow:hidden;
-      position:relative;
-    }
-    .cardGlow:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(600px 260px at 20% 0%, rgba(31,182,255,.22), transparent 60%),
-                  radial-gradient(500px 260px at 80% 10%, rgba(124,77,255,.18), transparent 60%);
-      pointer-events:none;
-      opacity:.9;
-    }
-    .heroMain{padding:28px 22px 22px; min-height: 290px;}
-    .kicker{
-      font-family: Orbitron, Inter, sans-serif;
-      letter-spacing:1.2px;
-      text-transform:uppercase;
-      font-size:12px;
-      color: rgba(234,240,255,.78);
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .kickerLine{
-      height:1px; flex:1;
-      background: linear-gradient(to right, rgba(31,182,255,.55), rgba(124,77,255,.0));
-      opacity:.8;
-    }
-    h1{
-      margin:14px 0 10px;
-      font-family: Orbitron, Inter, sans-serif;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      font-size: clamp(28px, 4.2vw, 46px);
-      line-height:1.05;
-      text-shadow: 0 0 22px rgba(31,182,255,.22);
-    }
-    .sub{
-      max-width: 62ch;
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 14.5px;
-      line-height:1.55;
-    }
-    .heroActions{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
-    .metaRow{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:16px;
-      color:rgba(234,240,255,.72);
-      font-size:12.5px;
-    }
-    .metaRow .meta{
-      padding:10px 12px;
-      border-radius: 14px;
-      background: rgba(10,12,18,.40);
-      border: 1px solid rgba(140,170,255,.16);
-      display:flex; gap:8px; align-items:flex-start;
-    }
-    .meta svg{flex:0 0 auto; opacity:.9}
-
-    .heroSide{padding:18px;}
-    .sideTitle{
-      font-family: Orbitron, Inter, sans-serif;
-      letter-spacing:.9px;
-      text-transform:uppercase;
-      font-size:12px;
-      color: rgba(234,240,255,.8);
-      margin:2px 0 12px;
-      display:flex; align-items:center; gap:10px;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 12px;
-      border-radius: 16px;
-      background: rgba(10,12,18,.45);
-      border:1px solid rgba(140,170,255,.18);
-      margin-bottom:10px;
-    }
-    .badge b{font-size:13px}
-    .badge small{display:block; color:var(--muted); font-size:12px; margin-top:2px}
-    .spark{
-      width:10px; height:10px; border-radius:50%;
-      background: var(--blue);
-      box-shadow: 0 0 16px rgba(31,182,255,.8);
-      animation: flicker 4.8s ease-in-out infinite;
-    }
-    @keyframes flicker{
-      0%,100%{opacity:1}
-      12%{opacity:.85}
-      14%{opacity:1}
-      66%{opacity:.8}
-      72%{opacity:1}
-    }
-    .hours{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:10px;
-    }
-    .hours .meta{width:100%}
-    .note{
-      margin-top:12px;
-      color:rgba(234,240,255,.65);
-      font-size:12.5px;
-      line-height:1.5;
-    }
-
-    /* Sections */
-    section{padding:28px 0;}
-    .sectionHead{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:14px;
-      margin-bottom:12px;
-    }
-    .sectionHead h2{
-      margin:0;
-      font-family: Orbitron, Inter, sans-serif;
-      text-transform:uppercase;
-      letter-spacing:.9px;
-      font-size:18px;
-    }
-    .sectionHead p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-      max-width: 65ch;
-    }
-
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-    }
-    .tile{
-      padding:16px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(10,12,18,.55), rgba(10,12,18,.25));
-      border:1px solid rgba(140,170,255,.16);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      transition: .18s ease;
-      position:relative;
-      overflow:hidden;
-      min-height: 112px;
-    }
-    .tile:before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: radial-gradient(420px 180px at 18% 0%, rgba(31,182,255,.14), transparent 60%),
-                  radial-gradient(420px 180px at 82% 10%, rgba(124,77,255,.12), transparent 60%);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .tile:hover{
-      transform: translateY(-2px);
-      border-color: rgba(31,182,255,.28);
-      box-shadow: var(--glowB);
-    }
-    .tile h3{
-      margin:0 0 6px;
-      font-size:14px;
-      letter-spacing:.2px;
-    }
-    .tile p{margin:0; color:var(--muted); font-size:13px; line-height:1.45}
-    .icon{
-      width:34px; height:34px;
-      border-radius: 14px;
-      background: rgba(10,12,18,.45);
-      border:1px solid rgba(140,170,255,.18);
-      display:grid; place-items:center;
-      margin-bottom:10px;
-      box-shadow: 0 0 0 2px rgba(31,182,255,.06);
-    }
-
-    /* Gallery placeholders */
-    .gallery{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr .9fr;
-      gap:12px;
-    }
-    .ph{
-      border-radius: var(--radius);
-      min-height: 180px;
-      background:
-        radial-gradient(500px 220px at 25% 0%, rgba(31,182,255,.18), transparent 60%),
-        radial-gradient(500px 220px at 80% 10%, rgba(124,77,255,.16), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid rgba(140,170,255,.14);
-      position:relative;
-      overflow:hidden;
-      box-shadow: 0 12px 40px rgba(0,0,0,.35);
-    }
-    .ph:after{
-      content:"Add store photos here";
-      position:absolute;
-      left:14px; bottom:12px;
-      font-size:12px;
-      color: rgba(234,240,255,.72);
-      padding:8px 10px;
-      border-radius: 999px;
-      background: rgba(10,12,18,.45);
-      border: 1px solid rgba(140,170,255,.16);
-      backdrop-filter: blur(10px);
-    }
-
-    /* Visit */
-    .visitGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      align-items:stretch;
-    }
-    .mapFrame{
-      padding:0;
-      overflow:hidden;
-    }
-    .mapFrame iframe{
-      width:100%;
-      height: 320px;
-      border:0;
-      filter: saturate(110%) contrast(105%);
-    }
-    .visitInfo{padding:18px;}
-    .infoList{display:grid; gap:10px; margin-top:12px;}
-    .infoRow{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:12px 12px;
-      border-radius: 16px;
-      background: rgba(10,12,18,.35);
-      border:1px solid rgba(140,170,255,.14);
-    }
-    .infoRow a{color:var(--txt); text-decoration:none}
-    .infoRow a:hover{text-decoration:underline}
-    .fine{color:var(--muted); font-size:12px; margin-top:10px; line-height:1.5}
-
-    /* Footer */
-    footer{
-      padding:26px 0 46px;
-      border-top: 1px solid rgba(140,170,255,.12);
-      background: linear-gradient(to top, rgba(7,8,12,.78), rgba(7,8,12,.12));
-      margin-top: 18px;
-    }
-    .foot{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; flex-wrap:wrap;
-      color:rgba(234,240,255,.62);
-      font-size:12px;
-    }
-
-    /* Responsive */
-    @media (max-width: 920px){
-      .heroGrid{grid-template-columns: 1fr}
-      .visitGrid{grid-template-columns: 1fr}
-      .gallery{grid-template-columns: 1fr}
-      .ph{min-height: 220px}
-      .grid3{grid-template-columns: 1fr}
-      .links{display:none}
-    }
-  </style>
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -487,15 +29,15 @@
   <header>
     <div class="wrap">
       <div class="nav">
-        <a class="brand" href="#top" aria-label="Planet 420 Home">
-          <div class="logo" aria-hidden="true"></div>
+        <a class="brand" href="#top">
+          <div class="logo"></div>
           <div>
             <b>PLANET 420</b>
             <span>Smoke &amp; Vape Shop — La Vernia</span>
           </div>
         </a>
 
-        <nav class="links" aria-label="Site">
+        <nav class="links">
           <a href="#products">Products</a>
           <a href="#photos">Photos</a>
           <a href="#reviews">Reviews</a>
@@ -503,20 +45,12 @@
         </nav>
 
         <div class="ctaRow">
-          <span class="pill" title="Open now">
-            <span class="dot" aria-hidden="true"></span>
-            Open late • Call or get directions
+          <span class="pill">
+            <span class="dot"></span>
+            Open Late
           </span>
-          <a class="btn primary" href="tel:+18305817020" aria-label="Call Planet 420">
-            <!-- phone -->
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.54 2.5a2 2 0 0 1-.45 2.11L9.03 10.91a16 16 0 0 0 4.06 4.06l1.58-1.06a2 2 0 0 1 2.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Call Now
-          </a>
-          <a class="btn" href="https://www.google.com/maps?q=Planet+420+Smoke+%26+Vape+Shop+La+Vernia+TX+78121" target="_blank" rel="noopener">
-            <!-- pin -->
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 1 1 18 0Z" stroke="currentColor" stroke-width="2"/><path d="M12 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="2"/></svg>
-            Directions
-          </a>
+          <a class="btn primary" href="tel:+18305817020">Call Now</a>
+          <a class="btn" href="#visit">Directions</a>
         </div>
       </div>
     </div>
@@ -524,76 +58,64 @@
 
   <!-- Main -->
   <main id="top">
-    <!-- HERO -->
+    <!-- Hero -->
     <section class="hero">
       <div class="wrap">
         <div class="heroGrid">
           <div class="card cardGlow heroMain">
             <div class="kicker">
-              <span style="color:rgba(31,182,255,.95); text-shadow: var(--glowB);">NEON • COSMIC • LOCAL</span>
-              <span class="kickerLine" aria-hidden="true"></span>
+              <span>NEON • COSMIC • LOCAL</span>
+              <span class="kickerLine"></span>
             </div>
 
-            <h1>Planet 420<br/>Smoke &amp; Vape Shop</h1>
+            <h1>Planet 420<br>Smoke &amp; Vape Shop</h1>
 
             <p class="sub">
-              Your neighborhood stop for vapes, CBD, glass, and accessories — with a friendly crew and a clean, modern vibe.
-              Tap to call, get directions, and see what we carry.
+              Your local stop for vapes, CBD, glass, and accessories — friendly staff, clean shop, open late.
             </p>
 
             <div class="heroActions">
-              <a class="btn primary" href="tel:+18305817020">Call (830) 581-7020</a>
+              <a class="btn primary" href="tel:+18305817020">(830) 581-7020</a>
               <a class="btn" href="#products">Browse Products</a>
               <a class="btn" href="#visit">Hours &amp; Location</a>
             </div>
 
             <div class="metaRow">
               <div class="meta">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/></svg>
-                <div><b>Open Late</b><div style="color:var(--muted); font-size:12px; margin-top:2px;">Closes 11 PM (per Google)</div></div>
+                <strong>Open Late</strong><br>
+                <small>Closes 11 PM</small>
               </div>
               <div class="meta">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 21s8-6.2 8-12a8 8 0 1 0-16 0c0 5.8 8 12 8 12Z" stroke="currentColor" stroke-width="2"/><path d="M12 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="currentColor" stroke-width="2"/></svg>
-                <div><b>La Vernia</b><div style="color:var(--muted); font-size:12px; margin-top:2px;">10909 U.S. Hwy 87 W</div></div>
+                <strong>La Vernia, TX</strong><br>
+                <small>10909 US Hwy 87 W</small>
               </div>
               <div class="meta">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 3h18v18H3V3Z" stroke="currentColor" stroke-width="2"/><path d="M7 9h10M7 13h10M7 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                <div><b>Deals &amp; Discounts</b><div style="color:var(--muted); font-size:12px; margin-top:2px;">Ask in-store for specials</div></div>
+                <strong>4.4 ★ Google</strong><br>
+                <small>80 Reviews</small>
               </div>
             </div>
           </div>
 
-          <aside class="card heroSide" aria-label="Quick Info">
+          <!-- Side Card -->
+          <aside class="card heroSide">
             <div class="sideTitle">
-              <span class="spark" aria-hidden="true"></span>
+              <span class="spark"></span>
               Quick Info
-              <span class="kickerLine" aria-hidden="true"></span>
+              <span class="kickerLine"></span>
             </div>
 
             <div class="badge">
-              <div style="flex:1">
-                <b>4.4 ★</b>
-                <small>80 Google reviews (snapshot)</small>
-              </div>
-              <span style="width:10px"></span>
-            </div>
-
-            <div class="hours">
-              <div class="meta">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/></svg>
-                <div><b>Hours</b><div style="color:var(--muted); font-size:12px; margin-top:2px;">See visit section</div></div>
-              </div>
-              <div class="meta">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.54 2.5a2 2 0 0 1-.45 2.11L9.03 10.91a16 16 0 0 0 4.06 4.06l1.58-1.06a2 2 0 0 1 2.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <div><b>Phone</b><div style="color:var(--muted); font-size:12px; margin-top:2px;">(830) 581-7020</div></div>
+              <div>
+                <b>Call or Walk In</b>
+                <small>No online checkout needed</small>
               </div>
             </div>
 
             <p class="note">
-              This is a website preview concept. Swap in real photos, verify hours, and add location-specific promos.
+              This preview shows how customers can instantly find your shop, confirm hours, and call with one tap.
             </p>
 
-            <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
               <a class="btn primary" href="#visit">Get Directions</a>
               <a class="btn" href="#reviews">Read Reviews</a>
             </div>
@@ -602,187 +124,88 @@
       </div>
     </section>
 
-    <!-- PRODUCTS -->
+    <!-- Products -->
     <section id="products">
       <div class="wrap">
         <div class="sectionHead">
-          <div>
-            <h2>Products</h2>
-            <p>Quick categories so customers know you carry what they’re looking for (no online checkout needed).</p>
-          </div>
+          <h2>Products</h2>
+          <p>Quick overview of what customers can expect in-store.</p>
         </div>
 
         <div class="grid3">
-          <div class="tile">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 2h8v6H8V2Z" stroke="currentColor" stroke-width="2"/><path d="M7 8h10v14H7V8Z" stroke="currentColor" stroke-width="2"/><path d="M10 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-            <h3>Vapes &amp; E-Liquid</h3>
-            <p>Popular devices, disposables, and flavors — ask staff for recommendations.</p>
-          </div>
-
-          <div class="tile">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s6-5 6-10a6 6 0 1 0-12 0c0 5 6 10 6 10Z" stroke="currentColor" stroke-width="2"/><path d="M10 12a2 2 0 1 0 4 0c0-2-2-3-2-6 0 3-2 4-2 6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-            <h3>CBD &amp; Hemp</h3>
-            <p>CBD products and wellness options — find what fits your routine.</p>
-          </div>
-
-          <div class="tile">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 3h6l-1 12H10L9 3Z" stroke="currentColor" stroke-width="2"/></svg>
-            </div>
-            <h3>Glass &amp; Accessories</h3>
-            <p>Glass, tools, and accessories — clean selection, easy to browse.</p>
-          </div>
-
-          <div class="tile">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 7h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6 7l1 14h10l1-14" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="2"/></svg>
-            </div>
-            <h3>Rolling Supplies</h3>
-            <p>Papers, wraps, filters, grinders, storage — all the basics in one stop.</p>
-          </div>
-
-          <div class="tile">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2v20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5 7h14M5 17h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-            <h3>Deals &amp; Discounts</h3>
-            <p>Weekly promos and staff specials — ask in-store and save.</p>
-          </div>
-
-          <div class="tile">
-            <div class="icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 7h-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20 12h-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20 17h-9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 7h3v10H4V7Z" stroke="currentColor" stroke-width="2"/></svg>
-            </div>
-            <h3>New Arrivals</h3>
-            <p>Fresh inventory drops — quick updates keep regulars coming back.</p>
-          </div>
+          <div class="tile"><h3>Vapes &amp; E-Liquid</h3><p>Popular devices and flavors.</p></div>
+          <div class="tile"><h3>CBD &amp; Hemp</h3><p>CBD oils, gummies, and more.</p></div>
+          <div class="tile"><h3>Glass &amp; Accessories</h3><p>Glass pieces and tools.</p></div>
+          <div class="tile"><h3>Rolling Supplies</h3><p>Papers, wraps, grinders.</p></div>
+          <div class="tile"><h3>Deals</h3><p>Weekly in-store discounts.</p></div>
+          <div class="tile"><h3>New Arrivals</h3><p>Fresh inventory drops.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- PHOTOS -->
+    <!-- Photos -->
     <section id="photos">
       <div class="wrap">
         <div class="sectionHead">
-          <div>
-            <h2>Photos</h2>
-            <p>Swap these placeholders with your storefront + interior photos (night shots look amazing with your LEDs).</p>
-          </div>
+          <h2>Photos</h2>
+          <p>Replace with storefront and interior shots.</p>
         </div>
 
         <div class="gallery">
-          <div class="ph" role="img" aria-label="Storefront photo placeholder"></div>
-          <div class="ph" role="img" aria-label="Interior photo placeholder"></div>
-          <div class="ph" role="img" aria-label="Product photo placeholder"></div>
+          <div class="ph"></div>
+          <div class="ph"></div>
+          <div class="ph"></div>
         </div>
       </div>
     </section>
 
-    <!-- REVIEWS -->
+    <!-- Reviews -->
     <section id="reviews">
       <div class="wrap">
         <div class="sectionHead">
-          <div>
-            <h2>Reviews</h2>
-            <p>Highlight what customers already say: friendly staff, great selection, and good prices.</p>
-          </div>
+          <h2>Reviews</h2>
+          <p>What customers are saying.</p>
         </div>
 
         <div class="grid3">
-          <div class="tile">
-            <h3>“Insanely nice…”</h3>
-            <p>“Always insanely nice and many ways to get discounts…”</p>
-            <p style="margin-top:10px; color:rgba(234,240,255,.55); font-size:12px;">— Local customer</p>
-          </div>
-          <div class="tile">
-            <h3>“Great turnaround”</h3>
-            <p>“Welcomed with a smiling face… very nice ladies…”</p>
-            <p style="margin-top:10px; color:rgba(234,240,255,.55); font-size:12px;">— Recent review</p>
-          </div>
-          <div class="tile">
-            <h3>“Selection &amp; prices”</h3>
-            <p>“Friendly staff and amazing product/prices…”</p>
-            <p style="margin-top:10px; color:rgba(234,240,255,.55); font-size:12px;">— Google review</p>
-          </div>
-        </div>
-
-        <div style="margin-top:12px;">
-          <a class="btn" href="https://www.google.com/search?q=Planet+420+Smoke+%26+Vape+Shop+La+Vernia+reviews" target="_blank" rel="noopener">
-            View All Reviews
-          </a>
+          <div class="tile"><p>“Always insanely nice and great discounts.”</p></div>
+          <div class="tile"><p>“Friendly staff and solid selection.”</p></div>
+          <div class="tile"><p>“Only place I find my favorite vape juice.”</p></div>
         </div>
       </div>
     </section>
 
-    <!-- VISIT -->
+    <!-- Visit -->
     <section id="visit">
       <div class="wrap">
         <div class="sectionHead">
-          <div>
-            <h2>Visit Planet 420</h2>
-            <p>10909 U.S. Hwy 87 W, La Vernia, TX 78121 • Tap to call or get directions.</p>
-          </div>
+          <h2>Visit Planet 420</h2>
+          <p>10909 U.S. Hwy 87 W, La Vernia, TX 78121</p>
         </div>
 
         <div class="visitGrid">
           <div class="card mapFrame">
-            <!-- NOTE: This embed is a generic maps view. Replace with your official embed if desired. -->
             <iframe
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              aria-label="Map to Planet 420"
               src="https://www.google.com/maps?q=10909%20U.S.%20Hwy%2087%20W%2C%20La%20Vernia%2C%20TX%2078121&output=embed">
             </iframe>
           </div>
 
           <div class="card visitInfo">
-            <div class="pill" style="margin-bottom:12px;">
-              <span class="dot" aria-hidden="true"></span>
-              Open • Closes 11 PM (verify)
+            <div class="pill">
+              <span class="dot"></span>
+              Open • Closes 11 PM
             </div>
 
             <div class="infoList">
-              <div class="infoRow">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 1 1 18 0Z" stroke="currentColor" stroke-width="2"/><path d="M12 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="2"/></svg>
-                <div>
-                  <b>Address</b>
-                  <div style="color:var(--muted); font-size:12.5px; margin-top:2px;">
-                    10909 U.S. Hwy 87 W<br/>La Vernia, TX 78121
-                  </div>
-                </div>
-              </div>
-
-              <div class="infoRow">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.54 2.5a2 2 0 0 1-.45 2.11L9.03 10.91a16 16 0 0 0 4.06 4.06l1.58-1.06a2 2 0 0 1 2.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <div>
-                  <b>Phone</b>
-                  <div style="margin-top:2px;"><a href="tel:+18305817020">(830) 581-7020</a></div>
-                </div>
-              </div>
-
-              <div class="infoRow">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/></svg>
-                <div>
-                  <b>Hours</b>
-                  <div style="color:var(--muted); font-size:12.5px; margin-top:2px;">
-                    Add official weekly hours here for accuracy.
-                  </div>
-                </div>
-              </div>
+              <div class="infoRow"><b>Phone:</b> <a href="tel:+18305817020">(830) 581-7020</a></div>
+              <div class="infoRow"><b>Address:</b> 10909 US Hwy 87 W</div>
+              <div class="infoRow"><b>City:</b> La Vernia, TX</div>
             </div>
 
-            <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;">
-              <a class="btn primary" href="https://www.google.com/maps?q=Planet+420+Smoke+%26+Vape+Shop+La+Vernia+TX+78121" target="_blank" rel="noopener">Get Directions</a>
-              <a class="btn" href="#products">See Products</a>
+            <div style="margin-top:14px;">
+              <a class="btn primary" href="https://www.google.com/maps?q=Planet+420+La+Vernia" target="_blank">Get Directions</a>
             </div>
-
-            <p class="fine">
-              Tip: Once live, this page boosts search trust and helps customers instantly call, navigate, and confirm what you carry.
-            </p>
           </div>
         </div>
       </div>
@@ -793,103 +216,13 @@
   <footer>
     <div class="wrap">
       <div class="foot">
-        <div>© <span id="year"></span> Planet 420 — La Vernia</div>
-        <div style="opacity:.9;">Cosmic Neon concept • One-page local website</div>
+        <div>© <span id="year"></span> Planet 420</div>
+        <div>Cosmic Neon Website Concept</div>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Animated smoke canvas (lightweight particle drift)
-    (() => {
-      const canvas = document.getElementById("smokeCanvas");
-      const ctx = canvas.getContext("2d", { alpha: true });
-
-      let w = 0, h = 0, dpr = 1;
-
-      const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const mobile = /Mobi|Android/i.test(navigator.userAgent);
-      const MAX = prefersReduced ? 0 : (mobile ? 24 : 42);
-
-      const clouds = [];
-      const rand = (a,b)=>a+Math.random()*(b-a);
-
-      function resize(){
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
-        w = canvas.clientWidth;
-        h = canvas.clientHeight;
-        canvas.width = Math.floor(w * dpr);
-        canvas.height = Math.floor(h * dpr);
-        ctx.setTransform(dpr,0,0,dpr,0,0);
-      }
-
-      function makeCloud(){
-        const x = rand(-w*0.1, w*1.1);
-        const y = rand(h*0.6, h*1.1);
-        return {
-          x, y,
-          r: rand(90, 190),
-          vx: rand(-0.18, 0.18),
-          vy: rand(-0.42, -0.16),
-          a: rand(0.04, 0.09),
-          hue: Math.random() < 0.55 ? 205 : 265,   // blue / purple
-          life: rand(0.65, 1.2)
-        };
-      }
-
-      function init(){
-        clouds.length = 0;
-        for(let i=0;i<MAX;i++) clouds.push(makeCloud());
-      }
-
-      function draw(){
-        if (prefersReduced) return;
-
-        ctx.clearRect(0,0,w,h);
-
-        // subtle tint gradient
-        const g = ctx.createLinearGradient(0,0,w,h);
-        g.addColorStop(0, "rgba(31,182,255,0.06)");
-        g.addColorStop(0.55, "rgba(124,77,255,0.05)");
-        g.addColorStop(1, "rgba(45,255,154,0.02)");
-        ctx.fillStyle = g;
-        ctx.fillRect(0,0,w,h);
-
-        for(const c of clouds){
-          c.x += c.vx;
-          c.y += c.vy;
-          c.life -= 0.0016;
-
-          // respawn
-          if(c.y < -c.r || c.x < -w*0.25 || c.x > w*1.25 || c.life <= 0){
-            Object.assign(c, makeCloud(), { y: rand(h*0.85, h*1.15) });
-          }
-
-          const alpha = c.a * Math.max(0, Math.min(1, c.life));
-          const rg = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, c.r);
-          rg.addColorStop(0, `hsla(${c.hue}, 90%, 65%, ${alpha})`);
-          rg.addColorStop(0.35, `hsla(${c.hue}, 90%, 60%, ${alpha*0.55})`);
-          rg.addColorStop(1, `hsla(${c.hue}, 80%, 55%, 0)`);
-
-          ctx.globalCompositeOperation = "screen";
-          ctx.fillStyle = rg;
-          ctx.beginPath();
-          ctx.arc(c.x, c.y, c.r, 0, Math.PI*2);
-          ctx.fill();
-
-          ctx.globalCompositeOperation = "source-over";
-        }
-
-        requestAnimationFrame(draw);
-      }
-
-      const ro = new ResizeObserver(() => { resize(); init(); });
-      ro.observe(document.body);
-      resize(); init(); draw();
-    })();
-  </script>
+  <!-- Scripts -->
+  <script src="script.js" defer></script>
 </body>
 </html>
