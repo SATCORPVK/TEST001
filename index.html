@@ -21,7 +21,45 @@
   <!-- Cosmic Background -->
   <div class="bg" aria-hidden="true">
     <div class="stars"></div>
-    <canvas id="smokeCanvas"></canvas>
+
+    <!-- SVG TURBULENCE — THICK WHITE SMOKE -->
+    <svg class="smoke-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <filter id="smokeFilter">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.012"
+          numOctaves="4"
+          seed="2"
+          result="noise">
+          <animate
+            attributeName="baseFrequency"
+            dur="18s"
+            values="0.010;0.016;0.010"
+            repeatCount="indefinite" />
+        </feTurbulence>
+
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="noise"
+          scale="60"
+          xChannelSelector="R"
+          yChannelSelector="G">
+          <animate
+            attributeName="scale"
+            dur="10s"
+            values="52;68;52"
+            repeatCount="indefinite" />
+        </feDisplacementMap>
+      </filter>
+
+      <rect
+        x="0" y="0"
+        width="100%" height="100%"
+        fill="white"
+        opacity="0.85"
+        filter="url(#smokeFilter)" />
+    </svg>
+
     <div class="vignette"></div>
   </div>
 
@@ -45,10 +83,7 @@
         </nav>
 
         <div class="ctaRow">
-          <span class="pill">
-            <span class="dot"></span>
-            Open Late
-          </span>
+          <span class="pill"><span class="dot"></span>Open Late</span>
           <a class="btn primary" href="tel:+18305817020">Call Now</a>
           <a class="btn" href="#visit">Directions</a>
         </div>
@@ -58,7 +93,6 @@
 
   <!-- Main -->
   <main id="top">
-    <!-- Hero -->
     <section class="hero">
       <div class="wrap">
         <div class="heroGrid">
@@ -81,132 +115,21 @@
             </div>
 
             <div class="metaRow">
-              <div class="meta">
-                <strong>Open Late</strong><br>
-                <small>Closes 11 PM</small>
-              </div>
-              <div class="meta">
-                <strong>La Vernia, TX</strong><br>
-                <small>10909 US Hwy 87 W</small>
-              </div>
-              <div class="meta">
-                <strong>4.4 ★ Google</strong><br>
-                <small>80 Reviews</small>
-              </div>
+              <div class="meta"><strong>Open Late</strong><small>Closes 11 PM</small></div>
+              <div class="meta"><strong>La Vernia, TX</strong><small>10909 US Hwy 87 W</small></div>
+              <div class="meta"><strong>4.4 ★ Google</strong><small>80 Reviews</small></div>
             </div>
           </div>
 
-          <!-- Side Card -->
           <aside class="card heroSide">
-            <div class="sideTitle">
-              <span class="spark"></span>
-              Quick Info
-              <span class="kickerLine"></span>
-            </div>
-
-            <div class="badge">
-              <div>
-                <b>Call or Walk In</b>
-                <small>No online checkout needed</small>
-              </div>
-            </div>
-
-            <p class="note">
-              This preview shows how customers can instantly find your shop, confirm hours, and call with one tap.
-            </p>
-
-            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <div class="sideTitle"><span class="spark"></span>Quick Info<span class="kickerLine"></span></div>
+            <div class="badge"><b>Call or Walk In</b><small>No online checkout needed</small></div>
+            <p class="note">This preview shows how customers instantly find your shop and call.</p>
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
               <a class="btn primary" href="#visit">Get Directions</a>
               <a class="btn" href="#reviews">Read Reviews</a>
             </div>
           </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- Products -->
-    <section id="products">
-      <div class="wrap">
-        <div class="sectionHead">
-          <h2>Products</h2>
-          <p>Quick overview of what customers can expect in-store.</p>
-        </div>
-
-        <div class="grid3">
-          <div class="tile"><h3>Vapes &amp; E-Liquid</h3><p>Popular devices and flavors.</p></div>
-          <div class="tile"><h3>CBD &amp; Hemp</h3><p>CBD oils, gummies, and more.</p></div>
-          <div class="tile"><h3>Glass &amp; Accessories</h3><p>Glass pieces and tools.</p></div>
-          <div class="tile"><h3>Rolling Supplies</h3><p>Papers, wraps, grinders.</p></div>
-          <div class="tile"><h3>Deals</h3><p>Weekly in-store discounts.</p></div>
-          <div class="tile"><h3>New Arrivals</h3><p>Fresh inventory drops.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Photos -->
-    <section id="photos">
-      <div class="wrap">
-        <div class="sectionHead">
-          <h2>Photos</h2>
-          <p>Replace with storefront and interior shots.</p>
-        </div>
-
-        <div class="gallery">
-          <div class="ph"></div>
-          <div class="ph"></div>
-          <div class="ph"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Reviews -->
-    <section id="reviews">
-      <div class="wrap">
-        <div class="sectionHead">
-          <h2>Reviews</h2>
-          <p>What customers are saying.</p>
-        </div>
-
-        <div class="grid3">
-          <div class="tile"><p>“Always insanely nice and great discounts.”</p></div>
-          <div class="tile"><p>“Friendly staff and solid selection.”</p></div>
-          <div class="tile"><p>“Only place I find my favorite vape juice.”</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Visit -->
-    <section id="visit">
-      <div class="wrap">
-        <div class="sectionHead">
-          <h2>Visit Planet 420</h2>
-          <p>10909 U.S. Hwy 87 W, La Vernia, TX 78121</p>
-        </div>
-
-        <div class="visitGrid">
-          <div class="card mapFrame">
-            <iframe
-              loading="lazy"
-              src="https://www.google.com/maps?q=10909%20U.S.%20Hwy%2087%20W%2C%20La%20Vernia%2C%20TX%2078121&output=embed">
-            </iframe>
-          </div>
-
-          <div class="card visitInfo">
-            <div class="pill">
-              <span class="dot"></span>
-              Open • Closes 11 PM
-            </div>
-
-            <div class="infoList">
-              <div class="infoRow"><b>Phone:</b> <a href="tel:+18305817020">(830) 581-7020</a></div>
-              <div class="infoRow"><b>Address:</b> 10909 US Hwy 87 W</div>
-              <div class="infoRow"><b>City:</b> La Vernia, TX</div>
-            </div>
-
-            <div style="margin-top:14px;">
-              <a class="btn primary" href="https://www.google.com/maps?q=Planet+420+La+Vernia" target="_blank">Get Directions</a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
