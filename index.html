@@ -1,151 +1,580 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Planet 420 — Smoke & Vape Shop (La Vernia)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus - Modern Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-  <meta name="description" content="Planet 420 Smoke & Vape Shop in La Vernia, TX. Vapes, CBD, glass, and accessories. Open late." />
-  <meta name="theme-color" content="#07080C" />
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4ade80;
+        }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+        body {
+            background-color: #f0f2f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles.css">
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.1) 100%);
+            top: -300px;
+            right: -200px;
+            z-index: 0;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .hero-buttons {
+            display: flex;
+        }
+
+        .hero img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 30px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .client {
+            display: flex;
+            align-items: center;
+        }
+
+        .client img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .client-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .client-info p {
+            margin: 0;
+            font-style: normal;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+            background: white;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <!-- Cosmic Background -->
-  <div class="bg" aria-hidden="true">
-    <div class="stars"></div>
-
-    <!-- SVG TURBULENCE — THICK WHITE SMOKE -->
-    <svg class="smoke-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-      <filter id="smokeFilter">
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.012"
-          numOctaves="4"
-          seed="2"
-          result="noise">
-          <animate
-            attributeName="baseFrequency"
-            dur="18s"
-            values="0.010;0.016;0.010"
-            repeatCount="indefinite" />
-        </feTurbulence>
-
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="noise"
-          scale="60"
-          xChannelSelector="R"
-          yChannelSelector="G">
-          <animate
-            attributeName="scale"
-            dur="10s"
-            values="52;68;52"
-            repeatCount="indefinite" />
-        </feDisplacementMap>
-      </filter>
-
-      <rect
-        x="0" y="0"
-        width="100%" height="100%"
-        fill="white"
-        opacity="0.85"
-        filter="url(#smokeFilter)" />
-    </svg>
-
-    <div class="vignette"></div>
-  </div>
-
-  <!-- Header -->
-  <header>
-    <div class="wrap">
-      <div class="nav">
-        <a class="brand" href="#top">
-          <div class="logo"></div>
-          <div>
-            <b>PLANET 420</b>
-            <span>Smoke &amp; Vape Shop — La Vernia</span>
-          </div>
-        </a>
-
-        <nav class="links">
-          <a href="#products">Products</a>
-          <a href="#photos">Photos</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#visit">Visit</a>
-        </nav>
-
-        <div class="ctaRow">
-          <span class="pill"><span class="dot"></span>Open Late</span>
-          <a class="btn primary" href="tel:+18305817020">Call Now</a>
-          <a class="btn" href="#visit">Directions</a>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Nexus<span>.</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Solutions</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <div>
+                    <a href="#" class="btn btn-outline">Sign In</a>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+            </nav>
         </div>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- Main -->
-  <main id="top">
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="wrap">
-        <div class="heroGrid">
-          <div class="card cardGlow heroMain">
-            <div class="kicker">
-              <span>NEON • COSMIC • LOCAL</span>
-              <span class="kickerLine"></span>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Transform Your Business With <span>Digital Solutions</span></h1>
+                    <p>We help businesses leverage technology to streamline operations, enhance customer experience, and drive growth in the digital era.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn">Start Free Trial</a>
+                        <a href="#" class="btn btn-outline">View Demo</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=500&q=80" alt="Digital Solutions">
+                </div>
             </div>
-
-            <h1>Planet 420<br>Smoke &amp; Vape Shop</h1>
-
-            <p class="sub">
-              Your local stop for vapes, CBD, glass, and accessories — friendly staff, clean shop, open late.
-            </p>
-
-            <div class="heroActions">
-              <a class="btn primary" href="tel:+18305817020">(830) 581-7020</a>
-              <a class="btn" href="#products">Browse Products</a>
-              <a class="btn" href="#visit">Hours &amp; Location</a>
-            </div>
-
-            <div class="metaRow">
-              <div class="meta"><strong>Open Late</strong><small>Closes 11 PM</small></div>
-              <div class="meta"><strong>La Vernia, TX</strong><small>10909 US Hwy 87 W</small></div>
-              <div class="meta"><strong>4.4 ★ Google</strong><small>80 Reviews</small></div>
-            </div>
-          </div>
-
-          <aside class="card heroSide">
-            <div class="sideTitle"><span class="spark"></span>Quick Info<span class="kickerLine"></span></div>
-            <div class="badge"><b>Call or Walk In</b><small>No online checkout needed</small></div>
-            <p class="note">This preview shows how customers instantly find your shop and call.</p>
-            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
-              <a class="btn primary" href="#visit">Get Directions</a>
-              <a class="btn" href="#reviews">Read Reviews</a>
-            </div>
-          </aside>
         </div>
-      </div>
     </section>
-  </main>
 
-  <!-- Footer -->
-  <footer>
-    <div class="wrap">
-      <div class="foot">
-        <div>© <span id="year"></span> Planet 420</div>
-        <div>Cosmic Neon Website Concept</div>
-      </div>
-    </div>
-  </footer>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Powerful Features</h2>
+                <p>Discover how our platform can transform your business operations</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Experience blazing fast performance with our optimized infrastructure designed for speed and efficiency.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Platform</h3>
+                    <p>Enterprise-grade security ensures your data is protected with end-to-end encryption and regular audits.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Seamless Integration</h3>
+                    <p>Easily connect with your existing tools and workflows through our extensive API library.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Actionable Insights</h3>
+                    <p>Make data-driven decisions with real-time analytics and customizable reporting dashboards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Optimized</h3>
+                    <p>Access your dashboard and manage your business from anywhere with our mobile-friendly interface.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated support team is always ready to assist you with any questions or issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Scripts -->
-  <script src="script.js" defer></script>
-</body>
-</html>
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
+                <p>Hear from businesses that have transformed their operations</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"Implementing Nexus has reduced our operational costs by 35% while improving customer satisfaction scores. The platform is intuitive and powerful."</p>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client">
+                        <div class="client-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>CTO, TechInnovate</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"The integration capabilities saved us months of development time. We were able to connect all our systems seamlessly in just a few weeks."</p>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client">
+                        <div class="client-info">
+                            <h4>Michael Chen</h4>
+                            <p>Operations Director, Global Retail Inc</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Customer support is exceptional. They helped us customize the platform to fit our unique business needs perfectly."</p>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client">
+                        <div class="client-info">
+                            <h4>Emma Rodriguez</h4>
+                            <p>CEO, Startup Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Join thousands of companies already using our platform to drive growth and innovation.</p>
+            <a href="#" class="btn">Start Your Free Trial</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Nexus</h3>
+                    <p>Empowering businesses with cutting-edge digital solutions for a connected future.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Business Suite</a></li>
+                        <li><a href="#">Analytics Platform</a></li>
+                        <li><a href="#">Integration Hub</a></li>
+                        <li><a href="#">Mobile App</a></li>
