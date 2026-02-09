@@ -1,354 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATCORP // SYSTEMS OPERATIONS</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SATCORP</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="script.js"></script>
 </head>
 <body>
-    <canvas id="bgCanvas"></canvas>
-    
-    <!-- BOOT SEQUENCE -->
-    <div id="bootSequence" class="boot-sequence">
-        <div class="boot-content">
-            <div class="boot-line">INITIALIZING SYSTEM...</div>
-            <div class="boot-line">LOADING CORE MODULES...</div>
-            <div class="boot-line">ESTABLISHING CONNECTION...</div>
-            <div class="boot-line">SYSTEM READY</div>
-        </div>
+
+<!-- BOOT SEQUENCE -->
+<section id="boot">
+    <div class="boot-screen">
+        <div class="boot-lines" id="bootText"></div>
         <div class="boot-progress">
-            <div class="progress-bar"></div>
+            <div class="boot-bar" id="bootBar"></div>
         </div>
     </div>
+</section>
 
-    <!-- Navigation Terminal -->
-    <nav class="nav-terminal">
-        <div class="nav-brand">
-            <span class="brand-accent">SATCORP</span>
-            <span class="brand-sub">// OPERATIONS</span>
+<main id="interface" class="hidden">
+
+<!-- Operator Overview -->
+<section class="panel" id="overview">
+    <div class="panel-title">Operator Overview</div>
+    <div class="panel-content columns">
+        <div>
+            <h1>SATCORP</h1>
+            <p>
+                Define the objective.<br>
+                We construct the mechanism.<br><br>
+                SATCORP operates as a systems concierge — translating ambiguity into working structures.
+            </p>
         </div>
-        <div class="nav-menu">
-            <button class="nav-item" data-section="overview">OVERVIEW</button>
-            <button class="nav-item" data-section="matrix">MATRIX</button>
-            <button class="nav-item" data-section="pipeline">PIPELINE</button>
-            <button class="nav-item" data-section="operations">OPERATIONS</button>
-            <button class="nav-item" data-section="protocol">PROTOCOL</button>
-            <button class="nav-item" data-section="contact">CONTACT</button>
+        <div class="data-block">
+            <div>MODE: Multi-Discipline Systems Operator</div>
+            <div>INPUT: Concept / Constraint / Vision</div>
+            <div>OUTPUT: Deployable Asset</div>
+            <div>STATE: Active</div>
         </div>
-        <div class="status-indicator">
-            <span class="status-dot active"></span>
-            <span class="status-text">SYSTEM ONLINE</span>
-        </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- Main Container -->
-    <main class="main-container">
-        
-        <!-- Operator Overview -->
-        <section id="overview" class="section">
-            <div class="section-header">
-                <h1 class="section-title">OPERATOR OVERVIEW</h1>
-                <div class="section-id">//SYS:001</div>
-            </div>
-            <div class="grid-2">
-                <div class="panel panel-primary">
-                    <div class="panel-header">
-                        <span class="panel-title">PRIMARY DIRECTIVE</span>
-                        <div class="panel-indicator"></div>
-                    </div>
-                    <div class="panel-content">
-                        <p class="system-text">SATCORP operates as a technical concierge, translating conceptual ambiguity into deployable systems. We architect complete solutions spanning brand identity, automation workflows, and interactive environments.</p>
-                    </div>
-                </div>
-                <div class="panel panel-secondary">
-                    <div class="panel-header">
-                        <span class="panel-title">OPERATION PARAMETERS</span>
-                        <div class="panel-indicator"></div>
-                    </div>
-                    <div class="panel-content">
-                        <div class="param-list">
-                            <div class="param-item">
-                                <span class="param-label">CLARITY</span>
-                                <span class="param-value">DEFINED</span>
-                            </div>
-                            <div class="param-item">
-                                <span class="param-label">SCOPE</span>
-                                <span class="param-value">ARCHITECTED</span>
-                            </div>
-                            <div class="param-item">
-                                <span class="param-label">EXECUTION</span>
-                                <span class="param-value">DEPLOYED</span>
-                            </div>
-                            <div class="param-item">
-                                <span class="param-label">POLISH</span>
-                                <span class="param-value">OPTIMIZED</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- Capability Matrix -->
+<section class="panel" id="capability">
+    <div class="panel-title">Capability Matrix</div>
+    <div class="matrix">
+        <div class="module">Brand Systems</div>
+        <div class="module">Web Systems</div>
+        <div class="module">Architecture & Workflow</div>
+        <div class="module">Creative Technology</div>
+        <div class="module">Broadcast & Overlay</div>
+        <div class="module">Game & World Design</div>
+        <div class="module">Client Experience</div>
+    </div>
+</section>
 
-        <!-- Capability Matrix -->
-        <section id="matrix" class="section">
-            <div class="section-header">
-                <h1 class="section-title">CAPABILITY MATRIX</h1>
-                <div class="section-id">//SYS:002</div>
-            </div>
-            <div class="capability-grid">
-                <div class="cap-module" data-cap="brand">
-                    <div class="cap-icon">⬢</div>
-                    <h3 class="cap-title">BRAND SYSTEMS</h3>
-                    <p class="cap-desc">Identity architecture, typographic doctrine, scalable visual frameworks</p>
-                    <div class="cap-status">ACTIVE</div>
-                </div>
-                <div class="cap-module" data-cap="web">
-                    <div class="cap-icon">◈</div>
-                    <h3 class="cap-title">WEB SYSTEMS</h3>
-                    <p class="cap-desc">Interactive interfaces, responsive architectures, deployment strategies</p>
-                    <div class="cap-status">ACTIVE</div>
-                </div>
-                <div class="cap-module" data-cap="architecture">
-                    <div class="cap-icon">◉</div>
-                    <h3 class="cap-title">ARCHITECTURE</h3>
-                    <p class="cap-desc">Operational design, automation pipelines, modular construction</p>
-                    <div class="cap-status">ACTIVE</div>
-                </div>
-                <div class="cap-module" data-cap="tech">
-                    <div class="cap-icon">◈</div>
-                    <h3 class="cap-title">CREATIVE TECH</h3>
-                    <p class="cap-desc">AI workflows, automation agents, accelerated production systems</p>
-                    <div class="cap-status">ACTIVE</div>
-                </div>
-                <div class="cap-module" data-cap="broadcast">
-                    <div class="cap-icon">⬢</div>
-                    <h3 class="cap-title">BROADCAST</h3>
-                    <p class="cap-desc">HUD interfaces, streaming overlays, alert UI systems</p>
-                    <div class="cap-status">ACTIVE</div>
-                </div>
-                <div class="cap-module" data-cap="game">
-                    <div class="cap-icon">◉</div>
-                    <h3 class="cap-title">GAME & WORLD</h3>
-                    <p class="cap-desc">Real-time environments, UI systems, technical art pipelines</p>
-                    <div class="cap-status">ACTIVE</div>
-                </div>
-                <div class="cap-module" data-cap="experience">
-                    <div class="cap-icon">◈</div>
-                    <h3 class="cap-title">CLIENT EXPERIENCE</h3>
-                    <p class="cap-desc">Concierge execution, scope alignment, security protocols</p>
-                    <div class="cap-status">ACTIVE</div>
-                </div>
-            </div>
-        </section>
+<!-- Systems Pipeline -->
+<section class="panel" id="pipeline">
+    <div class="panel-title">Systems Pipeline</div>
+    <div class="pipeline">
+        <div class="step">CLARITY — isolate the real objective</div>
+        <div class="step">SCOPE — define the boundaries</div>
+        <div class="step">EXECUTION — build the structure</div>
+        <div class="step">POLISH — refine the behavior</div>
+        <div class="step">DEPLOY — release with stability</div>
+    </div>
+</section>
 
-        <!-- Systems Pipeline -->
-        <section id="pipeline" class="section">
-            <div class="section-header">
-                <h1 class="section-title">SYSTEMS PIPELINE</h1>
-                <div class="section-id">//SYS:003</div>
-            </div>
-            <div class="pipeline-container">
-                <div class="pipeline-flow">
-                    <div class="stage" data-stage="1">
-                        <div class="stage-node"></div>
-                        <div class="stage-content">
-                            <h4>OBJECTIVE DEFINITION</h4>
-                            <p>Establish mission parameters and success metrics</p>
-                        </div>
-                    </div>
-                    <div class="pipeline-connector"></div>
-                    <div class="stage" data-stage="2">
-                        <div class="stage-node"></div>
-                        <div class="stage-content">
-                            <h4>SYSTEM ARCHITECTURE</h4>
-                            <p>Design modular framework and integration points</p>
-                        </div>
-                    </div>
-                    <div class="pipeline-connector"></div>
-                    <div class="stage" data-stage="3">
-                        <div class="stage-node"></div>
-                        <div class="stage-content">
-                            <h4>DEPLOYMENT SEQUENCE</h4>
-                            <p>Execute with precision and monitor system response</p>
-                        </div>
-                    </div>
-                    <div class="pipeline-connector"></div>
-                    <div class="stage" data-stage="4">
-                        <div class="stage-node"></div>
-                        <div class="stage-content">
-                            <h4>OPTIMIZATION CYCLE</h4>
-                            <p>Refine performance and scale deployment</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- Selected Operations -->
+<section class="panel" id="operations">
+    <div class="panel-title">Selected Operations</div>
+    <div class="ops-grid">
+        <div class="op">Identity frameworks deployed across media ecosystems</div>
+        <div class="op">Interactive dashboards controlling live production</div>
+        <div class="op">Automation pipelines replacing manual workflows</div>
+        <div class="op">Streaming HUD interfaces synchronized to events</div>
+        <div class="op">Real-time worldbuilding environments for interactive media</div>
+    </div>
+</section>
 
-        <!-- Selected Operations -->
-        <section id="operations" class="section">
-            <div class="section-header">
-                <h1 class="section-title">SELECTED OPERATIONS</h1>
-                <div class="section-id">//SYS:004</div>
-            </div>
-            <div class="ops-grid">
-                <div class="op-card">
-                    <div class="op-header">
-                        <span class="op-id">OP-07B</span>
-                        <span class="op-status">COMPLETE</span>
-                    </div>
-                    <h3 class="op-title">Autonomous Brand System</h3>
-                    <p class="op-desc">Complete identity architecture for decentralized finance protocol</p>
-                    <div class="op-metrics">
-                        <span class="metric">4.2TB PROCESSED</span>
-                        <span class="metric">127 MODULES</span>
-                        <span class="metric">99.8% UPTIME</span>
-                    </div>
-                </div>
-                <div class="op-card">
-                    <div class="op-header">
-                        <span class="op-id">OP-11C</span>
-                        <span class="op-status">COMPLETE</span>
-                    </div>
-                    <h3 class="op-title">Real-time Data Visualization</h3>
-                    <p class="op-desc">Interactive dashboard for global logistics network</p>
-                    <div class="op-metrics">
-                        <span class="metric">1.2M DATA POINTS</span>
-                        <span class="metric">60FPS RENDER</span>
-                        <span class="metric">0.3s LATENCY</span>
-                    </div>
-                </div>
-                <div class="op-card">
-                    <div class="op-header">
-                        <span class="op-id">OP-14A</span>
-                        <span class="op-status">ACTIVE</span>
-                    </div>
-                    <h3 class="op-title">AI-Powered Content Pipeline</h3>
-                    <p class="op-desc">Automated media generation for streaming platform</p>
-                    <div class="op-metrics">
-                        <span class="metric">8K OUTPUT</span>
-                        <span class="metric">4.7M ASSETS</span>
-                        <span class="metric">82% EFFICIENCY</span>
-                    </div>
-                </div>
-                <div class="op-card">
-                    <div class="op-header">
-                        <span class="op-id">OP-09D</span>
-                        <span class="op-status">COMPLETE</span>
-                    </div>
-                    <h3 class="op-title">Spatial Computing Interface</h3>
-                    <p class="op-desc">AR/VR control system for industrial monitoring</p>
-                    <div class="op-metrics">
-                        <span class="metric">STEREO 3D</span>
-                        <span class="metric">HAPTIC SYNC</span>
-                        <span class="metric">6DoF TRACKING</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- Engagement Protocol -->
+<section class="panel" id="protocol">
+    <div class="panel-title">Engagement Protocol</div>
+    <div class="protocol">
+        <div>1. Initiate contact</div>
+        <div>2. Provide objective</div>
+        <div>3. Receive structured response</div>
+        <div>4. Confirm execution</div>
+        <div>5. Monitor progress</div>
+    </div>
+</section>
 
-        <!-- Engagement Protocol -->
-        <section id="protocol" class="section">
-            <div class="section-header">
-                <h1 class="section-title">ENGAGEMENT PROTOCOL</h1>
-                <div class="section-id">//SYS:005</div>
-            </div>
-            <div class="protocol-container">
-                <div class="protocol-phase">
-                    <div class="phase-header">
-                        <span class="phase-num">PHASE 01</span>
-                        <h3>INITIATE CONTACT</h3>
-                    </div>
-                    <div class="phase-content">
-                        <p>Submit objective parameters through secure channel. Initial diagnostic analysis within 24 cycles.</p>
-                    </div>
-                </div>
-                <div class="protocol-phase">
-                    <div class="phase-header">
-                        <span class="phase-num">PHASE 02</span>
-                        <h3>SCOPE ALIGNMENT</h3>
-                    </div>
-                    <div class="phase-content">
-                        <p>System requirements assessment. Technical architecture proposal delivered.</p>
-                    </div>
-                </div>
-                <div class="protocol-phase">
-                    <div class="phase-header">
-                        <span class="phase-num">PHASE 03</span>
-                        <h3>CONCIERGE EXECUTION</h3>
-                    </div>
-                    <div class="phase-content">
-                        <p>Dedicated operator assignment. Real-time progress monitoring. Secure deployment.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- Contact Interface -->
+<section class="panel" id="contact">
+    <div class="panel-title">Contact Interface</div>
+    <form class="contact-form">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Channel" required>
+        <textarea placeholder="Objective Definition" required></textarea>
+        <button type="submit">Transmit</button>
+    </form>
+</section>
 
-        <!-- Contact Interface -->
-        <section id="contact" class="section">
-            <div class="section-header">
-                <h1 class="section-title">CONTACT INTERFACE</h1>
-                <div class="section-id">//SYS:006</div>
-            </div>
-            <div class="contact-form-container">
-                <div class="form-panel">
-                    <form id="contactForm" class="system-form">
-                        <div class="form-group">
-                            <label for="org">ORGANIZATION</label>
-                            <input type="text" id="org" name="org" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="objective">PRIMARY OBJECTIVE</label>
-                            <textarea id="objective" name="objective" rows="3" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="timeline">DEPLOYMENT TIMELINE</label>
-                            <select id="timeline" name="timeline" required>
-                                <option value="">SELECT PRIORITY</option>
-                                <option value="critical">CRITICAL (72HRS)</option>
-                                <option value="standard">STANDARD (2WKS)</option>
-                                <option value="extended">EXTENDED (4WKS+)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact">SECURE CHANNEL</label>
-                            <input type="email" id="contact" name="contact" required>
-                        </div>
-                        <button type="submit" class="submit-btn">
-                            <span class="btn-text">TRANSMISSION</span>
-                            <span class="btn-indicator"></span>
-                        </button>
-                    </form>
-                </div>
-                <div class="comms-panel">
-                    <h4>COMMUNICATION PROTOCOLS</h4>
-                    <div class="comms-list">
-                        <div class="comms-item">
-                            <span class="comms-label">ENCRYPTION</span>
-                            <span class="comms-value">AES-256</span>
-                        </div>
-                        <div class="comms-item">
-                            <span class="comms-label">RESPONSE TIME</span>
-                            <span class="comms-value">&lt;24HRS</span>
-                        </div>
-                        <div class="comms-item">
-                            <span class="comms-label">CLEARANCE LEVEL</span>
-                            <span class="comms-value">LEVEL 3</span>
-                        </div>
-                        <div class="comms-item">
-                            <span class="comms-label">STATUS</span>
-                            <span class="comms-value online">ONLINE</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+</main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
