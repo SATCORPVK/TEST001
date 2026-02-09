@@ -1,91 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark"> <!-- “dark” class = default theme -->
 <head>
+  <!-- -------------------  Core meta ------------------- -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SATCORP Control Interface</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <meta name="description"
+        content="SATCORP – elite systems engineering, design & concierge‑level execution.">
+  <title>SATCORP — Systems Engineering & Design</title>
+
+  <!-- -------------------  Fonts & Icons  ------------------- -->
+  <!-- Space‑grotesk gives a modern, tech feel. -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+  <!-- Font Awesome for generic icons (you can replace with your own SVGs) -->
+  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+
+  <!-- -------------------  CSS ------------------- -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- -------------------  GSAP (animation) ------------------- -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+          integrity="sha512-jZJDG73yPNZ/ZkZKK9vxv5Z6vzQH9H3HRBafYTgpdUcaW1SKWflQNutKOlM5k+ZX8hMsUfhY8RK9dBwX7k7Nqw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+          integrity="sha512-YrKOTvAOPN7BVXOTNAsDVpnIOvC3xpXnSXx8iK+HG6RsE5t8SxQYdpCVwaxC8zjHkscvXba1Z5kmLJv4RxeYxQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- -------------------  Vanta.js (ambience)  ------------------- -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+          integrity="sha512-4PlH+ODRbygfB5DQF+wBlXtb1wiM4srN8yGhfK5P5TqvbO2tKeCZ4Kj3A/qLkn3jezDHrSgDk2vMqpf4zYBvTg=="
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
+
+  <!-- -------------------  Defer our own JS ------------------- -->
+  <script src="scripts.js" defer></script>
 </head>
 <body>
+  <!-- -------------  Loading overlay (minimalist) ------------- -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
 
-  <!-- BOOT SEQUENCE -->
-  <section id="boot-sequence" class="section boot-sequence">
-    <div class="boot-screen">
-      <div class="boot-text">Initializing SATCORP Systems...</div>
+  <!-- -------------  Custom cursor ------------- -->
+  <div id="custom-cursor"></div>
+
+  <!-- -------------  Navigation ------------- -->
+  <nav>
+    <div class="logo">
+      <a href="#"><img src="assets/images/logo.svg" alt="SATCORP Logo"></a>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button id="theme-toggle" aria-label="Toggle light/dark mode">
+      <i class="fas fa-moon"></i>
+    </button>
+  </nav>
+
+  <!-- -------------  Hero – cinematic intro ------------- -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1>engineered <span class="glow">excellence</span></h1>
+      <p>Systems thinking, premium execution, concierge‑level service.</p>
+      <a href="#skills" class="cta-btn">Explore the Skill Deck</a>
+    </div>
+    <!-- Vanta will inject a full‑screen canvas into this section -->
+  </section>
+
+  <!-- -------------  Skill Deck – dynamically generated ------------- -->
+  <section id="skills">
+    <header class="section-header">
+      <h2>Skill Deck</h2>
+      <p>Our full‑stack capabilities – each built as a reusable system.</p>
+    </header>
+
+    <div class="skill-grid">
+      <!-- JavaScript will fill this -->
     </div>
   </section>
 
-  <!-- Operator Overview -->
-  <section id="operator-overview" class="section operator-overview">
-    <h1>Operator Overview</h1>
-    <p>Define the objective.<br>We monitor, configure, and execute.</p>
-    <div class="overview-panels">
-      <div class="panel">Status: <span class="status active">Active</span></div>
-      <div class="panel">Tasks: <span class="status pending">Pending</span></div>
-      <div class="panel">Systems Online: <span class="status active">7/7</span></div>
+  <!-- -------------  Contact / Footer ------------- -->
+  <footer id="contact">
+    <div class="footer-content">
+      <h3>Get in touch</h3>
+      <p>
+        <a href="mailto:hello@satcorp.io">hello@satcorp.io</a> |
+        <a href="https://discord.gg/yourinvite" target="_blank" rel="noopener">Discord</a>
+      </p>
+      <p class="small">© <span id="year"></span> SATCORP. All rights reserved.</p>
     </div>
-  </section>
-
-  <!-- Capability Matrix -->
-  <section id="capability-matrix" class="section capability-matrix">
-    <h1>Capability Matrix</h1>
-    <div class="matrix">
-      <div class="matrix-item">Brand Systems</div>
-      <div class="matrix-item">Web Systems</div>
-      <div class="matrix-item">Architecture & Workflow</div>
-      <div class="matrix-item">Creative Technology</div>
-      <div class="matrix-item">Broadcast & Overlay</div>
-      <div class="matrix-item">Game & World Design</div>
-      <div class="matrix-item">Client Experience</div>
-    </div>
-  </section>
-
-  <!-- Systems Pipeline -->
-  <section id="systems-pipeline" class="section systems-pipeline">
-    <h1>Systems Pipeline</h1>
-    <div class="pipeline">
-      <div class="pipeline-stage">Clarity</div>
-      <div class="pipeline-stage">Scope</div>
-      <div class="pipeline-stage">Execution</div>
-      <div class="pipeline-stage">Polish</div>
-    </div>
-  </section>
-
-  <!-- Selected Operations -->
-  <section id="selected-operations" class="section selected-operations">
-    <h1>Selected Operations</h1>
-    <div class="operations-grid">
-      <div class="operation-card">Interface Overhaul</div>
-      <div class="operation-card">Automated Workflow</div>
-      <div class="operation-card">Cinematic Web Dashboards</div>
-      <div class="operation-card">Real-time HUD Deployment</div>
-    </div>
-  </section>
-
-  <!-- Engagement Protocol -->
-  <section id="engagement-protocol" class="section engagement-protocol">
-    <h1>Engagement Protocol</h1>
-    <p>Structured, secure, concierge-level communication and alignment.<br>Define scope, confirm objectives, execute with precision.</p>
-  </section>
-
-  <!-- Contact Interface -->
-  <section id="contact-interface" class="section contact-interface">
-    <h1>Contact Interface</h1>
-    <form id="contact-form">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" required></textarea>
-
-      <button type="submit">Transmit</button>
-    </form>
-  </section>
-
+  </footer>
 </body>
 </html>
