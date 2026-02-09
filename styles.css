@@ -1,327 +1,315 @@
-/* ==========================================================
-   Reset & base variables
-   ========================================================== */
+/*--------------------------------------------------------------------
+  1. Variables & Base
+--------------------------------------------------------------------*/
 :root {
-  /* Dark Theme defaults (light theme will override) */
-  --color-bg: #0a0a0a;
-  --color-bg-alt: #111111;
-  --color-text: #e5e5e5;
-  --color-primary: #00ffae;      /* neon accent */
-  --color-primary-light: #66ffd9;
-  --color-muted: #555555;
-  --font-base: 'Space Grotesk', sans-serif;
+  --bg: #0c0c0c;
+  --bg-alt: #111111;
+  --accent: #00ffff;
+  --text: #ffffff;
+  --card-bg: #1a1a1a;
+  --shadow: rgba(0,0,0,.4);
+  --transition: .3s ease;
+  --font-base: Inter, sans-serif;
+  --font-title: Orbitron, sans-serif;
 }
 
-/* Light theme overrides – applied when <html> does NOT have .dark */
-html:not(.dark) {
-  --color-bg: #fafafa;
-  --color-bg-alt: #f0f0f0;
-  --color-text: #222222;
-  --color-primary: #0066ff;
-  --color-primary-light: #3399ff;
-  --color-muted: #888888;
+/* Light mode overrides */
+body.light-mode {
+  --bg: #f4f4f4;
+  --bg-alt: #e0e0e0;
+  --accent: #0066cc;
+  --text: #1a1a1a;
+  --card-bg: #ffffff;
+  --shadow: rgba(0,0,0,.1);
 }
 
-/* Basic reset */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* Body */
+body {
   margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
   font-family: var(--font-base);
-  background: var(--color-bg);
-  color: var(--color-text);
-  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-/* Hide native mouse cursor – we’ll use a custom one */
-body,
-a,
-button {
-  cursor: none;
+/*--------------------------------------------------------------------
+  2. Global Utils
+--------------------------------------------------------------------*/
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-/* ==========================================================
-   Layout helpers
-   ========================================================== */
-.container {
-  width: min(90%, 1200px);
-  margin: 0 auto;
-}
-
-/* ==========================================================
-   Global styles
-   ========================================================== */
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color .2s;
-}
-a:hover { color: var(--color-primary-light); }
-
-h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; }
-h1 { font-size: clamp(2.5rem, 8vw, 4rem); }
-h2 { font-size: clamp(2rem, 5vw, 3rem); }
-p { margin: 1rem 0; line-height: 1.6; }
-
-/* ==========================================================
-   Loading overlay
-   ========================================================== */
+/*--------------------------------------------------------------------
+  3. Loader
+--------------------------------------------------------------------*/
 #loader {
   position: fixed;
   inset: 0;
-  background: var(--color-bg);
+  background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 2000;
+  opacity: 1;
 }
+
 .spinner {
-  width: 60px;
-  height: 60px;
-  border: 5px solid var(--color-muted);
-  border-top: 5px solid var(--color-primary);
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--accent);
+  border-top: 4px solid transparent;
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
 }
+
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to{ transform: rotate(360deg); }
 }
 
-/* ==========================================================
-   Custom cursor
-   ========================================================== */
-#custom-cursor {
+/*--------------------------------------------------------------------
+  4. Header & Navigation
+--------------------------------------------------------------------*/
+.header {
   position: fixed;
-  top: 0; left: 0;
-  width: 18px; height: 18px;
-  background: var(--color-primary);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: transform .08s ease-out, background .2s;
-  mix-blend-mode: difference; /* works well on dark and light */
-  z-index: 9998;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--bg-alt);
+  backdrop-filter: blur(12px);
 }
 
-/* Enlarge cursor on interactive elements */
-a:hover ~ #custom-cursor,
-button:hover ~ #custom-cursor,
-.skill-card:hover ~ #custom-cursor,
-.nav-links a:hover ~ #custom-cursor {
-  transform: translate(-50%, -50%) scale(2.2);
-  background: var(--color-primary-light);
-}
-
-/* ==========================================================
-   Navigation
-   ========================================================== */
-nav {
-  position: fixed;
-  inset: 0 0 auto 0;
-  height: 64px;
-  background: rgba(10,10,10,0.8);
-  backdrop-filter: blur(8px);
+.navbar {
   display: flex;
   align-items: center;
-  padding: 0 2rem;
-  z-index: 100;
+  justify-content: space-between;
+  padding: .75rem 2rem;
 }
-nav .logo img {
-  height: 36px;
+
+.logo {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
 }
-nav .nav-links {
+
+.nav-links {
   list-style: none;
   display: flex;
-  gap: 2rem;
-  margin-left: auto;
+  gap: 1.5rem;
 }
-nav .nav-links a {
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
   font-weight: 500;
-  color: var(--color-text);
-}
-nav .nav-links a:hover {
-  color: var(--color-primary);
-}
-#theme-toggle {
-  margin-left: 2rem;
-  background: transparent;
-  border: none;
-  color: var(--color-text);
-  font-size: 1.2rem;
-}
-#theme-toggle:hover { color: var(--color-primary); }
-
-/* ==========================================================
-   Hero
-   ========================================================== */
-#hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  color: var(--color-text);
-  padding-top: 64px; /* offset for nav */
-}
-#hero .hero-content {
-  text-align: center;
-  max-width: 800px;
-  z-index: 1; /* above Vanta canvas */
-}
-#hero h1 {
-  font-size: clamp(3rem, 12vw, 5rem);
-  line-height: 1.1;
-}
-#hero .glow {
-  color: var(--color-primary);
-  text-shadow: 0 0 8px var(--color-primary), 0 0 20px var(--color-primary);
-}
-#hero p {
-  font-size: 1.2rem;
-  margin-top: 1rem;
-}
-#hero .cta-btn {
-  margin-top: 2rem;
-  display: inline-block;
-  padding: .75rem 2rem;
-  background: var(--color-primary);
-  color: #000;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: background .2s, transform .2s;
-}
-#hero .cta-btn:hover {
-  background: var(--color-primary-light);
-  transform: translateY(-3px);
+  transition: color var(--transition);
 }
 
-/* ==========================================================
-   Skill Deck
-   ========================================================== */
-#skills {
-  padding: 4rem 0;
-  background: var(--color-bg-alt);
-}
-.section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-.skill-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.nav-links a:hover {
+  color: var(--accent);
 }
 
-/* Card */
-.skill-card {
-  background: var(--color-bg);
-  border: 1px solid var(--color-muted);
+/*--------------------------------------------------------------------
+  5. Dark/Light Switch
+--------------------------------------------------------------------*/
+.theme-switch input{ display:none; }
+
+.switch-label{
+  width: 48px; height: 24px;
+  background: var(--bg);
   border-radius: 12px;
-  padding: 1.5rem;
-  overflow: hidden;
   position: relative;
   cursor: pointer;
-  transform: translateY(30px);
-  opacity: 0;
-}
-.skill-card:hover {
-  box-shadow: 0 0 20px rgba(0,255,174,0.4);
-}
-.skill-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: .5rem;
-  color: var(--color-primary);
-}
-.skill-card .icon {
-  font-size: 2.2rem;
-  margin-bottom: .75rem;
-  color: var(--color-primary-light);
-}
-.skill-card p {
-  font-size: .95rem;
-  color: var(--color-text);
-}
-.skill-card .details {
-  margin-top: .8rem;
-  font-size: .85rem;
-  line-height: 1.4;
-}
-.skill-card .details strong {
-  color: var(--color-primary);
+  transition: background var(--transition);
 }
 
-/* -------------------------------------------------
-   Modal styles – will appear when a card is clicked
-   ------------------------------------------------- */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.85);
+.switch-label::before{
+  content:"";
+  position:absolute;
+  top:3px; left:3px;
+  width: 18px; height:18px;
+  background: var(--accent);
+  border-radius:50%;
+  transition: transform var(--transition);
+}
+
+#dark-mode-toggle:checked + .switch-label{
+  background: var(--accent);
+}
+
+#dark-mode-toggle:checked + .switch-label::before{
+  transform: translateX(24px);
+}
+
+/*--------------------------------------------------------------------
+  6. Hero Section
+--------------------------------------------------------------------*/
+.hero{
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  z-index: 5000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .3s ease;
-}
-.modal.active {
-  opacity: 1;
-  pointer-events: all;
-}
-.modal .modal-content {
-  background: var(--color-bg);
-  max-width: 800px;
-  width: 100%;
-  border-radius: 12px;
-  padding: 2rem;
-  position: relative;
-}
-.modal .close {
-  position: absolute;
-  top: .75rem;
-  right: .75rem;
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  color: var(--color-muted);
-}
-.modal .close:hover { color: var(--color-primary); }
-
-/* ==========================================================
-   Footer / Contact
-   ========================================================== */
-footer {
-  background: var(--color-bg);
-  color: var(--color-muted);
-  text-align: center;
-  padding: 2rem;
-}
-footer a { color: var(--color-primary); }
-footer .small { font-size: .85rem; margin-top: .5rem; }
-
-/* ==========================================================
-   Media queries – mobile tweaks
-   ========================================================== */
-@media (max-width: 600px) {
-  nav {
-    padding: 0 1rem;
-  }
-  .nav-links { gap: 1rem; }
-  #hero h1 { font-size: clamp(2.5rem,10vw,4rem); }
+  text-align:center;
+  padding:0 2rem;
+  position:relative;
+  z-index:1;
 }
 
-/* ==========================================================
-   Utility classes
-   ========================================================== */
-.hidden { display: none !important; }
+.hero-title{
+  font-family: var(--font-title);
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height:1.1;
+  color: var(--accent);
+  margin:0;
+  white-space: nowrap;
+  overflow:hidden;
+}
+
+.hero-subtitle{
+  font-size:1.5rem;
+  margin-top:1rem;
+  color: var(--text);
+  max-width: 600px;
+  line-height:1.4;
+}
+
+.hero-cta{
+  margin-top:2rem;
+  padding:1rem 2rem;
+  background: var(--accent);
+  color: var(--bg);
+  border:none;
+  border-radius:30px;
+  font-size:1rem;
+  cursor:pointer;
+  transition: background var(--transition);
+}
+
+.hero-cta:hover{
+  background: rgba(var(--accent), .8);
+}
+
+/*--------------------------------------------------------------------
+  7. Skill Deck
+--------------------------------------------------------------------*/
+.skills-section{
+  padding:3rem 2rem;
+  background: var(--bg-alt);
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap:1.5rem;
+}
+
+.skill-card{
+  background: var(--card-bg);
+  padding:2rem;
+  border-radius:12px;
+  box-shadow: 0 4px 12px var(--shadow);
+  cursor:pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  overflow:hidden;
+}
+
+.skill-card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.skill-title{
+  font-family: var(--font-title);
+  color: var(--accent);
+  font-size:1.8rem;
+  margin-bottom:.5rem;
+}
+
+.skill-short{
+  color: var(--text);
+  font-size:1rem;
+  line-height:1.4;
+}
+
+.skill-detail{
+  display:none;
+  margin-top:1.5rem;
+}
+
+/*--------------------------------------------------------------------
+  8. Modal
+--------------------------------------------------------------------*/
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+}
+
+.modal-content{
+  background: var(--card-bg);
+  padding:2rem;
+  border-radius:12px;
+  width:90%;
+  max-width:620px;
+  position:relative;
+}
+
+.modal-close{
+  position:absolute;
+  top:10px; right:10px;
+  font-size:1.5rem;
+  cursor:pointer;
+  color:var(--text);
+}
+
+.modal-close:hover{
+  color: var(--accent);
+}
+
+/*--------------------------------------------------------------------
+  9. Contact
+--------------------------------------------------------------------*/
+.contact-section{
+  padding:3rem 2rem;
+  text-align:center;
+  background: var(--bg);
+}
+
+.contact-cta{
+  margin-top:2rem;
+  padding:1rem 2rem;
+  background: var(--accent);
+  color: var(--bg);
+  border:none;
+  border-radius:30px;
+  font-size:1rem;
+  cursor:pointer;
+  transition: background var(--transition);
+}
+
+.contact-cta:hover{
+  background: rgba(var(--accent), .8);
+}
+
+/*--------------------------------------------------------------------
+  10. Footer
+--------------------------------------------------------------------*/
+.footer{
+  text-align:center;
+  padding:1.5rem 2rem;
+  background: var(--bg-alt);
+  color:var(--text);
+  font-size:.9rem;
+}
+
+/*--------------------------------------------------------------------
+  11. Responsive
+--------------------------------------------------------------------*/
+@media(max-width:768px){
+  .nav-links{ gap:1rem; }
+  .hero-cta, .contact-cta{ font-size:.95rem; }
+}
