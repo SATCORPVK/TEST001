@@ -1,110 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SATCORP</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script defer src="script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SATCORP — Systems Operator</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+  <!-- BOOT SEQUENCE -->
+  <section id="boot" class="panel full">
+    <div class="boot-inner">
+      <div class="boot-lines">
+        <span>Initializing SATCORP Interface</span>
+        <span>Loading Operator Context</span>
+        <span>Verifying Systems Integrity</span>
+        <span class="ok">Status: READY</span>
+      </div>
+      <button id="enter">ENTER SYSTEM</button>
+    </div>
+  </section>
 
-<!-- BOOT SEQUENCE -->
-<section id="boot">
-    <div class="boot-screen">
-        <div class="boot-lines" id="bootText"></div>
-        <div class="boot-progress">
-            <div class="boot-bar" id="bootBar"></div>
+  <main id="system" class="hidden">
+    <!-- Operator Overview -->
+    <section id="overview" class="panel">
+      <h1>Operator Overview</h1>
+      <p>
+        SATCORP is a creative systems operator.<br/>
+        We translate abstract intent into deployed structure.<br/>
+        Strategy is meaningless until it runs.
+      </p>
+      <div class="metrics">
+        <div><strong>Mode</strong><span>Concierge</span></div>
+        <div><strong>Output</strong><span>Operational Assets</span></div>
+        <div><strong>Focus</strong><span>Systems, Not Surfaces</span></div>
+      </div>
+    </section>
+
+    <!-- Capability Matrix -->
+    <section id="capabilities" class="panel">
+      <h2>Capability Matrix</h2>
+      <div class="matrix">
+        <div class="cell">
+          <h3>Brand Systems</h3>
+          <p>Identity architectures designed to scale, persist, and remain legible under pressure.</p>
         </div>
-    </div>
-</section>
-
-<main id="interface" class="hidden">
-
-<!-- Operator Overview -->
-<section class="panel" id="overview">
-    <div class="panel-title">Operator Overview</div>
-    <div class="panel-content columns">
-        <div>
-            <h1>SATCORP</h1>
-            <p>
-                Define the objective.<br>
-                We construct the mechanism.<br><br>
-                SATCORP operates as a systems concierge — translating ambiguity into working structures.
-            </p>
+        <div class="cell">
+          <h3>Web Systems</h3>
+          <p>Interfaces that behave like software — responsive, modular, and intentional.</p>
         </div>
-        <div class="data-block">
-            <div>MODE: Multi-Discipline Systems Operator</div>
-            <div>INPUT: Concept / Constraint / Vision</div>
-            <div>OUTPUT: Deployable Asset</div>
-            <div>STATE: Active</div>
+        <div class="cell">
+          <h3>Architecture & Workflow</h3>
+          <p>Operational logic, automation design, and execution pipelines.</p>
         </div>
-    </div>
-</section>
+        <div class="cell">
+          <h3>Creative Technology</h3>
+          <p>AI-driven production systems and prompt-engineered workflows.</p>
+        </div>
+        <div class="cell">
+          <h3>Broadcast & Overlay</h3>
+          <p>HUDs, live interfaces, alert systems, and signal visualization.</p>
+        </div>
+        <div class="cell">
+          <h3>Game & World Design</h3>
+          <p>Worldbuilding, technical art pipelines, and real-time environments.</p>
+        </div>
+        <div class="cell">
+          <h3>Client Experience</h3>
+          <p>Concierge execution with structured delivery and security-first communication.</p>
+        </div>
+      </div>
+    </section>
 
-<!-- Capability Matrix -->
-<section class="panel" id="capability">
-    <div class="panel-title">Capability Matrix</div>
-    <div class="matrix">
-        <div class="module">Brand Systems</div>
-        <div class="module">Web Systems</div>
-        <div class="module">Architecture & Workflow</div>
-        <div class="module">Creative Technology</div>
-        <div class="module">Broadcast & Overlay</div>
-        <div class="module">Game & World Design</div>
-        <div class="module">Client Experience</div>
-    </div>
-</section>
+    <!-- Systems Pipeline -->
+    <section id="pipeline" class="panel">
+      <h2>Systems Pipeline</h2>
+      <ol class="pipeline">
+        <li>
+          <strong>Clarity</strong>
+          <span>Define the objective. Remove ambiguity.</span>
+        </li>
+        <li>
+          <strong>Scope</strong>
+          <span>Map constraints. Identify leverage points.</span>
+        </li>
+        <li>
+          <strong>Execution</strong>
+          <span>Design and deploy the mechanism.</span>
+        </li>
+        <li>
+          <strong>Polish</strong>
+          <span>Refine performance, aesthetics, and resilience.</span>
+        </li>
+      </ol>
+    </section>
 
-<!-- Systems Pipeline -->
-<section class="panel" id="pipeline">
-    <div class="panel-title">Systems Pipeline</div>
-    <div class="pipeline">
-        <div class="step">CLARITY — isolate the real objective</div>
-        <div class="step">SCOPE — define the boundaries</div>
-        <div class="step">EXECUTION — build the structure</div>
-        <div class="step">POLISH — refine the behavior</div>
-        <div class="step">DEPLOY — release with stability</div>
-    </div>
-</section>
+    <!-- Selected Operations -->
+    <section id="operations" class="panel">
+      <h2>Selected Operations</h2>
+      <div class="ops">
+        <div class="op">
+          <span class="tag">SYSTEM</span>
+          <p>Multi-layer brand system with deployable UI doctrine.</p>
+        </div>
+        <div class="op">
+          <span class="tag">INTERFACE</span>
+          <p>Command-center style web dashboard for internal operators.</p>
+        </div>
+        <div class="op">
+          <span class="tag">PIPELINE</span>
+          <p>AI-assisted content and asset generation workflow.</p>
+        </div>
+        <div class="op">
+          <span class="tag">BROADCAST</span>
+          <p>Real-time HUD overlays for live production environments.</p>
+        </div>
+      </div>
+    </section>
 
-<!-- Selected Operations -->
-<section class="panel" id="operations">
-    <div class="panel-title">Selected Operations</div>
-    <div class="ops-grid">
-        <div class="op">Identity frameworks deployed across media ecosystems</div>
-        <div class="op">Interactive dashboards controlling live production</div>
-        <div class="op">Automation pipelines replacing manual workflows</div>
-        <div class="op">Streaming HUD interfaces synchronized to events</div>
-        <div class="op">Real-time worldbuilding environments for interactive media</div>
-    </div>
-</section>
+    <!-- Engagement Protocol -->
+    <section id="engagement" class="panel">
+      <h2>Engagement Protocol</h2>
+      <p>
+        We do not accept vague requests.<br/>
+        Engagement begins with alignment.
+      </p>
+      <ul class="protocol">
+        <li>Clear objective</li>
+        <li>Defined authority</li>
+        <li>Operational timeline</li>
+        <li>Secure communication channel</li>
+      </ul>
+    </section>
 
-<!-- Engagement Protocol -->
-<section class="panel" id="protocol">
-    <div class="panel-title">Engagement Protocol</div>
-    <div class="protocol">
-        <div>1. Initiate contact</div>
-        <div>2. Provide objective</div>
-        <div>3. Receive structured response</div>
-        <div>4. Confirm execution</div>
-        <div>5. Monitor progress</div>
-    </div>
-</section>
+    <!-- Contact Interface -->
+    <section id="contact" class="panel">
+      <h2>Contact Interface</h2>
+      <p>Initiate contact when the objective is defined.</p>
+      <a class="contact-link" href="mailto:contact@satcorp.systems">
+        contact@satcorp.systems
+      </a>
+    </section>
+  </main>
 
-<!-- Contact Interface -->
-<section class="panel" id="contact">
-    <div class="panel-title">Contact Interface</div>
-    <form class="contact-form">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Channel" required>
-        <textarea placeholder="Objective Definition" required></textarea>
-        <button type="submit">Transmit</button>
-    </form>
-</section>
-
-</main>
-
+  <script src="script.js"></script>
 </body>
 </html>
