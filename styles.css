@@ -1,155 +1,95 @@
 :root {
-    --base-dark: #0a0a0a;
-    --accent-blue: #2af0ff;
-    --accent-violet: #b066ff;
-    --text-light: #f5f5f5;
-    --panel-padding: 2rem;
+  --base-bg: #0b0a10;
+  --accent-primary: #00bfff;
+  --accent-secondary: #8a2be2;
+  --text-light: #e0e0e0;
+  --panel-bg: #12101a;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: 'Roboto Mono', monospace;
-    background-color: var(--base-dark);
-    color: var(--text-light);
-    overflow-x: hidden;
+  font-family: 'Roboto Mono', monospace;
+  background: var(--base-bg);
+  color: var(--text-light);
+  overflow-x: hidden;
 }
+
+.hidden { display: none; }
 
 section {
-    min-height: 100vh;
-    padding: var(--panel-padding);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.hidden {
-    opacity: 0;
-    transform: translateY(50px);
+  padding: 60px 5vw;
+  min-height: 100vh;
 }
 
 h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: var(--accent-blue);
+  font-size: 3rem;
+  color: var(--accent-primary);
+  margin-bottom: 20px;
 }
 
 p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 
-.boot-logo {
-    font-size: 4rem;
-    font-weight: bold;
-    color: var(--accent-violet);
-    letter-spacing: 0.2em;
-    margin-bottom: 2rem;
+button {
+  background: var(--accent-primary);
+  color: var(--base-bg);
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.boot-loader {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+button:hover {
+  background: var(--accent-secondary);
 }
 
-.boot-loader span {
-    width: 10px;
-    height: 10px;
-    background: var(--accent-blue);
-    border-radius: 50%;
-    animation: pulse 1s infinite alternate;
-}
-
-.boot-loader span:nth-child(2) { animation-delay: 0.2s; }
-.boot-loader span:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes pulse {
-    0% { transform: scale(0.5); opacity: 0.5; }
-    100% { transform: scale(1.5); opacity: 1; }
-}
-
-.overview-grid,
-.matrix-grid,
-.pipeline-grid,
-.operations-grid {
-    display: grid;
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.overview-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+.matrix-grid, .operations-grid {
+  display: grid;
+  gap: 20px;
 }
 
 .matrix-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-}
-
-.pipeline-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
 .operations-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-.overview-card,
-.matrix-card,
-.pipeline-step,
-.operation-card {
-    background: #111;
-    border: 1px solid var(--accent-violet);
-    padding: 1.5rem;
-    border-radius: 1rem;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.module, .operation-card {
+  background: var(--panel-bg);
+  padding: 20px;
+  border-left: 3px solid var(--accent-primary);
+  transition: transform 0.3s ease;
 }
 
-.overview-card:hover,
-.matrix-card:hover,
-.pipeline-step:hover,
-.operation-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px var(--accent-blue);
+.module:hover, .operation-card:hover {
+  transform: translateY(-5px);
+  border-left-color: var(--accent-secondary);
 }
 
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    max-width: 500px;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-#contact-form input,
-#contact-form textarea {
-    padding: 0.8rem;
-    border: 1px solid var(--accent-violet);
-    border-radius: 0.5rem;
-    background: #111;
-    color: var(--text-light);
-    font-family: 'Roboto Mono', monospace;
+input, textarea {
+  background: #1c1a25;
+  border: 1px solid var(--accent-primary);
+  color: var(--text-light);
+  padding: 8px 12px;
 }
 
-#contact-form button {
-    padding: 1rem;
-    background: var(--accent-blue);
-    border: none;
-    border-radius: 0.5rem;
-    color: var(--base-dark);
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-#contact-form button:hover {
-    background: var(--accent-violet);
+input:focus, textarea:focus {
+  border-color: var(--accent-secondary);
+  outline: none;
 }
