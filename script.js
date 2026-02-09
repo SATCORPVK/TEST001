@@ -1,320 +1,246 @@
-/* ==========================================================
-   SATCORP – interactive front‑end logic
-   ========================================================== */
+/*-----------------------------------------------
+  1. Theme toggle + persistence
+-----------------------------------------------*/
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  const darkToggle = document.getElementById('dark-mode-toggle');
 
-/* -----------------------------------------------------------------
-   1️⃣  Global constants & helpers
-   ----------------------------------------------------------------- */
-const $ = selector => document.querySelector(selector);
-const $$ = selector => Array.from(document.querySelectorAll(selector));
+  const applyTheme = () => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+      body.classList.add('light-mode');
+    } else if (saved === 'dark') {
+      body.classList.remove('light-mode');
+    } else { // fallback to system
+      if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        body.classList.add('light-mode');
+      }
+    }
+    darkToggle.checked = body.classList.contains('light-mode');
+  };
 
-/* Sound utilities – tiny UI audio cues */
-const sounds = {
-  click: new Audio('assets/sounds/click.mp3'),
-  hover: new Audio('assets/sounds/hover.mp3')
-};
-/* Keep sounds short & low‑volume */
-sounds.click.volume = 0.2;
-sounds.hover.volume = 0.15;
-
-/* -----------------------------------------------------------------
-   2️⃣  Loader – hide when everything is ready
-   ----------------------------------------------------------------- */
-window.addEventListener('load', () => {
-  // Small artificial delay adds polish (remove if you don’t want it)
-  setTimeout(() => {
-    $('#loader').classList.add('hidden');
-  }, 800);
-});
-
-/* -----------------------------------------------------------------
-   3️⃣  Custom cursor logic
-   ----------------------------------------------------------------- */
-const cursor = $('#custom-cursor');
-
-document.addEventListener('mousemove', e => {
-  cursor.style.left = `${e.clientX}px`;
-  cursor.style.top = `${e.clientY}px`;
-});
-
-/* Enlarge cursor on hoverable elements */
-const interactiveEls = ['a', 'button', '.skill-card'];
-interactiveEls.forEach(sel => {
-  $$(sel).forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.classList.add('grow');
-      sounds.hover.currentTime = 0;
-      sounds.hover.play();
-    });
-    el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
-  });
-});
-
-/* -----------------------------------------------------------------
-   4️⃣  Dark / Light theme toggle
-   ----------------------------------------------------------------- */
-const themeToggle = $('#theme-toggle');
-themeToggle.addEventListener('click', () => {
-  document.documentElement.classList.toggle('dark');
-  // swap icons
-  const icon = themeToggle.querySelector('i');
-  if (document.documentElement.classList.contains('dark')) {
-    icon.className = 'fas fa-sun';
-  } else {
-    icon.className = 'fas fa-moon';
-  }
-});
-
-/* -----------------------------------------------------------------
-   5️⃣  Vanta.js – ambient background for the hero
-   ----------------------------------------------------------------- */
-let vantaEffect;
-function initVanta() {
-  if (typeof VANTA === 'undefined') return;
-  vantaEffect = VANTA.CLOUDS({
-    el: '#hero',
-    mouseControls: true,
-    touchControls: true,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    skyColor: 0x0a0a0a,
-    cloudColor: 0x333333,
-    cloudShadowColor: 0x111111,
-    sunColor: 0x00ffae,
-    sunGlareColor: 0x00ffae,
-    speed: 0.8,
-    backgroundAlpha: 0.0
-  });
-}
-initVanta();
-
-/* -----------------------------------------------------------------
-   6️⃣  Skill Deck data – edit / extend as needed
-   ----------------------------------------------------------------- */
-const skillDeck = [
-  {
-    title: 'Core Identity / Operator Value',
-    icon: 'fa-solid fa-bolt',
-    brief: 'Precision branding, messaging architecture, voice‑style systems.',
-    details: `
-      <strong>Deliverables:</strong> Brand charter, tone‑of‑voice matrix, UI‑kit conventions.<br>
-      <strong>Tools:</strong> Figma, Notion, Adobe Illustrator.<br>
-      <strong>Why it matters:</strong> The operating system of perception – every pixel and word obeys it.
-    `
-  },
-  {
-    title: 'Brand & Visual Systems',
-    icon: 'fa-solid fa-palette',
-    brief: 'Scalable visual identity, icon libraries, animation vocabularies.',
-    details: `
-      <strong>Deliverables:</strong> Full SVG asset pipeline, motion‑graphic templates, style‑guide portal.<br>
-      <strong>Tools:</strong> After Effects, Lottie, Sketch.<br>
-      <strong>Outcome:</strong> Consistency at 10 × speed across campaigns.
-    `
-  },
-  {
-    title: 'Web / UI Systems',
-    icon: 'fa-solid fa-code',
-    brief: 'Component‑first architecture, design‑system driven dev.',
-    details: `
-      <strong>Deliverables:</strong> React component library, Storybook docs, CI/CD pipeline.<br>
-      <strong>Tools:</strong> React, Tailwind, Vite, GitHub Actions.<br>
-      <strong>Result:</strong> Deployable UI in under 1 hour.
-    `
-  },
-  {
-    title: 'Systems Architecture',
-    icon: 'fa-solid fa-network-wired',
-    brief: 'Data flows, API orchestration, fault‑tolerant design.',
-    details: `
-      <strong>Deliverables:</strong> Architecture diagrams, API spec (OpenAPI), Terraform infra code.<br>
-      <strong>Tools:</strong> AWS CDK, GraphQL, Docker, Kubernetes.<br>
-      <strong>Impact:</strong> 99.99 % uptime guarantees.
-    `
-  },
-  {
-    title: 'Streaming / Broadcast Overlays',
-    icon: 'fa-solid fa-video',
-    brief: 'Live‑production graphics, OBS plugins, interactive widgets.',
-    details: `
-      <strong>Deliverables:</strong> 4K‑ready overlay packs, real‑time data sync, chat integration.<br>
-      <strong>Tools:</strong> OBS Studio, Streamlabs, WebSockets.<br>
-      <strong>Benefit:</strong> Viewer‑engagement lift up to 250 %.
-    `
-  },
-  {
-    title: 'AI‑Enhanced Workflows',
-    icon: 'fa-solid fa-robot',
-    brief: 'Prompt‑engineered pipelines, LLM‑infused automation.',
-    details: `
-      <strong>Deliverables:</strong> Custom GPT‑4 prompts, Zapier + OpenAI automation, AI‑generated copy.<br>
-      <strong>Tools:</strong> OpenAI API, LangChain, Make.<br>
-      <strong>Edge:</strong> 10× reduction in manual iteration.
-    `
-  },
-  {
-    title: 'Game‑Dev / World‑Building Design',
-    icon: 'fa-solid fa-dice-d20',
-    brief: 'Lore crafting, asset generation, systems design.',
-    details: `
-      <strong>Deliverables:</strong> Lore bible, modular environment packs, Unity scripts.<br>
-      <strong>Tools:</strong> Unity, Blender, Substance Painter.<br>
-      <strong>Result:</strong> Immersive worlds built in weeks, not months.
-    `
-  },
-  {
-    title: 'Client Experience & Concierge Skills',
-    icon: 'fa-solid fa-user-tie',
-    brief: “White‑glove” onboarding, SLA monitoring, proactive support.',
-    details: `
-      <strong>Deliverables:</strong> Dedicated portal, 24/7 ticketing, KPI dashboards.<br>
-      <strong>Tools:</strong> Zendesk, Intercom, HubSpot.<br>
-      <strong>Outcome:</strong> NPS > 95 % across all engagements.
-    `
-  },
-  {
-    title: 'Platforms / Marketplaces',
-    icon: 'fa-solid fa-store',
-    brief: 'Shopify, Stripe, PayPal, NFT marketplace integration.',
-    details: `
-      <strong>Deliverables:</strong> End‑to‑end checkout flow, smart‑contract deployment, analytics.<br>
-      <strong>Tools:</strong> Shopify Hydrogen, Web3.js, Stripe Elements.<br>
-      <strong>Impact:</strong> Revenue capture uplift.
-    `
-  },
-  {
-    title: 'Documentation / Knowledge Systems',
-    icon: 'fa-solid fa-book',
-    brief: 'Living docs, knowledge graphs, searchable SOPs.',
-    details: `
-      <strong>Deliverables:</strong> Confluence knowledge base, GraphQL API for docs, auto‑generated PDFs.<br>
-      <strong>Tools:</strong> Notion, Docusaurus, Algolia.<br>
-      <strong>Benefit:</strong> 80 % time‑to‑knowledge reduction.
-    `
-  },
-  {
-    title: 'Asset Packaging & Delivery',
-    icon: 'fa-solid fa-box',
-    brief: Automated pipelines for versioned assets, CDN deployment.',
-    details: `
-      <strong>Deliverables:</strong> Git LFS + S3 sync, checksum verification, global CDN edge.<br>
-      <strong>Tools:</strong> GitHub Actions, S3, CloudFront, Azure Blob.<br>
-      <strong>Result:</strong> Zero‑down assets with instant global reach.
-    `
-  },
-  {
-    title: 'Ideal Clients',
-    icon: 'fa-solid fa-handshake',
-    brief: “High‑growth tech, entertainment, NFT & Metaverse, premium brands.”,
-    details: `
-      <strong>Characteristics:</strong> Data‑driven, brand‑centric, seeking systematic scale.<br>
-      <strong>Fit:</strong> Product‑first, budget ≥ $50k, partnership mindset.<br>
-      <strong>Our promise:</strong> Turn complexity into a controllable, repeatable system.
-    `
-  }
-];
-
-/* -----------------------------------------------------------------
-   7️⃣  Render the skill‑deck cards
-   ----------------------------------------------------------------- */
-function renderSkillCards() {
-  const container = $('.skill-grid');
-
-  skillDeck.forEach((skill, idx) => {
-    const card = document.createElement('article');
-    card.className = 'skill-card';
-    card.dataset.idx = idx; // for later reference
-
-    // Card inner structure
-    card.innerHTML = `
-      <div class="icon"><i class="${skill.icon}"></i></div>
-      <h3>${skill.title}</h3>
-      <p>${skill.brief}</p>
-    `;
-
-    // Click opens modal with details
-    card.addEventListener('click', () => openModal(skill));
-
-    container.appendChild(card);
-  });
-}
-
-/* -----------------------------------------------------------------
-   8️⃣  GSAP – scroll‑trigger animation for all cards
-   ----------------------------------------------------------------- */
-function initScrollAnimations() {
-  gsap.registerPlugin(ScrollTrigger);
-  const cards = $$('.skill-card');
-
-  cards.forEach((card, i) => {
-    gsap.fromTo(card,
-      { y: 30, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.7,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          // once per card
-          toggleActions: 'play none none none'
-        },
-        delay: i * 0.08 // subtle stagger
-      });
-  });
-}
-
-/* -----------------------------------------------------------------
-   9️⃣  Modal handling (deep dive on a skill)
-   ----------------------------------------------------------------- */
-function openModal(skill) {
-  // Prevent repeated clicks before modal ready
-  if ($('.modal')?.classList.contains('active')) return;
-
-  // Play UI click sound
-  sounds.click.currentTime = 0;
-  sounds.click.play();
-
-  // Build modal DOM
-  const overlay = document.createElement('div');
-  overlay.className = 'modal active';
-
-  overlay.innerHTML = `
-    <div class="modal-content">
-      <button class="close" aria-label="Close modal"><i class="fas fa-times"></i></button>
-      <div class="icon"><i class="${skill.icon}"></i></div>
-      <h2>${skill.title}</h2>
-      <p>${skill.brief}</p>
-      <div class="details">${skill.details}</div>
-    </div>
-  `;
-
-  // Close logic
-  overlay.querySelector('.close').addEventListener('click', () => {
-    overlay.classList.remove('active');
-    // Allow CSS transition to finish, then remove element
-    setTimeout(() => overlay.remove(), 300);
-  });
-  // Click outside content also closes
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) {
-      overlay.querySelector('.close').click();
+  darkToggle.addEventListener('change', () => {
+    if (darkToggle.checked) {
+      body.classList.add('light-mode');
+      localStorage.setItem('theme', 'light');
+    } else {
+      body.classList.remove('light-mode');
+      localStorage.setItem('theme', 'dark');
     }
   });
 
-  document.body.appendChild(overlay);
-}
+  applyTheme();
 
-/* -----------------------------------------------------------------
-   10️⃣  Footer year auto‑update
-   ----------------------------------------------------------------- */
-$('#year').textContent = new Date().getFullYear();
+  /*-----------------------------------------------
+    2. Loader hide on full window load
+  -----------------------------------------------*/
+  const loader = document.getElementById('loader');
+  window.addEventListener('load', () => {
+    loader.style.transition = 'opacity .5s';
+    loader.style.opacity = 0;
+    setTimeout(() => loader.style.display = 'none', 500);
+  });
 
-/* -----------------------------------------------------------------
-   11️⃣  Initialise everything once DOM is ready
-   ----------------------------------------------------------------- */
-document.addEventListener('DOMContentLoaded', () => {
-  renderSkillCards();
-  initScrollAnimations();
+  /*-----------------------------------------------
+    3. Vanta background
+  -----------------------------------------------*/
+  VANTA.NET({
+    el: "#vanta-bg",
+    color: 0x00ffff,
+    background: 0x0c0c0c,
+    points: 12,
+    maxDistance: 15,
+    spacing: 20
+  });
+
+  /*-----------------------------------------------
+    4. GSAP scroll trigger
+  -----------------------------------------------*/
+  gsap.registerPlugin(ScrollTrigger);
+
+  /*-----------------------------------------------
+    5. Hero title animation
+  -----------------------------------------------*/
+  const heroTitle = document.getElementById('hero-title');
+  const heroText = 'SATCORP';
+  heroText.split('').forEach(char => {
+    const span = document.createElement('span');
+    span.textContent = char;
+    span.style.opacity = 0;
+    span.style.display = 'inline-block';
+    heroTitle.appendChild(span);
+  });
+
+  gsap.fromTo(
+    heroTitle.querySelectorAll('span'),
+    { y: 50, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out', stagger: 0.07, delay: 0.5 }
+  );
+
+  /*-----------------------------------------------
+    6. Skill deck data
+  -----------------------------------------------*/
+  const skillDeck = [
+    {
+      title: 'Core Identity / Operator Value',
+      short: 'Foundational principles that define our systems.',
+      details: 'Every project starts with a clear operator vision – human‑centre logic that drives performance, sustainability, and security.'
+    },
+    {
+      title: 'Brand & Visual Systems',
+      short: 'Modular, scalable branding architecture.',
+      details: 'From a core palette to evolving UI kits, we build brand language that evolves while preserving root identity.'
+    },
+    {
+      title: 'Web/UI Systems',
+      short: 'High‑fidelity, responsive digital platforms.',
+      details: 'We turn veneers into work‑flows with accelerated release cycles, accessibility, and stand‑alone component libraries.'
+    },
+    {
+      title: 'Systems Architecture',
+      short: 'Robust, modular infrastructure.',
+      details: 'Micro‑service patterns, API gateways, and container orchestration provide the scaffolding for red‑shift‑grade performance.'
+    },
+    {
+      title: 'Streaming/Broadcast Overlays',
+      short: 'Interactive, data‑driven overlays.',
+      details: 'Live content is enriched by real‑time analytics, context‑aware prompts, and visual narratives that keep the viewer glued.'
+    },
+    {
+      title: 'AI‑Enhanced Workflows',
+      short: 'Intelligent automation for creative teams.',
+      details: 'From auto‑tagging to generative designers, we democratise AI to accelerate ideation and reduce friction.'
+    },
+    {
+      title: 'Game‑Dev / World‑Building Design',
+      short: 'Procedural content for immersive worlds.',
+      details: 'We craft multi‑layer assets that loop, adapt, and scale while remaining under-arc‑directed logic.'
+    },
+    {
+      title: 'Client Experience & Concierge Skills',
+      short: 'Premium, personalised service.',
+      details: 'Hands‑on support, dedicated project leads and knowledge transfer becomes a concierge experience.'
+    },
+    {
+      title: 'Platforms/Marketplaces',
+      short: 'Integrated distribution networks.',
+      details: 'Released assets go on AWS, Content‑delivery, & SaaS marketplaces, enabling a unified monetisation channel.'
+    },
+    {
+      title: 'Documentation/Knowledge Systems',
+      short: 'Living documentation hub.',
+      details: 'Central knowledge base, SOPs, and version control keeps teams aligned across time zones.'
+    },
+    {
+      title: 'Asset Packaging & Delivery',
+      short: 'Meticulous asset pipelines.',
+      details: 'From build, lint, asset hashing to CDN deployment – 100‑percent fidelity across the stack.'
+    },
+    {
+      title: 'Ideal Clients',
+      short: 'Strategic, mission‑critical partners.',
+      details: 'We partner with enterprises that demand scale, excellence, and a systems‑first mindset above aesthetics.'
+    }
+  ];
+
+  /*-----------------------------------------------
+    7. Render skill deck
+  -----------------------------------------------*/
+  const skillsSection = document.getElementById('skills');
+
+  skillDeck.forEach((skill, i) => {
+    const card = document.createElement('div');
+    card.className = 'skill-card';
+    card.dataset.index = i;
+
+    const title = document.createElement('h3');
+    title.className = 'skill-title';
+    title.textContent = skill.title;
+
+    const short = document.createElement('p');
+    short.className = 'skill-short';
+    short.textContent = skill.short;
+
+    const detail = document.createElement('div');
+    detail.className = 'skill-detail';
+    detail.textContent = skill.details;
+
+    card.appendChild(title);
+    card.appendChild(short);
+    card.appendChild(detail);
+    skillsSection.appendChild(card);
+
+    /* Scroll‑trigger animation */
+    gsap.fromTo(card,
+      { autoAlpha: 0, y: 60 },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+
+    /* Click to modal */
+    card.addEventListener('click', () => openModal(skill));
+  });
+
+  /*-----------------------------------------------
+    8. Modal logic
+  -----------------------------------------------*/
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalBody = document.getElementById('modal-body');
+  const modalClose = document.getElementById('modal-close');
+
+  const openModal = (skill) => {
+    modalTitle.textContent = skill.title;
+    modalBody.textContent = skill.details;
+    modal.style.display = 'flex';
+    gsap.fromTo(modal,
+      { scale: .8, autoAlpha: 0 },
+      { scale: 1, autoAlpha: 1, duration: 0.5, ease: 'back.out(1.7)' }
+    );
+  };
+
+  const closeModal = () => {
+    gsap.to(modal,
+      { scale: .8, autoAlpha: 0, duration: .3, ease: 'back.in(1.7)',
+        onComplete: () => { modal.style.display = 'none'; } }
+    );
+  };
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeModal();
+  });
+
+  /*-----------------------------------------------
+    9. Navigation smooth scroll
+  -----------------------------------------------*/
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  /*-----------------------------------------------
+    10. Micro‑hover visual on cards
+  -----------------------------------------------*/
+  document.querySelectorAll('.skill-card').forEach(card => {
+    const originalBg = getComputedStyle(card).backgroundColor;
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, { backgroundColor: '#222', duration: 0.2, ease: 'power1.out' });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { backgroundColor: originalBg, duration: 0.2, ease: 'power1.in' });
+    });
+  });
 });
