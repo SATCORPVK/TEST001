@@ -1,62 +1,1021 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SATCORP | Operator Systems</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.net.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATCORP | Systems Design Intelligence</title>
+    <meta name="description" content="SATCORP designs sophisticated systems architectures for premium digital experiences. We engineer solutions, not just graphics.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0a0a;
+            --dark-card-bg: #111111;
+            --dark-text: #e0e0e0;
+            --dark-accent: #0af8ff;
+            --dark-accent-dim: #0af8ff22;
+            --light-bg: #f0f0f0;
+            --light-card-bg: #ffffff;
+            --light-text: #222222;
+            --light-accent: #0066ff;
+            --light-accent-dim: #0066ff22;
+            --transition-speed: 0.4s;
+            --border-radius: 6px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: var(--dark-bg);
+            --bg-secondary: var(--dark-card-bg);
+            --text-primary: var(--dark-text);
+            --accent-primary: var(--dark-accent);
+            --accent-dim: var(--dark-accent-dim);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: var(--light-bg);
+            --bg-secondary: var(--light-card-bg);
+            --text-primary: var(--light-text);
+            --accent-primary: var(--light-accent);
+            --accent-dim: var(--light-accent-dim);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition-speed);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: var(--spacing-sm);
+            z-index: 1000;
+            background-color: transparent;
+            transition: background-color var(--transition-speed);
+            backdrop-filter: blur(5px);
+        }
+
+        header.scrolled {
+            background-color: var(--bg-secondary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            margin-right: var(--spacing-xs);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: var(--spacing-md);
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color var(--transition-speed);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+            transition: width var(--transition-speed);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: var(--spacing-md);
+            transition: color var(--transition-speed);
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent-primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-md);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background-color: var(--accent-primary);
+            color: var(--dark-bg);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(10, 248, 255, 0.3);
+        }
+
+        /* Skill Deck Section */
+        #skill-deck {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-primary);
+            opacity: 0.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .skill-card {
+            background-color: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid var(--accent-dim);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(10, 248, 255, 0.1);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--accent-primary);
+        }
+
+        .skill-title {
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .skill-description {
+            margin-bottom: var(--spacing-sm);
+            opacity: 0.9;
+        }
+
+        .skill-tools {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-sm);
+        }
+
+        .tool-tag {
+            background-color: var(--accent-dim);
+            color: var(--accent-primary);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: var(--spacing-xs);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--bg-secondary);
+            max-width: 800px;
+            width: 90%;
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color var(--transition-speed);
+        }
+
+        .modal-close:hover {
+            color: var(--accent-primary);
+        }
+
+        .modal-title {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .modal-body {
+            line-height: 1.7;
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* Cursor Effect */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--accent-primary);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--accent-primary);
+            pointer-events: none;
+            z-index: 9998;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s;
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-top: 1px solid var(--accent-dim);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-links a {
+            color: var(--text-primary);
+            margin: 0 var(--spacing-sm);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-secondary);
+                flex-direction: column;
+                padding: var(--spacing-md);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: var(--spacing-sm) 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .theme-toggle {
+                margin-left: var(--spacing-sm);
+            }
+        }
+
+        /* Loading Animation */
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(10, 248, 255, 0.3);
+            border-top: 5px solid var(--dark-accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Skill Description Styles */
+        .skill-details {
+            margin-top: var(--spacing-md);
+        }
+
+        .skill-detail-item {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .detail-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
-<body id="body">
+<body data-theme="dark">
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="loader"></div>
+    </div>
 
-  <!-- Vanta.js Background -->
-  <div id="vanta-bg"></div>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-  <!-- Navigation -->
-  <header class="navbar">
-    <img src="assets/images/logo-dark.svg" alt="SATCORP Logo" class="logo" />
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#capabilities">Capabilities</a></li>
-        <li><a href="#clients">Clients</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <span>SAT</span>CORP
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#skill-deck">Capabilities</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
 
-  <!-- Hero Section -->
-  <section id="hero" class="section hero">
-    <h1 class="glitch-text">SAT<span>CORP</span></h1>
-    <p class="subtext">Designing Systems That Operate.</p>
-    <button onclick="scrollToSection('capabilities')">Explore Capabilities</button>
-  </section>
+    <!-- Hero Section -->
+    <section id="hero">
+        <!-- Animated Background -->
+        <div id="particles-js"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">SYSTEMS DESIGN INTELLIGENCE</h1>
+                <p class="hero-subtitle">We architect sophisticated digital ecosystems that transform how businesses operate. SATCORP delivers precision-engineered solutions, not just visual designs.</p>
+                <a href="#skill-deck" class="hero-cta">Explore Capabilities</a>
+            </div>
+        </div>
+    </section>
 
-  <!-- Capabilities Section -->
-  <section id="capabilities" class="section capabilities-grid">
-    <h2>System Capabilities</h2>
-    <div class="capability-card"><strong>Core Identity</strong><br/>Precision-crafted operator frameworks</div>
-    <div class="capability-card"><strong>Brand & Visual Systems</strong><br/>Visual identities as operational blueprints</div>
-    <div class="capability-card"><strong>Web/UI Systems</strong><br/>Interfaces designed for flow-state engagement</div>
-    <div class="capability-card"><strong>Systems Architecture</strong><br/>Scalable infrastructure from concept to deployment</div>
-    <div class="capability-card"><strong>Broadcast Overlays</strong><br/>Live streaming interfaces engineered for clarity</div>
-    <div class="capability-card"><strong>AI Workflows</strong><br/>Automated processes that learn and adapt</div>
-    <div class="capability-card"><strong>Game Dev / World Building</strong><br/>Immersive narrative structures with real-time feedback loops</div>
-    <div class="capability-card"><strong>Client Experience</strong><br/>Concierge-grade support through every stage</div>
-    <div class="capability-card"><strong>Platforms & Marketplaces</strong><br/>Ecosystems that scale intelligently</div>
-    <div class="capability-card"><strong>Documentation</strong><br/>Knowledge architectures for future operators</div>
-    <div class="capability-card"><strong>Asset Packaging</strong><br/>Deliverables wrapped in workflow-ready containers</div>
-    <div class="capability-card"><strong>Ideal Clients</strong><br/>Operators who think in systems, act in precision</div>
-  </section>
+    <!-- Skill Deck Section -->
+    <section id="skill-deck">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">PRECISION ENGINEERED CAPABILITIES</h2>
+                <p class="section-subtitle">Our comprehensive skill deck emphasizes systems thinking, technical precision, and concierge-level execution across all digital channels.</p>
+            </div>
+            
+            <div class="skills-grid">
+                <!-- Skill cards will be dynamically generated -->
+            </div>
+        </div>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    © 2025 SATCORP — All Rights Reserved.<br/>
-    <small>Systems Designed by Operators, For Operators.</small>
-  </footer>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:contact@satcorp.io">Contact</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+            <p class="copyright">© 2023 SATCORP Systems Design Intelligence. All rights reserved.</p>
+        </div>
+    </footer>
 
-  <!-- Scripts -->
-  <script src="scripts.js"></script>
+    <!-- Modal for Skill Details -->
+    <div class="modal" id="skillModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <script>
+        // Skill deck data
+        const skillDeck = [
+            {
+                id: 1,
+                title: "Core Identity & Operator Value",
+                description: "Strategic thinking and system-level problem solving that prioritizes elegant, scalable solutions.",
+                icon: "fas fa-brain",
+                tools: ["Systems Thinking", "Strategic Planning", "Process Optimization"],
+                details: {
+                    capabilities: ["Architectural oversight", "Cross-functional integration", "Performance optimization"],
+                    deliverables: ["System blueprints", "Workflow diagrams", "Strategic roadmaps"],
+                    focus: "Creating cohesive systems that function at peak efficiency"
+                }
+            },
+            {
+                id: 2,
+                title: "Brand & Visual Systems",
+                description: "Comprehensive brand architectures that establish clear visual hierarchies and design languages.",
+                icon: "fas fa-palette",
+                tools: ["Figma", "Adobe Creative Suite", "Design Systems"],
+                details: {
+                    capabilities: ["Brand strategy", "Visual identity systems", "Design language development"],
+                    deliverables: ["Brand guidelines", "Component libraries", "Visual assets"],
+                    focus: "Creating visual consistency across all touchpoints"
+                }
+            },
+            {
+                id: 3,
+                title: "Web/UI Systems",
+                description: "Engineered interfaces optimized for performance, accessibility, and seamless user experiences.",
+                icon: "fas fa-code",
+                tools: ["HTML5/CSS3", "JavaScript", "React", "Vue.js"],
+                details: {
+                    capabilities: ["Responsive design", "Cross-browser compatibility", "Performance optimization"],
+                    deliverables: ["Web applications", "UI components", "Interactive prototypes"],
+                    focus: "Building interfaces that function flawlessly across all devices"
+                }
+            },
+            {
+                id: 4,
+                title: "Systems Architecture",
+                description: "Scalable backend infrastructures and API designs that power complex digital ecosystems.",
+                icon: "fas fa-server",
+                tools: ["Node.js", "Python", "AWS", "Docker"],
+                details: {
+                    capabilities: ["Microservices architecture", "Database design", "API development"],
+                    deliverables: ["System documentation", "Architecture diagrams", "Technical specifications"],
+                    focus: "Creating robust backend systems that scale with business needs"
+                }
+            },
+            {
+                id: 5,
+                title: "Streaming/Broadcast Overlays",
+                description: "Dynamic broadcast graphics and interactive overlays for live streaming and productions.",
+                icon: "fas fa-broadcast-tower",
+                tools: ["OBS Studio", "StreamElements", "Adobe After Effects"],
+                details: {
+                    capabilities: ["Real-time graphics", "Interactive elements", "Brand integration"],
+                    deliverables: ["Overlay packages", "Scene transitions", "Custom widgets"],
+                    focus: "Enhancing live broadcasts with professional, branded graphics"
+                }
+            },
+            {
+                id: 6,
+                title: "AI-Enhanced Workflows",
+                description: "Integrating artificial intelligence to automate processes and enhance creative capabilities.",
+                icon: "fas fa-robot",
+                tools: ["TensorFlow", "OpenAI API", "Custom ML Models"],
+                details: {
+                    capabilities: ["Process automation", "Predictive analytics", "Content generation"],
+                    deliverables: ["AI workflow diagrams", "Custom integrations", "Automated systems"],
+                    focus: "Leveraging AI to enhance efficiency and creative output"
+                }
+            },
+            {
+                id: 7,
+                title: "Game-Dev/World-Building Design",
+                description: "Immersive environments and interactive experiences with meticulous attention to detail.",
+                icon: "fas fa-gamepad",
+                tools: ["Unity", "Unreal Engine", "Blender"],
+                details: {
+                    capabilities: ["3D modeling", "Environment design", "Interactive storytelling"],
+                    deliverables: ["Game assets", "Environmental designs", "Interactive experiences"],
+                    focus: "Creating cohesive, immersive digital worlds"
+                }
+            },
+            {
+                id: 8,
+                title: "Client Experience & Concierge Skills",
+                description: "Personalized service approach that anticipates needs and delivers exceptional value.",
+                icon: "fas fa-concierge-bell",
+                tools: ["CRM Systems", "Project Management", "Client Communication"],
+                details: {
+                    capabilities: ["Needs assessment", "Project scoping", "Ongoing support"],
+                    deliverables: ["Client onboarding materials", "Project documentation", "Support systems"],
+                    focus: "Providing white-glove service that exceeds expectations"
+                }
+            },
+            {
+                id: 9,
+                title: "Platforms/Marketplaces",
+                description: "Developing sophisticated platforms that connect users and facilitate transactions.",
+                icon: "fas fa-shopping-cart",
+                tools: ["E-commerce Platforms", "Payment Gateways", "User Management"],
+                details: {
+                    capabilities: ["Platform architecture", "User experience design", "Payment integration"],
+                    deliverables: ["Marketplace platforms", "Seller dashboards", "Transaction systems"],
+                    focus: "Creating seamless platforms that facilitate commerce and connection"
+                }
+            },
+            {
+                id: 10,
+                title: "Documentation/Knowledge Systems",
+                description: "Structured information architectures that make complex systems understandable.",
+                icon: "fas fa-book",
+                tools: ["Technical Writing", "Information Architecture", "CMS Platforms"],
+                details: {
+                    capabilities: ["Documentation strategy", "Knowledge management", "Technical writing"],
+                    deliverables: ["User manuals", "API documentation", "Training materials"],
+                    focus: "Making complex systems accessible through clear documentation"
+                }
+            },
+            {
+                id: 11,
+                title: "Asset Packaging & Delivery",
+                description: "Systematic approach to organizing, versioning, and delivering digital assets.",
+                icon: "fas fa-box-open",
+                tools: ["Version Control", "Asset Management", "Delivery Systems"],
+                details: {
+                    capabilities: ["Asset organization", "Version control", "Delivery optimization"],
+                    deliverables: ["Asset packages", "Versioned releases", "Delivery systems"],
+                    focus: "Ensuring efficient and organized asset delivery"
+                }
+            },
+            {
+                id: 12,
+                title: "Ideal Clients",
+                description: "Businesses seeking transformative digital solutions with precision execution.",
+                icon: "fas fa-handshake",
+                tools: ["Strategic Partnerships", "Business Analysis", "Solution Design"],
+                details: {
+                    capabilities: ["Client assessment", "Solution scoping", "Partnership development"],
+                    deliverables: ["Partnership proposals", "Solution designs", "Strategic plans"],
+                    focus: "Building lasting partnerships with forward-thinking organizations"
+                }
+            }
+        ];
+
+        // DOM Elements
+        const loadingScreen = document.getElementById('loading');
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        const skillsGrid = document.querySelector('.skills-grid');
+        const skillModal = document.getElementById('skillModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+
+        // Initialize the website
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading screen after 1.5 seconds
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 1500);
+
+            // Initialize particles
+            initParticles();
+            
+            // Initialize skill deck
+            initSkillDeck();
+            
+            // Initialize animations
+            initAnimations();
+            
+            // Initialize custom cursor
+            initCustomCursor();
+
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Modal close functionality
+            modalClose.addEventListener('click', () => {
+                skillModal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === skillModal) {
+                    skillModal.style.display = 'none';
+                }
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+
+        // Initialize particles.js
+        function initParticles() {
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: {
+                            value: 80,
+                            density: {
+                                enable: true,
+                                value_area: 800
+                            }
+                        },
+                        color: {
+                            value: "#0af8ff"
+                        },
+                        shape: {
+                            type: "circle",
+                            stroke: {
+                                width: 0,
+                                color: "#000000"
+                            }
+                        },
+                        opacity: {
+                            value: 0.5,
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 1,
+                                opacity_min: 0.1,
+                                sync: false
+                            }
+                        },
+                        size: {
+                            value: 3,
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 2,
+                                size_min: 0.1,
+                                sync: false
+                            }
+                        },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: "#0af8ff",
+                            opacity: 0.4,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 2,
+                            direction: "none",
+                            random: true,
+                            straight: false,
+                            out_mode: "out",
+                            bounce: false,
+                            attract: {
+                                enable: false,
+                                rotateX: 600,
+                                rotateY: 1200
+                            }
+                        }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: {
+                                enable: true,
+                                mode: "grab"
+                            },
+                            onclick: {
+                                enable: true,
+                                mode: "push"
+                            },
+                            resize: true
+                        },
+                        modes: {
+                            grab: {
+                                distance: 140,
+                                line_linked: {
+                                    opacity: 1
+                                }
+                            },
+                            push: {
+                                particles_nb: 4
+                            }
+                        }
+                    },
+                    retina_detect: true
+                });
+            }
+        }
+
+        // Initialize skill deck
+        function initSkillDeck() {
+            skillDeck.forEach(skill => {
+                const skillCard = document.createElement('div');
+                skillCard.className = 'skill-card';
+                skillCard.innerHTML = `
+                    <div class="skill-icon"><i class="${skill.icon}"></i></div>
+                    <h3 class="skill-title">${skill.title}</h3>
+                    <p class="skill-description">${skill.description}</p>
+                    <div class="skill-tools">
+                        ${skill.tools.map(tool => `<span class="tool-tag">${tool}</span>`).join('')}
+                    </div>
+                `;
+                
+                skillCard.addEventListener('click', () => openSkillModal(skill));
+                skillsGrid.appendChild(skillCard);
+            });
+        }
+
+        // Open skill modal
+        function openSkillModal(skill) {
+            modalTitle.textContent = skill.title;
+            modalBody.innerHTML = `
+                <p>${skill.description}</p>
+                <div class="skill-details">
+                    <div class="skill-detail-item">
+                        <div class="detail-title">Capabilities:</div>
+                        <div>${skill.details.capabilities.join(', ')}</div>
+                    </div>
+                    <div class="skill-detail-item">
+                        <div class="detail-title">Deliverables:</div>
+                        <div>${skill.details.deliverables.join(', ')}</div>
+                    </div>
+                    <div class="skill-detail-item">
+                        <div class="detail-title">Focus:</div>
+                        <div>${skill.details.focus}</div>
+                    </div>
+                </div>
+                <div class="skill-tools" style="margin-top: 20px;">
+                    ${skill.tools.map(tool => `<span class="tool-tag">${tool}</span>`).join('')}
+                </div>
+            `;
+            skillModal.style.display = 'flex';
+        }
+
+        // Initialize animations
+        function initAnimations() {
+            // Animate hero elements on load
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            const heroCta = document.querySelector('.hero-cta');
+            
+            setTimeout(() => {
+                heroTitle.style.opacity = '1';
+                heroTitle.style.transform = 'translateY(0)';
+                
+                setTimeout(() => {
+                    heroSubtitle.style.opacity = '1';
+                    heroSubtitle.style.transform = 'translateY(0)';
+                    
+                    setTimeout(() => {
+                        heroCta.style.opacity = '1';
+                        heroCta.style.transform = 'translateY(0)';
+                    }, 300);
+                }, 300);
+            }, 500);
+            
+            // Animate skill cards on scroll
+            const skillCards = document.querySelectorAll('.skill-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            skillCards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(card);
+            });
+        }
+
+        // Initialize custom cursor
+        function initCustomCursor() {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                setTimeout(() => {
+                    cursorFollower.style.left = e.clientX + 'px';
+                    cursorFollower.style.top = e.clientY + 'px';
+                }, 100);
+            });
+            
+            // Change cursor on hover interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, .skill-card');
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.2)';
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+                });
+            });
+        }
+
+        // Toggle theme
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            
+            // Update theme toggle icon
+            const icon = themeToggle.querySelector('i');
+            icon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+            
+            // Update particles color if needed
+            if (typeof particlesJS !== 'undefined') {
+                // This would require reinitializing particles with new colors
+                // For simplicity, we're not implementing this now
+            }
+        }
+    </script>
 </body>
 </html>
