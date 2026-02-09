@@ -3,578 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus - Modern Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4cc9f0;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4ade80;
-        }
-
-        body {
-            background-color: #f0f2f5;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
-        }
-
-        .btn:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            margin-left: 15px;
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.1) 100%);
-            top: -300px;
-            right: -200px;
-            z-index: 0;
-        }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text {
-            flex: 1;
-            padding-right: 50px;
-        }
-
-        .hero-image {
-            flex: 1;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .hero h1 span {
-            color: var(--primary);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: #555;
-        }
-
-        .hero-buttons {
-            display: flex;
-        }
-
-        .hero img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 0;
-            background-color: white;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(67, 97, 238, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: var(--primary);
-            font-size: 30px;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
-            color: white;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-
-        .client {
-            display: flex;
-            align-items: center;
-        }
-
-        .client img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 15px;
-            object-fit: cover;
-        }
-
-        .client-info h4 {
-            margin-bottom: 5px;
-        }
-
-        .client-info p {
-            margin: 0;
-            font-style: normal;
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 100px 0;
-            text-align: center;
-            background: white;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .cta p {
-            max-width: 600px;
-            margin: 0 auto 30px;
-            color: #666;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h3 {
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column ul li a {
-            color: #bbb;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-column ul li a:hover {
-            color: white;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s;
-        }
-
-        .social-icons a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #bbb;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-content {
-                flex-direction: column;
-            }
-            
-            .hero-text {
-                padding-right: 0;
-                margin-bottom: 50px;
-                text-align: center;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
-                margin-top: 15px;
-            }
-        }
-    </style>
+    <title>SATCORP // SYSTEMS OPERATIONS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">Nexus<span>.</span></a>
-                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Solutions</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <div>
-                    <a href="#" class="btn btn-outline">Sign In</a>
-                    <a href="#" class="btn">Get Started</a>
-                </div>
-            </nav>
+    <canvas id="bgCanvas"></canvas>
+    
+    <!-- BOOT SEQUENCE -->
+    <div id="bootSequence" class="boot-sequence">
+        <div class="boot-content">
+            <div class="boot-line">INITIALIZING SYSTEM...</div>
+            <div class="boot-line">LOADING CORE MODULES...</div>
+            <div class="boot-line">ESTABLISHING CONNECTION...</div>
+            <div class="boot-line">SYSTEM READY</div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Transform Your Business With <span>Digital Solutions</span></h1>
-                    <p>We help businesses leverage technology to streamline operations, enhance customer experience, and drive growth in the digital era.</p>
-                    <div class="hero-buttons">
-                        <a href="#" class="btn">Start Free Trial</a>
-                        <a href="#" class="btn btn-outline">View Demo</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=500&q=80" alt="Digital Solutions">
-                </div>
-            </div>
+        <div class="boot-progress">
+            <div class="progress-bar"></div>
         </div>
-    </section>
+    </div>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Powerful Features</h2>
-                <p>Discover how our platform can transform your business operations</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Lightning Fast</h3>
-                    <p>Experience blazing fast performance with our optimized infrastructure designed for speed and efficiency.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Secure Platform</h3>
-                    <p>Enterprise-grade security ensures your data is protected with end-to-end encryption and regular audits.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <h3>Seamless Integration</h3>
-                    <p>Easily connect with your existing tools and workflows through our extensive API library.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Actionable Insights</h3>
-                    <p>Make data-driven decisions with real-time analytics and customizable reporting dashboards.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile Optimized</h3>
-                    <p>Access your dashboard and manage your business from anywhere with our mobile-friendly interface.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>24/7 Support</h3>
-                    <p>Our dedicated support team is always ready to assist you with any questions or issues.</p>
-                </div>
-            </div>
+    <!-- Navigation Terminal -->
+    <nav class="nav-terminal">
+        <div class="nav-brand">
+            <span class="brand-accent">SATCORP</span>
+            <span class="brand-sub">// OPERATIONS</span>
         </div>
-    </section>
+        <div class="nav-menu">
+            <button class="nav-item" data-section="overview">OVERVIEW</button>
+            <button class="nav-item" data-section="matrix">MATRIX</button>
+            <button class="nav-item" data-section="pipeline">PIPELINE</button>
+            <button class="nav-item" data-section="operations">OPERATIONS</button>
+            <button class="nav-item" data-section="protocol">PROTOCOL</button>
+            <button class="nav-item" data-section="contact">CONTACT</button>
+        </div>
+        <div class="status-indicator">
+            <span class="status-dot active"></span>
+            <span class="status-text">SYSTEM ONLINE</span>
+        </div>
+    </nav>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>What Our Clients Say</h2>
-                <p>Hear from businesses that have transformed their operations</p>
+    <!-- Main Container -->
+    <main class="main-container">
+        
+        <!-- Operator Overview -->
+        <section id="overview" class="section">
+            <div class="section-header">
+                <h1 class="section-title">OPERATOR OVERVIEW</h1>
+                <div class="section-id">//SYS:001</div>
             </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p>"Implementing Nexus has reduced our operational costs by 35% while improving customer satisfaction scores. The platform is intuitive and powerful."</p>
-                    <div class="client">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client">
-                        <div class="client-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>CTO, TechInnovate</p>
-                        </div>
+            <div class="grid-2">
+                <div class="panel panel-primary">
+                    <div class="panel-header">
+                        <span class="panel-title">PRIMARY DIRECTIVE</span>
+                        <div class="panel-indicator"></div>
+                    </div>
+                    <div class="panel-content">
+                        <p class="system-text">SATCORP operates as a technical concierge, translating conceptual ambiguity into deployable systems. We architect complete solutions spanning brand identity, automation workflows, and interactive environments.</p>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p>"The integration capabilities saved us months of development time. We were able to connect all our systems seamlessly in just a few weeks."</p>
-                    <div class="client">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client">
-                        <div class="client-info">
-                            <h4>Michael Chen</h4>
-                            <p>Operations Director, Global Retail Inc</p>
-                        </div>
+                <div class="panel panel-secondary">
+                    <div class="panel-header">
+                        <span class="panel-title">OPERATION PARAMETERS</span>
+                        <div class="panel-indicator"></div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <p>"Customer support is exceptional. They helped us customize the platform to fit our unique business needs perfectly."</p>
-                    <div class="client">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client">
-                        <div class="client-info">
-                            <h4>Emma Rodriguez</h4>
-                            <p>CEO, Startup Solutions</p>
+                    <div class="panel-content">
+                        <div class="param-list">
+                            <div class="param-item">
+                                <span class="param-label">CLARITY</span>
+                                <span class="param-value">DEFINED</span>
+                            </div>
+                            <div class="param-item">
+                                <span class="param-label">SCOPE</span>
+                                <span class="param-value">ARCHITECTED</span>
+                            </div>
+                            <div class="param-item">
+                                <span class="param-label">EXECUTION</span>
+                                <span class="param-value">DEPLOYED</span>
+                            </div>
+                            <div class="param-item">
+                                <span class="param-label">POLISH</span>
+                                <span class="param-value">OPTIMIZED</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Ready to Transform Your Business?</h2>
-            <p>Join thousands of companies already using our platform to drive growth and innovation.</p>
-            <a href="#" class="btn">Start Your Free Trial</a>
-        </div>
-    </section>
+        <!-- Capability Matrix -->
+        <section id="matrix" class="section">
+            <div class="section-header">
+                <h1 class="section-title">CAPABILITY MATRIX</h1>
+                <div class="section-id">//SYS:002</div>
+            </div>
+            <div class="capability-grid">
+                <div class="cap-module" data-cap="brand">
+                    <div class="cap-icon">⬢</div>
+                    <h3 class="cap-title">BRAND SYSTEMS</h3>
+                    <p class="cap-desc">Identity architecture, typographic doctrine, scalable visual frameworks</p>
+                    <div class="cap-status">ACTIVE</div>
+                </div>
+                <div class="cap-module" data-cap="web">
+                    <div class="cap-icon">◈</div>
+                    <h3 class="cap-title">WEB SYSTEMS</h3>
+                    <p class="cap-desc">Interactive interfaces, responsive architectures, deployment strategies</p>
+                    <div class="cap-status">ACTIVE</div>
+                </div>
+                <div class="cap-module" data-cap="architecture">
+                    <div class="cap-icon">◉</div>
+                    <h3 class="cap-title">ARCHITECTURE</h3>
+                    <p class="cap-desc">Operational design, automation pipelines, modular construction</p>
+                    <div class="cap-status">ACTIVE</div>
+                </div>
+                <div class="cap-module" data-cap="tech">
+                    <div class="cap-icon">◈</div>
+                    <h3 class="cap-title">CREATIVE TECH</h3>
+                    <p class="cap-desc">AI workflows, automation agents, accelerated production systems</p>
+                    <div class="cap-status">ACTIVE</div>
+                </div>
+                <div class="cap-module" data-cap="broadcast">
+                    <div class="cap-icon">⬢</div>
+                    <h3 class="cap-title">BROADCAST</h3>
+                    <p class="cap-desc">HUD interfaces, streaming overlays, alert UI systems</p>
+                    <div class="cap-status">ACTIVE</div>
+                </div>
+                <div class="cap-module" data-cap="game">
+                    <div class="cap-icon">◉</div>
+                    <h3 class="cap-title">GAME & WORLD</h3>
+                    <p class="cap-desc">Real-time environments, UI systems, technical art pipelines</p>
+                    <div class="cap-status">ACTIVE</div>
+                </div>
+                <div class="cap-module" data-cap="experience">
+                    <div class="cap-icon">◈</div>
+                    <h3 class="cap-title">CLIENT EXPERIENCE</h3>
+                    <p class="cap-desc">Concierge execution, scope alignment, security protocols</p>
+                    <div class="cap-status">ACTIVE</div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Nexus</h3>
-                    <p>Empowering businesses with cutting-edge digital solutions for a connected future.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <!-- Systems Pipeline -->
+        <section id="pipeline" class="section">
+            <div class="section-header">
+                <h1 class="section-title">SYSTEMS PIPELINE</h1>
+                <div class="section-id">//SYS:003</div>
+            </div>
+            <div class="pipeline-container">
+                <div class="pipeline-flow">
+                    <div class="stage" data-stage="1">
+                        <div class="stage-node"></div>
+                        <div class="stage-content">
+                            <h4>OBJECTIVE DEFINITION</h4>
+                            <p>Establish mission parameters and success metrics</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-connector"></div>
+                    <div class="stage" data-stage="2">
+                        <div class="stage-node"></div>
+                        <div class="stage-content">
+                            <h4>SYSTEM ARCHITECTURE</h4>
+                            <p>Design modular framework and integration points</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-connector"></div>
+                    <div class="stage" data-stage="3">
+                        <div class="stage-node"></div>
+                        <div class="stage-content">
+                            <h4>DEPLOYMENT SEQUENCE</h4>
+                            <p>Execute with precision and monitor system response</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-connector"></div>
+                    <div class="stage" data-stage="4">
+                        <div class="stage-node"></div>
+                        <div class="stage-content">
+                            <h4>OPTIMIZATION CYCLE</h4>
+                            <p>Refine performance and scale deployment</p>
+                        </div>
                     </div>
                 </div>
-                <div class="footer-column">
-                    <h3>Products</h3>
-                    <ul>
-                        <li><a href="#">Business Suite</a></li>
-                        <li><a href="#">Analytics Platform</a></li>
-                        <li><a href="#">Integration Hub</a></li>
-                        <li><a href="#">Mobile App</a></li>
+            </div>
+        </section>
+
+        <!-- Selected Operations -->
+        <section id="operations" class="section">
+            <div class="section-header">
+                <h1 class="section-title">SELECTED OPERATIONS</h1>
+                <div class="section-id">//SYS:004</div>
+            </div>
+            <div class="ops-grid">
+                <div class="op-card">
+                    <div class="op-header">
+                        <span class="op-id">OP-07B</span>
+                        <span class="op-status">COMPLETE</span>
+                    </div>
+                    <h3 class="op-title">Autonomous Brand System</h3>
+                    <p class="op-desc">Complete identity architecture for decentralized finance protocol</p>
+                    <div class="op-metrics">
+                        <span class="metric">4.2TB PROCESSED</span>
+                        <span class="metric">127 MODULES</span>
+                        <span class="metric">99.8% UPTIME</span>
+                    </div>
+                </div>
+                <div class="op-card">
+                    <div class="op-header">
+                        <span class="op-id">OP-11C</span>
+                        <span class="op-status">COMPLETE</span>
+                    </div>
+                    <h3 class="op-title">Real-time Data Visualization</h3>
+                    <p class="op-desc">Interactive dashboard for global logistics network</p>
+                    <div class="op-metrics">
+                        <span class="metric">1.2M DATA POINTS</span>
+                        <span class="metric">60FPS RENDER</span>
+                        <span class="metric">0.3s LATENCY</span>
+                    </div>
+                </div>
+                <div class="op-card">
+                    <div class="op-header">
+                        <span class="op-id">OP-14A</span>
+                        <span class="op-status">ACTIVE</span>
+                    </div>
+                    <h3 class="op-title">AI-Powered Content Pipeline</h3>
+                    <p class="op-desc">Automated media generation for streaming platform</p>
+                    <div class="op-metrics">
+                        <span class="metric">8K OUTPUT</span>
+                        <span class="metric">4.7M ASSETS</span>
+                        <span class="metric">82% EFFICIENCY</span>
+                    </div>
+                </div>
+                <div class="op-card">
+                    <div class="op-header">
+                        <span class="op-id">OP-09D</span>
+                        <span class="op-status">COMPLETE</span>
+                    </div>
+                    <h3 class="op-title">Spatial Computing Interface</h3>
+                    <p class="op-desc">AR/VR control system for industrial monitoring</p>
+                    <div class="op-metrics">
+                        <span class="metric">STEREO 3D</span>
+                        <span class="metric">HAPTIC SYNC</span>
+                        <span class="metric">6DoF TRACKING</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Engagement Protocol -->
+        <section id="protocol" class="section">
+            <div class="section-header">
+                <h1 class="section-title">ENGAGEMENT PROTOCOL</h1>
+                <div class="section-id">//SYS:005</div>
+            </div>
+            <div class="protocol-container">
+                <div class="protocol-phase">
+                    <div class="phase-header">
+                        <span class="phase-num">PHASE 01</span>
+                        <h3>INITIATE CONTACT</h3>
+                    </div>
+                    <div class="phase-content">
+                        <p>Submit objective parameters through secure channel. Initial diagnostic analysis within 24 cycles.</p>
+                    </div>
+                </div>
+                <div class="protocol-phase">
+                    <div class="phase-header">
+                        <span class="phase-num">PHASE 02</span>
+                        <h3>SCOPE ALIGNMENT</h3>
+                    </div>
+                    <div class="phase-content">
+                        <p>System requirements assessment. Technical architecture proposal delivered.</p>
+                    </div>
+                </div>
+                <div class="protocol-phase">
+                    <div class="phase-header">
+                        <span class="phase-num">PHASE 03</span>
+                        <h3>CONCIERGE EXECUTION</h3>
+                    </div>
+                    <div class="phase-content">
+                        <p>Dedicated operator assignment. Real-time progress monitoring. Secure deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Interface -->
+        <section id="contact" class="section">
+            <div class="section-header">
+                <h1 class="section-title">CONTACT INTERFACE</h1>
+                <div class="section-id">//SYS:006</div>
+            </div>
+            <div class="contact-form-container">
+                <div class="form-panel">
+                    <form id="contactForm" class="system-form">
+                        <div class="form-group">
+                            <label for="org">ORGANIZATION</label>
+                            <input type="text" id="org" name="org" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="objective">PRIMARY OBJECTIVE</label>
+                            <textarea id="objective" name="objective" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeline">DEPLOYMENT TIMELINE</label>
+                            <select id="timeline" name="timeline" required>
+                                <option value="">SELECT PRIORITY</option>
+                                <option value="critical">CRITICAL (72HRS)</option>
+                                <option value="standard">STANDARD (2WKS)</option>
+                                <option value="extended">EXTENDED (4WKS+)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">SECURE CHANNEL</label>
+                            <input type="email" id="contact" name="contact" required>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">TRANSMISSION</span>
+                            <span class="btn-indicator"></span>
+                        </button>
+                    </form>
+                </div>
+                <div class="comms-panel">
+                    <h4>COMMUNICATION PROTOCOLS</h4>
+                    <div class="comms-list">
+                        <div class="comms-item">
+                            <span class="comms-label">ENCRYPTION</span>
+                            <span class="comms-value">AES-256</span>
+                        </div>
+                        <div class="comms-item">
+                            <span class="comms-label">RESPONSE TIME</span>
+                            <span class="comms-value">&lt;24HRS</span>
+                        </div>
+                        <div class="comms-item">
+                            <span class="comms-label">CLEARANCE LEVEL</span>
+                            <span class="comms-value">LEVEL 3</span>
+                        </div>
+                        <div class="comms-item">
+                            <span class="comms-label">STATUS</span>
+                            <span class="comms-value online">ONLINE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
