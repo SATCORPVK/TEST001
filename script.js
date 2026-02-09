@@ -1,40 +1,51 @@
-// Boot sequence animation
-window.addEventListener('load', () => {
-    const boot = document.getElementById('boot-sequence');
-    const panels = document.querySelectorAll('.panel');
+// Boot sequence
+const bootSection = document.getElementById('boot-sequence');
+const enterBtn = document.getElementById('enter-system');
+const sections = [
+  'operator-overview',
+  'capability-matrix',
+  'systems-pipeline',
+  'selected-operations',
+  'engagement-protocol',
+  'contact-interface'
+].map(id => document.getElementById(id));
 
-    setTimeout(() => {
-        gsap.to(boot, {opacity: 0, duration: 1, onComplete: () => boot.style.display = 'none'});
-        panels.forEach((panel, i) => {
-            gsap.to(panel, {opacity:1, y:0, duration:1, delay:i*0.3, onStart: () => panel.classList.remove('hidden')});
-        });
-    }, 3000);
+enterBtn.addEventListener('click', () => {
+  bootSection.classList.add('hidden');
+  sections[0].classList.remove('hidden');
+  gsap.from(sections[0], {opacity: 0, y: 50, duration: 1});
 });
 
-// VANTA background
-VANTA.NET({
-    el: "body",
-    mouseControls: true,
-    touchControls: true,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    scale: 1.00,
-    scaleMobile: 1.00,
-    color: 0x2af0ff,
-    backgroundColor: 0x0a0a0a,
-    points: 12.00,
-    maxDistance: 20.00,
-    spacing: 15.00
+// Scroll reveal
+window.addEventListener('scroll', () => {
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100 && section.classList.contains('hidden')) {
+      section.classList.remove('hidden');
+      gsap.from(section, {opacity: 0, y: 50, duration: 1});
+    }
+  });
 });
 
-// Contact form submission
+// Vanta background for boot
+VANTA.WAVES({
+  el: "#boot-sequence",
+  mouseControls: true,
+  touchControls: true,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.0,
+  scaleMobile: 1.0,
+  color: 0x00bfff,
+  shininess: 50,
+  waveHeight: 15,
+  waveSpeed: 1.0
+});
+
+// Contact form submit
 const form = document.getElementById('contact-form');
 form.addEventListener('submit', e => {
-    e.preventDefault();
-    const objective = document.getElementById('objective').value;
-    const contact = document.getElementById('contact').value;
-    const details = document.getElementById('details').value;
-    console.log("Operation Transmitted:", {objective, contact, details});
-    form.reset();
-    alert('Transmission complete. Operator acknowledged.');
+  e.preventDefault();
+  alert('Transmission received. Operator will respond.');
+  form.reset();
 });
