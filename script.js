@@ -1,51 +1,54 @@
-// Boot sequence
-const bootSection = document.getElementById('boot-sequence');
-const enterBtn = document.getElementById('enter-system');
-const sections = [
-  'operator-overview',
-  'capability-matrix',
-  'systems-pipeline',
-  'selected-operations',
-  'engagement-protocol',
-  'contact-interface'
-].map(id => document.getElementById(id));
+// /script.js
+let vantaEffect;
 
-enterBtn.addEventListener('click', () => {
-  bootSection.classList.add('hidden');
-  sections[0].classList.remove('hidden');
-  gsap.from(sections[0], {opacity: 0, y: 50, duration: 1});
-});
-
-// Scroll reveal
-window.addEventListener('scroll', () => {
-  sections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100 && section.classList.contains('hidden')) {
-      section.classList.remove('hidden');
-      gsap.from(section, {opacity: 0, y: 50, duration: 1});
+window.addEventListener('load', () => {
+    // Vanta background
+    if(!vantaEffect) {
+        vantaEffect = VANTA.WAVES({
+            el: document.body,
+            mouseControls: true,
+            touchControls: true,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.0,
+            scaleMobile: 1.0,
+            color: 0x4ac1ff,
+            shininess: 50,
+            waveHeight: 20,
+            waveSpeed: 0.5
+        });
     }
-  });
-});
 
-// Vanta background for boot
-VANTA.WAVES({
-  el: "#boot-sequence",
-  mouseControls: true,
-  touchControls: true,
-  minHeight: 200.00,
-  minWidth: 200.00,
-  scale: 1.0,
-  scaleMobile: 1.0,
-  color: 0x00bfff,
-  shininess: 50,
-  waveHeight: 15,
-  waveSpeed: 1.0
-});
+    // Boot sequence fade out
+    const boot = document.getElementById('boot-sequence');
+    setTimeout(() => {
+        boot.style.transition = 'opacity 1.5s ease';
+        boot.style.opacity = 0;
+        setTimeout(() => boot.style.display = 'none', 1500);
+    }, 3500);
 
-// Contact form submit
-const form = document.getElementById('contact-form');
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  alert('Transmission received. Operator will respond.');
-  form.reset();
+    // GSAP animations for panels
+    gsap.utils.toArray('.panel').forEach(panel => {
+        gsap.from(panel, {
+            y: 60,
+            opacity: 0,
+            duration: 1.2,
+            scrollTrigger: {
+                trigger: panel,
+                start: 'top 80%',
+            }
+        });
+    });
+
+    // Contact form submission
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = form.name.value;
+        const email = form.email.value;
+        const message = form.message.value;
+        console.log("Transmission:", {name, email, message});
+        form.reset();
+        alert("Transmission acknowledged.");
+    });
 });
