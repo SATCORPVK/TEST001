@@ -1,182 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SATCORP Encounter</title>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATCORP NODE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="cognitive-interface">
+        <!-- Boot Sequence -->
+        <div id="initiation-sequence">
+            <div id="system-awakening">
+                <div class="awakening-line">SYSTEM AWAKENING</div>
+                <div class="awakening-line">SATCORP NODE PRIME</div>
+                <div class="awakening-line">PREPARING ENCOUNTER</div>
+            </div>
+        </div>
 
-<div id="field">
+        <!-- Main Interface -->
+        <div id="operational-field" class="hidden">
+            <!-- Status Cortex -->
+            <div class="cortex-bar">
+                <div class="cortex-element">
+                    <span class="cognitive-indicator"></span>
+                    <span class="cortex-label">SYSTEM ACTIVE</span>
+                </div>
+                <div class="cortex-element" id="temporal-marker">
+                    <span class="cortex-data">--:--:--</span>
+                </div>
+                <div class="cortex-element">
+                    <span class="cortex-label">ENTROPY LEVEL:</span>
+                    <span class="cortex-data" id="entropy-value">0.023</span>
+                </div>
+            </div>
 
-  <!-- Background field -->
-  <div id="void"></div>
+            <!-- Core Identity - Centered for maximum impact -->
+            <section class="identity-core">
+                <div class="title-field">
+                    <h1 class="system-identity">SATCORP</h1>
+                    <div class="identity-annotation">CONCIERGE / SYSTEM ARCHITECT / CREATIVE OPERATION</div>
+                </div>
+                <div class="principle-statement">
+                    <div class="principle-line">WE DESIGN FUNCTIONING STRUCTURES</div>
+                    <div class="principle-line">NOT VISUAL DECORATION</div>
+                </div>
+            </section>
 
-  <!-- Core operational area -->
-  <div id="core">
+            <!-- Capability Matrix - Appears on proximity -->
+            <section class="matrix-field hidden" id="capability-field">
+                <div class="field-header">
+                    <span class="field-id">CAPABILITY MATRIX</span>
+                    <span class="field-status">ACTIVE</span>
+                </div>
+                <div class="matrix-grid">
+                    <div class="cognitive-module" data-module="strategy">
+                        <div class="module-core">
+                            <span class="module-signal"></span>
+                            <span class="module-title">STRATEGY ARCHITECTURE</span>
+                        </div>
+                        <div class="module-expansion">
+                            STRUCTURAL PLANNING OF OPERATIONAL SYSTEMS
+                        </div>
+                    </div>
+                    <div class="cognitive-module" data-module="identity">
+                        <div class="module-core">
+                            <span class="module-signal"></span>
+                            <span class="module-title">IDENTITY SYSTEMS</span>
+                        </div>
+                        <div class="module-expansion">
+                            COHESIVE ARCHITECTURES ACROSS OPERATIONAL LAYERS
+                        </div>
+                    </div>
+                    <div class="cognitive-module" data-module="experience">
+                        <div class="module-core">
+                            <span class="module-signal"></span>
+                            <span class="module-title">EXPERIENCE ENGINEERING</span>
+                        </div>
+                        <div class="module-expansion">
+                            CONSTRUCTION OF INTERACTIVE ENVIRONMENTS
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Boot signal -->
-    <div class="node node-boot">
-      <span class="glyph">SATCORP</span>
-      <div class="status-led" data-id="B-01"></div>
+            <!-- Network Manifest - Appears after matrix -->
+            <section class="network-field hidden" id="network-field">
+                <div class="field-header">
+                    <span class="field-id">OPERATIONS NETWORK</span>
+                    <span class="field-status">SYNCHRONIZED</span>
+                </div>
+                <div class="network-manifest">
+                    <div class="network-entity" data-entity="anu">
+                        <span class="entity-id">ANU·Ki-Ra Studios</span>
+                        <span class="entity-function">CREATIVE RESEARCH</span>
+                    </div>
+                    <div class="network-entity" data-entity="kyrax">
+                        <span class="entity-id">KYRAX</span>
+                        <span class="entity-function">TECHNICAL INFRASTRUCTURE</span>
+                    </div>
+                    <div class="network-entity" data-entity="pulse">
+                        <span class="entity-id">PULSΞ</span>
+                        <span class="entity-function">RHYTHMIC IMPLEMENTATION</span>
+                    </div>
+                    <div class="network-entity" data-entity="scopu">
+                        <span class="entity-id">SCOPU</span>
+                        <span class="entity-function">STRATEGIC OBSERVATION</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Methodology Sequence - Appears on demand -->
+            <section class="sequence-field hidden" id="sequence-field">
+                <div class="field-header">
+                    <span class="field-id">METHODOLOGY SEQUENCE</span>
+                    <span class="field-status">READY</span>
+                </div>
+                <div class="sequence-flow">
+                    <div class="flow-step" data-step="observe">OBSERVE</div>
+                    <div class="flow-step" data-step="decode">DECODE</div>
+                    <div class="flow-step" data-step="architect">ARCHITECT</div>
+                    <div class="flow-step" data-step="construct">CONSTRUCT</div>
+                    <div class="flow-step" data-step="deploy">DEPLOY</div>
+                    <div class="flow-step" data-step="evolve">EVOLVE</div>
+                </div>
+                <div class="sequence-reveal">
+                    <div class="reveal-content" id="reveal-observe">
+                        SYSTEMATIC ANALYSIS OF EXISTING STRUCTURES AND OPERATIONAL GAPS
+                    </div>
+                    <div class="reveal-content hidden" id="reveal-decode">
+                        TRANSLATION OF OBSERVATIONS INTO ACTIONABLE INTELLIGENCE
+                    </div>
+                    <div class="reveal-content hidden" id="reveal-architect">
+                        STRUCTURAL DESIGN OF SOLUTIONS WITH INTEGRATION CAPABILITIES
+                    </div>
+                    <div class="reveal-content hidden" id="reveal-construct">
+                        PRECISE IMPLEMENTATION WITH RIGOROUS QUALITY PROTOCOLS
+                    </div>
+                    <div class="reveal-content hidden" id="reveal-deploy">
+                        STRATEGIC ROLLOUT INTO OPERATIONAL ENVIRONMENTS
+                    </div>
+                    <div class="reveal-content hidden" id="reveal-evolve">
+                        CONTINUOUS OPTIMIZATION BASED ON PERFORMANCE METRICS
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Gate - Final layer -->
+            <section class="contact-field hidden" id="contact-field">
+                <div class="field-header">
+                    <span class="field-id">TRANSMISSION PROTOCOL</span>
+                    <span class="field-status" id="gate-status">EVALUATING</span>
+                </div>
+                <div class="gate-interface">
+                    <div class="gate-output">
+                        <div class="protocol-line">SATCORP NODE AWAITING TRANSMISSION</div>
+                        <div class="protocol-line" id="access-message">ACCESS UNCERTAIN</div>
+                    </div>
+                    <div class="gate-input">
+                        <span class="input-prompt">&gt;</span>
+                        <input type="text" id="transmission-gate" placeholder="" disabled>
+                        <div class="input-caret"></div>
+                    </div>
+                </div>
+                <div class="transmission-receipt hidden" id="transmission-receipt">
+                    <div class="receipt-line">TRANSMISSION RECEIVED</div>
+                    <div class="receipt-line">SATCORP WILL EVALUATE COMPATIBILITY</div>
+                    <div class="receipt-line" id="receipt-id">REF: #</div>
+                </div>
+            </section>
+
+            <!-- Idle State - Becomes more minimal -->
+            <div class="idle-state hidden" id="idle-state">
+                <div class="idle-identity">SATCORP</div>
+                <div class="idle-caret">_</div>
+            </div>
+        </div>
     </div>
 
-    <!-- Capability wall -->
-    <div class="channel">
-
-      <div class="node capability" data-id="C-101">
-        <div class="label">CORE IDENTITY</div>
-        <div class="latent">
-          <div class="line">Structural intent precedes aesthetics.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:12 Y:42</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-      <div class="node capability" data-id="C-102">
-        <div class="label">BRAND SYSTEMS</div>
-        <div class="latent">
-          <div class="line">Modules deployed to maintain cohesion.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:18 Y:37</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-      <div class="node capability" data-id="C-103">
-        <div class="label">WEB / UI SYSTEMS</div>
-        <div class="latent">
-          <div class="line">Interfaces obey operational logic.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:24 Y:55</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-      <div class="node capability" data-id="C-104">
-        <div class="label">SYSTEMS ARCHITECTURE</div>
-        <div class="latent">
-          <div class="line">Structure enforced before scale.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:30 Y:60</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-      <!-- Additional capabilities -->
-      <div class="node capability" data-id="C-105">
-        <div class="label">AI WORKFLOWS</div>
-        <div class="latent">
-          <div class="line">Inference chains active.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:36 Y:45</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-      <div class="node capability" data-id="C-106">
-        <div class="label">STREAMING / OVERLAY</div>
-        <div class="latent">
-          <div class="line">Live environments controlled.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:42 Y:53</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-      <div class="node capability" data-id="C-107">
-        <div class="label">GAME DEVELOPMENT</div>
-        <div class="latent">
-          <div class="line">Simulation as literacy tool.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:48 Y:47</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-      <div class="node capability" data-id="C-108">
-        <div class="label">CLIENT EXPERIENCE</div>
-        <div class="latent">
-          <div class="line">Process over presentation.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:54 Y:41</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-      <div class="node capability" data-id="C-109">
-        <div class="label">PLATFORMS</div>
-        <div class="latent">
-          <div class="line">Environments, not pages.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:60 Y:59</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-      <div class="node capability" data-id="C-110">
-        <div class="label">DOCUMENTATION</div>
-        <div class="latent">
-          <div class="line">Operational clarity encoded.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:66 Y:36</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-      <div class="node capability" data-id="C-111">
-        <div class="label">ASSET DELIVERY</div>
-        <div class="latent">
-          <div class="line">Systems conclude cleanly.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:72 Y:44</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-      <div class="node capability" data-id="C-112">
-        <div class="label">IDEAL CLIENTS</div>
-        <div class="latent">
-          <div class="line">Alignment is prerequisite.</div>
-        </div>
-        <div class="micro">
-          <span class="coord">X:78 Y:50</span>
-          <span class="build">v1.23</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Terminal console -->
-    <div id="terminal">
-      <div class="terminal-status"><span class="state">ACCESS UNCERTAIN</span></div>
-      <div class="terminal-input locked">
-        <span class="caret">▍</span>
-        <input type="text" autocomplete="off" tabindex="-1">
-      </div>
-      <div class="terminal-output"></div>
-    </div>
-
-    <!-- Observer intelligence -->
-    <div id="observer"><span class="blink">▍</span></div>
-
-  </div>
-
-</div>
-
+    <script src="script.js"></script>
 </body>
 </html>
