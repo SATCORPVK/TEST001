@@ -1,170 +1,158 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATCORP NODE</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SYSTEM IDENTIFICATION -->
+  <title>SATCORP</title>
+
+  <!-- NO MARKETING METADATA -->
+  <meta name="robots" content="index, follow">
+
+  <!-- CORE STYLES -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- MOTION ENGINE -->
+  <script src="vendor/gsap.min.js" defer></script>
+  <script src="vendor/ScrollTrigger.min.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
+
 <body>
-    <div id="bootSequence">
-        <div class="boot-log">
-            <div class="log-line">INITIALIZING SATCORP NODE</div>
-            <div class="log-line">AUTHENTICATING USER</div>
-            <div class="log-line">LOADING OPERATOR PROFILE: ANU</div>
-            <div class="log-line">MOUNTING MODULES</div>
-            <div class="log-line">SYSTEM READY</div>
-        </div>
+
+  <!-- GLOBAL FIELD -->
+  <div id="field">
+
+    <!-- BACKGROUND LAYER -->
+    <div id="void">
+      <canvas id="noise"></canvas>
     </div>
 
-    <main id="interface" class="hidden">
-        <header class="operator-panel">
-            <div class="identity">
-                <h1>SATCORP</h1>
-                <p class="title">Concierge / System Architect / Creative Operation</p>
-                <p class="philosophy">We do not design visuals.<br>We design functioning structures.</p>
-            </div>
-            <div class="system-status">
-                <div class="status-indicator">ONLINE</div>
-                <div class="time-display" id="timeDisplay">--:--:--</div>
-            </div>
-        </header>
+    <!-- SYSTEM CORE -->
+    <div id="core">
 
-        <section class="dashboard">
-            <div class="panel capability-matrix">
-                <h2>CAPABILITY MATRIX</h2>
-                <div class="modules">
-                    <div class="module" data-module="strategy">
-                        <div class="module-header">
-                            <span>Strategy Architecture</span>
-                            <div class="expand-indicator">+</div>
-                        </div>
-                        <div class="module-content">
-                            Operational frameworks and systemic planning for complex creative ecosystems.
-                        </div>
-                    </div>
-                    <div class="module" data-module="identity">
-                        <div class="module-header">
-                            <span>Identity Systems</span>
-                            <div class="expand-indicator">+</div>
-                        </div>
-                        <div class="module-content">
-                            Cohesive brand architecture and narrative infrastructure development.
-                        </div>
-                    </div>
-                    <div class="module" data-module="experience">
-                        <div class="module-header">
-                            <span>Experience Engineering</span>
-                            <div class="expand-indicator">+</div>
-                        </div>
-                        <div class="module-content">
-                            Interactive environment design and user journey optimization.
-                        </div>
-                    </div>
-                    <div class="module" data-module="interface">
-                        <div class="module-header">
-                            <span>Interface Design</span>
-                            <div class="expand-indicator">+</div>
-                        </div>
-                        <div class="module-content">
-                            Control system interfaces and operational dashboards.
-                        </div>
-                    </div>
-                    <div class="module" data-module="automation">
-                        <div class="module-header">
-                            <span>Automation Logic</span>
-                            <div class="expand-indicator">+</div>
-                        </div>
-                        <div class="module-content">
-                            Process automation and intelligent system workflows.
-                        </div>
-                    </div>
-                    <div class="module" data-module="creative">
-                        <div class="module-header">
-                            <span>Creative Direction</span>
-                            <div class="expand-indicator">+</div>
-                        </div>
-                        <div class="module-content">
-                            Vision articulation and creative system governance.
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <!-- AWARENESS SIGNAL -->
+      <div class="node node-boot">
+        <div class="signal">
+          <span class="glyph">SATCORP</span>
+        </div>
+      </div>
 
-            <div class="panel operations-network">
-                <h2>OPERATIONS NETWORK</h2>
-                <div class="network-map">
-                    <div class="node" data-node="anu">
-                        <span>ANU·Ki-Ra Studios</span>
-                        <div class="node-info">Creative Research & Experimental Production</div>
-                    </div>
-                    <div class="node" data-node="kyrax">
-                        <span>KYRAX</span>
-                        <div class="node-info">Technical Infrastructure & System Architecture</div>
-                    </div>
-                    <div class="node" data-node="pulse">
-                        <span>PULSΞ</span>
-                        <div class="node-info">Interactive Experience & Interface Systems</div>
-                    </div>
-                    <div class="node" data-node="scopu">
-                        <span>SCOPU</span>
-                        <div class="node-info">Strategic Operations & Project Management</div>
-                    </div>
-                </div>
-            </div>
+      <!-- RESOLUTION CHANNEL -->
+      <div class="channel">
 
-            <div class="panel methodology">
-                <h2>METHODOLOGY SEQUENCE</h2>
-                <div class="timeline">
-                    <div class="step" data-step="observe">
-                        <div class="step-marker">01</div>
-                        <span>Observe</span>
-                        <div class="step-detail">Comprehensive environmental scanning and pattern recognition</div>
-                    </div>
-                    <div class="step" data-step="decode">
-                        <div class="step-marker">02</div>
-                        <span>Decode</span>
-                        <div class="step-detail">System analysis and operational requirement mapping</div>
-                    </div>
-                    <div class="step" data-step="architect">
-                        <div class="step-marker">03</div>
-                        <span>Architect</span>
-                        <div class="step-detail">Structural framework design and system blueprinting</div>
-                    </div>
-                    <div class="step" data-step="construct">
-                        <div class="step-marker">04</div>
-                        <span>Construct</span>
-                        <div class="step-detail">Precision implementation and system integration</div>
-                    </div>
-                    <div class="step" data-step="deploy">
-                        <div class="step-marker">05</div>
-                        <span>Deploy</span>
-                        <div class="step-detail">Operational activation and performance calibration</div>
-                    </div>
-                    <div class="step" data-step="evolve">
-                        <div class="step-marker">06</div>
-                        <span>Evolve</span>
-                        <div class="step-detail">Continuous optimization and adaptive refinement</div>
-                    </div>
-                </div>
-            </div>
+        <!-- CAPABILITY MANIFESTATIONS -->
+        <div class="node capability" data-id="core-identity">
+          <div class="label">CORE IDENTITY</div>
+          <div class="latent">
+            <div class="line">Structural intent precedes aesthetics.</div>
+          </div>
+        </div>
 
-            <div class="panel contact-protocol">
-                <h2>CONTACT PROTOCOL</h2>
-                <div class="console">
-                    <div class="console-output" id="consoleOutput">
-                        > SYSTEM READY FOR TRANSMISSION
-                    </div>
-                    <div class="console-input">
-                        <span>></span>
-                        <input type="text" id="messageInput" placeholder="TYPE MESSAGE..." autocomplete="off">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        <div class="node capability" data-id="brand-systems">
+          <div class="label">BRAND SYSTEMS</div>
+          <div class="latent">
+            <div class="line">Modular logic. Reproducible presence.</div>
+          </div>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="node capability" data-id="web-ui">
+          <div class="label">WEB / UI SYSTEMS</div>
+          <div class="latent">
+            <div class="line">Interfaces behave. They do not decorate.</div>
+          </div>
+        </div>
+
+        <div class="node capability" data-id="architecture">
+          <div class="label">SYSTEMS ARCHITECTURE</div>
+          <div class="latent">
+            <div class="line">Structure before scale.</div>
+          </div>
+        </div>
+
+        <div class="node capability" data-id="streaming">
+          <div class="label">STREAMING / OVERLAY</div>
+          <div class="latent">
+            <div class="line">Live environments under control.</div>
+          </div>
+        </div>
+
+        <div class="node capability" data-id="ai">
+          <div class="label">AI WORKFLOWS</div>
+          <div class="latent">
+            <div class="line">Inference chained to intent.</div>
+          </div>
+        </div>
+
+        <div class="node capability" data-id="game">
+          <div class="label">GAME DEVELOPMENT</div>
+          <div class="latent">
+            <div class="line">Simulation as system literacy.</div>
+          </div>
+        </div>
+
+        <div class="node capability" data-id="cx">
+          <div class="label">CLIENT EXPERIENCE</div>
+          <div class="latent">
+            <div class="line">Process designed. Outcomes follow.</div>
+          </div>
+        </div>
+
+        <div class="node capability" data-id="platforms">
+          <div class="label">PLATFORMS</div>
+          <div class="latent">
+            <div class="line">Environments, not pages.</div>
+          </div>
+        </div>
+
+        <div class="node capability" data-id="docs">
+          <div class="label">DOCUMENTATION</div>
+          <div class="latent">
+            <div class="line">Operational clarity encoded.</div>
+          </div>
+        </div>
+
+        <div class="node capability" data-id="assets">
+          <div class="label">ASSET DELIVERY</div>
+          <div class="latent">
+            <div class="line">Systems conclude cleanly.</div>
+          </div>
+        </div>
+
+        <div class="node capability" data-id="ideal">
+          <div class="label">IDEAL CLIENTS</div>
+          <div class="latent">
+            <div class="line">Alignment is prerequisite.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TRANSMISSION GATE -->
+      <div id="terminal">
+
+        <div class="terminal-status">
+          <span class="state">ACCESS UNCERTAIN</span>
+        </div>
+
+        <div class="terminal-input locked">
+          <span class="caret">▍</span>
+          <input type="text" autocomplete="off" tabindex="-1">
+        </div>
+
+        <div class="terminal-output"></div>
+
+      </div>
+
+    </div>
+
+    <!-- IDLE INTELLIGENCE -->
+    <div id="observer">
+      <span class="blink">▍</span>
+    </div>
+
+  </div>
+
 </body>
 </html>
