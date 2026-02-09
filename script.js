@@ -1,139 +1,89 @@
+// script.js
 document.addEventListener('DOMContentLoaded', function() {
-    // Vanta Background
-    if (typeof VANTA !== 'undefined') {
-        VANTA.NET({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x7c3aed,
-            backgroundColor: 0x0b0d12,
-            points: 10.00,
-            maxDistance: 20.00,
-            spacing: 15.00
-        });
-    }
-
-    // Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-    
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    themeToggle.textContent = currentTheme === 'dark' ? '☀︎' : '☾';
-    
-    themeToggle.addEventListener('click', function() {
-        const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        this.textContent = newTheme === 'dark' ? '☀︎' : '☾';
-    });
-
-    // Custom Cursor
-    const cursor = document.getElementById('custom-cursor');
-    if (cursor) {
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+    // Boot sequence
+    setTimeout(() => {
+        const bootSequence = document.getElementById('bootSequence');
+        const interface = document.getElementById('interface');
         
-        document.addEventListener('mouseenter', (e) => {
-            if (e.target.closest('a, button')) {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursor.style.borderColor = '#2DD4FF';
-            }
-        });
-        
-        document.addEventListener('mouseleave', (e) => {
-            if (e.target.closest('a, button')) {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.borderColor = '#7C3AED';
-            }
-        });
-    }
+        bootSequence.style.opacity = '0';
+        setTimeout(() => {
+            bootSequence.classList.add('hidden');
+            interface.classList.remove('hidden');
+        }, 1000);
+    }, 5000);
 
-    // Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+    // Real-time clock
+    function updateClock() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-US', { 
+            hour12: false,
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        document.getElementById('timeDisplay').textContent = timeString;
+    }
+    
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Capability Matrix functionality
+    const modules = document.querySelectorAll('.module');
+    modules.forEach(module => {
+        module.addEventListener('click', function() {
+            this.classList.toggle('active');
         });
     });
 
-    // GSAP Animations
-    if (typeof gsap !== 'undefined') {
-        // Hero animations
-        gsap.from('.hero h1', {
-            opacity: 0,
-            y: 30,
-            duration: 1,
-            delay: 0.5
+    // Methodology Sequence functionality
+    const steps = document.querySelectorAll('.step');
+    steps.forEach(step => {
+        step.addEventListener('click', function() {
+            steps.forEach(s => s.classList.remove('active'));
+            this.classList.add('active');
         });
-        
-        gsap.from('.hero p', {
-            opacity: 0,
-            y: 20,
-            duration: 1,
-            delay: 0.8
-        });
-        
-        gsap.from('.cta-button', {
-            opacity: 0,
-            y: 20,
-            duration: 1,
-            delay: 1.1
-        });
+    });
 
-        // Skill cards fade in
-        gsap.utils.toArray('.skill-card').forEach((card, i) => {
-            gsap.from(card, {
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 80%'
-                },
-                delay: i * 0.1
-            });
-        });
-    }
+    // Contact Protocol functionality
+    const messageInput = document.getElementById('messageInput');
+    const consoleOutput = document.getElementById('consoleOutput');
+    
+    messageInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const message = this.value.trim();
+            if (message) {
+                consoleOutput.innerHTML += `<div>> TRANSMISSION RECEIVED: "${message}"</div>`;
+                consoleOutput.innerHTML += `<div>> SATCORP WILL EVALUATE COMPATIBILITY</div>`;
+                consoleOutput.innerHTML += `<div>----------------------------</div>`;
+                this.value = '';
+                
+                // Auto-scroll to bottom
+                consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            }
+        }
+    });
 
-    // Form Submission
-    const form = document.getElementById('contact-form');
-    if (form) {
-        form.addEventListener('submit', function(e) {
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey || e.metaKey) return;
+        
+        // Focus message input on '/' key
+        if (e.key === '/' && e.target !== messageInput) {
             e.preventDefault();
-            
-            // In a real implementation, you would send the form data
-            // For now, just show a success message
-            const formData = new FormData(form);
-            console.log('Form submitted:', Object.fromEntries(formData));
-            
-            // Reset form
-            form.reset();
-            
-            // Show success message (you could create a proper notification)
-            alert('Thank you for your inquiry! We will respond shortly.');
-        });
-    }
+            messageInput.focus();
+        }
+        
+        // Escape to blur input
+        if (e.key === 'Escape') {
+            messageInput.blur();
+        }
+    });
 
-    // Skill Card Interaction
-    document.querySelectorAll('.view-detail').forEach(button => {
-        button.addEventListener('click', function() {
-            const skill = this.closest('.skill-card').dataset.skill;
-            console.log(`Viewing details for: ${skill}`);
-            // In a full implementation, this would open a modal
-            // with detailed information about the skill
+    // Hover effects for all interactive elements
+    const interactiveElements = document.querySelectorAll('.module-header, .node, .step');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.2s ease';
         });
     });
 });
