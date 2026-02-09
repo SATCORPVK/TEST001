@@ -12,25 +12,45 @@ VANTA.NET({
     backgroundColor: 0xf0f0f
 });
 
-// GSAP animations
+// Initialize GSAP animations
 gsap.registerPlugin(ScrollTrigger);
 
 // Hero section animations
-gsap.to('.hero-title', { opacity:1, y:0, duration:1.2, delay:0.5, ease:"power3.out" });
-gsap.to('.hero-subtitle', { opacity:1, y:0, duration:1.2, delay:0.8, ease:"power3.out" });
-gsap.to('.cta-button', { opacity:1, y:0, duration:1.2, delay:1.1, ease:"power3.out" });
+gsap.to('.hero-title', {
+    opacity: 1,
+    y: 0,
+    duration: 1.2,
+    delay: 0.5,
+    ease: "power3.out"
+});
+
+gsap.to('.hero-subtitle', {
+    opacity: 1,
+    y: 0,
+    duration: 1.2,
+    delay: 0.8,
+    ease: "power3.out"
+});
+
+gsap.to('.cta-button', {
+    opacity: 1,
+    y: 0,
+    duration: 1.2,
+    delay: 1.1,
+    ease: "power3.out"
+});
 
 // Skill cards animations
 gsap.utils.toArray('.fade-in-up').forEach(card => {
     gsap.to(card, {
-        opacity:1,
-        y:0,
-        duration:0.8,
-        scrollTrigger:{
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        scrollTrigger: {
             trigger: card,
             start: "top 80%",
             end: "bottom 20%",
-            toggleActions:"play none none reverse"
+            toggleActions: "play none none reverse"
         }
     });
 });
@@ -42,6 +62,7 @@ const cursorFollower = document.querySelector('.cursor-follower');
 document.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
+    
     setTimeout(() => {
         cursorFollower.style.left = e.clientX + 'px';
         cursorFollower.style.top = e.clientY + 'px';
@@ -64,14 +85,17 @@ const modeIcon = modeToggle.querySelector('i');
 
 modeToggle.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
-    if(document.body.classList.contains('light-mode')){
-        modeIcon.classList.replace('fa-moon','fa-sun');
+    
+    if (document.body.classList.contains('light-mode')) {
+        modeIcon.classList.remove('fa-moon');
+        modeIcon.classList.add('fa-sun');
     } else {
-        modeIcon.classList.replace('fa-sun','fa-moon');
+        modeIcon.classList.remove('fa-sun');
+        modeIcon.classList.add('fa-moon');
     }
 });
 
-// Scroll progress
+// Progress indicator
 window.addEventListener('scroll', () => {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -85,24 +109,33 @@ const navLinks = document.querySelectorAll('.nav-link');
 
 window.addEventListener('scroll', () => {
     let current = '';
+    
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if(scrollY >= sectionTop - 200) current = section.getAttribute('id');
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+        }
     });
+    
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if(link.getAttribute('href').substring(1) === current) link.classList.add('active');
+        if (link.getAttribute('href').substring(1) === current) {
+            link.classList.add('active');
+        }
     });
 });
 
-// Smooth scroll for nav links
+// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e){
+    anchor.addEventListener('click', function(e) {
         e.preventDefault();
+        
         const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
+        if (targetId === '#') return;
+        
         const targetElement = document.querySelector(targetId);
-        if(targetElement){
+        if (targetElement) {
             window.scrollTo({
                 top: targetElement.offsetTop - 80,
                 behavior: 'smooth'
@@ -112,7 +145,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Form submission
-document.getElementById('contactForm').addEventListener('submit', function(e){
+document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     alert('Thank you for your message! SATCORP will respond shortly.');
     this.reset();
