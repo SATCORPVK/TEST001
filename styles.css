@@ -1,95 +1,130 @@
+/* /style.css */
 :root {
-  --base-bg: #0b0a10;
-  --accent-primary: #00bfff;
-  --accent-secondary: #8a2be2;
-  --text-light: #e0e0e0;
-  --panel-bg: #12101a;
+    --base-dark: #0a0a0a;
+    --accent-blue: #4ac1ff;
+    --accent-violet: #b480ff;
+    --panel-bg: rgba(15, 15, 15, 0.85);
+    --text-light: #f0f0f0;
+    --text-muted: #999;
+    --font-sans: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Roboto Mono', monospace;
-  background: var(--base-bg);
-  color: var(--text-light);
-  overflow-x: hidden;
+    font-family: var(--font-sans);
+    background: var(--base-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
 }
 
-.hidden { display: none; }
-
 section {
-  padding: 60px 5vw;
-  min-height: 100vh;
+    padding: 80px 60px;
+    min-height: 100vh;
+    position: relative;
+}
+
+.panel {
+    background: var(--panel-bg);
+    margin: 40px auto;
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    padding: 60px;
 }
 
 h1 {
-  font-size: 3rem;
-  color: var(--accent-primary);
-  margin-bottom: 20px;
+    font-size: 3rem;
+    color: var(--accent-blue);
+    margin-bottom: 40px;
 }
 
-p {
-  font-size: 1.2rem;
-  line-height: 1.5;
+h2 {
+    font-size: 1.5rem;
+    color: var(--accent-violet);
+    margin-bottom: 16px;
 }
 
-button {
-  background: var(--accent-primary);
-  color: var(--base-bg);
-  border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.boot-text {
+    text-align: center;
+    font-family: monospace;
+    font-size: 1.25rem;
+    line-height: 2;
+    animation: flicker 2s infinite alternate;
 }
 
-button:hover {
-  background: var(--accent-secondary);
+@keyframes flicker {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
 }
 
-.matrix-grid, .operations-grid {
-  display: grid;
-  gap: 20px;
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+}
+
+.overview-block, .matrix-block, .operation-card {
+    background: rgba(25,25,25,0.9);
+    border: 1px solid var(--accent-blue);
+    border-radius: 8px;
+    padding: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.overview-block:hover, .matrix-block:hover, .operation-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px var(--accent-violet);
 }
 
 .matrix-grid {
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.pipeline-list {
+    list-style: decimal inside;
+    font-family: monospace;
+    font-size: 1.25rem;
 }
 
 .operations-grid {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
 }
 
-.module, .operation-card {
-  background: var(--panel-bg);
-  padding: 20px;
-  border-left: 3px solid var(--accent-primary);
-  transition: transform 0.3s ease;
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.module:hover, .operation-card:hover {
-  transform: translateY(-5px);
-  border-left-color: var(--accent-secondary);
+#contact-form input, #contact-form textarea {
+    background: #111;
+    color: var(--text-light);
+    border: 1px solid var(--accent-blue);
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 1rem;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+#contact-form button {
+    background: var(--accent-blue);
+    color: var(--base-dark);
+    border: none;
+    border-radius: 6px;
+    padding: 14px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-input, textarea {
-  background: #1c1a25;
-  border: 1px solid var(--accent-primary);
-  color: var(--text-light);
-  padding: 8px 12px;
-}
-
-input:focus, textarea:focus {
-  border-color: var(--accent-secondary);
-  outline: none;
+#contact-form button:hover {
+    background: var(--accent-violet);
 }
