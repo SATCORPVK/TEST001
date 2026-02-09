@@ -1,158 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- SYSTEM IDENTIFICATION -->
-  <title>SATCORP</title>
-
-  <!-- NO MARKETING METADATA -->
-  <meta name="robots" content="index, follow">
-
-  <!-- CORE STYLES -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- MOTION ENGINE -->
-  <script src="vendor/gsap.min.js" defer></script>
-  <script src="vendor/ScrollTrigger.min.js" defer></script>
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SATCORP Encounter</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
-
 <body>
 
-  <!-- GLOBAL FIELD -->
-  <div id="field">
+<div id="field">
 
-    <!-- BACKGROUND LAYER -->
-    <div id="void">
-      <canvas id="noise"></canvas>
+  <!-- Background field -->
+  <div id="void"></div>
+
+  <!-- Core operational area -->
+  <div id="core">
+
+    <!-- Boot signal -->
+    <div class="node node-boot">
+      <span class="glyph">SATCORP</span>
+      <div class="status-led" data-id="B-01"></div>
     </div>
 
-    <!-- SYSTEM CORE -->
-    <div id="core">
+    <!-- Capability wall -->
+    <div class="channel">
 
-      <!-- AWARENESS SIGNAL -->
-      <div class="node node-boot">
-        <div class="signal">
-          <span class="glyph">SATCORP</span>
+      <div class="node capability" data-id="C-101">
+        <div class="label">CORE IDENTITY</div>
+        <div class="latent">
+          <div class="line">Structural intent precedes aesthetics.</div>
+        </div>
+        <div class="micro">
+          <span class="coord">X:12 Y:42</span>
+          <span class="build">v1.23</span>
         </div>
       </div>
 
-      <!-- RESOLUTION CHANNEL -->
-      <div class="channel">
-
-        <!-- CAPABILITY MANIFESTATIONS -->
-        <div class="node capability" data-id="core-identity">
-          <div class="label">CORE IDENTITY</div>
-          <div class="latent">
-            <div class="line">Structural intent precedes aesthetics.</div>
-          </div>
+      <div class="node capability" data-id="C-102">
+        <div class="label">BRAND SYSTEMS</div>
+        <div class="latent">
+          <div class="line">Modules deployed to maintain cohesion.</div>
         </div>
-
-        <div class="node capability" data-id="brand-systems">
-          <div class="label">BRAND SYSTEMS</div>
-          <div class="latent">
-            <div class="line">Modular logic. Reproducible presence.</div>
-          </div>
+        <div class="micro">
+          <span class="coord">X:18 Y:37</span>
+          <span class="build">v1.23</span>
         </div>
-
-        <div class="node capability" data-id="web-ui">
-          <div class="label">WEB / UI SYSTEMS</div>
-          <div class="latent">
-            <div class="line">Interfaces behave. They do not decorate.</div>
-          </div>
-        </div>
-
-        <div class="node capability" data-id="architecture">
-          <div class="label">SYSTEMS ARCHITECTURE</div>
-          <div class="latent">
-            <div class="line">Structure before scale.</div>
-          </div>
-        </div>
-
-        <div class="node capability" data-id="streaming">
-          <div class="label">STREAMING / OVERLAY</div>
-          <div class="latent">
-            <div class="line">Live environments under control.</div>
-          </div>
-        </div>
-
-        <div class="node capability" data-id="ai">
-          <div class="label">AI WORKFLOWS</div>
-          <div class="latent">
-            <div class="line">Inference chained to intent.</div>
-          </div>
-        </div>
-
-        <div class="node capability" data-id="game">
-          <div class="label">GAME DEVELOPMENT</div>
-          <div class="latent">
-            <div class="line">Simulation as system literacy.</div>
-          </div>
-        </div>
-
-        <div class="node capability" data-id="cx">
-          <div class="label">CLIENT EXPERIENCE</div>
-          <div class="latent">
-            <div class="line">Process designed. Outcomes follow.</div>
-          </div>
-        </div>
-
-        <div class="node capability" data-id="platforms">
-          <div class="label">PLATFORMS</div>
-          <div class="latent">
-            <div class="line">Environments, not pages.</div>
-          </div>
-        </div>
-
-        <div class="node capability" data-id="docs">
-          <div class="label">DOCUMENTATION</div>
-          <div class="latent">
-            <div class="line">Operational clarity encoded.</div>
-          </div>
-        </div>
-
-        <div class="node capability" data-id="assets">
-          <div class="label">ASSET DELIVERY</div>
-          <div class="latent">
-            <div class="line">Systems conclude cleanly.</div>
-          </div>
-        </div>
-
-        <div class="node capability" data-id="ideal">
-          <div class="label">IDEAL CLIENTS</div>
-          <div class="latent">
-            <div class="line">Alignment is prerequisite.</div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- TRANSMISSION GATE -->
-      <div id="terminal">
-
-        <div class="terminal-status">
-          <span class="state">ACCESS UNCERTAIN</span>
+      <div class="node capability" data-id="C-103">
+        <div class="label">WEB / UI SYSTEMS</div>
+        <div class="latent">
+          <div class="line">Interfaces obey operational logic.</div>
         </div>
-
-        <div class="terminal-input locked">
-          <span class="caret">▍</span>
-          <input type="text" autocomplete="off" tabindex="-1">
+        <div class="micro">
+          <span class="coord">X:24 Y:55</span>
+          <span class="build">v1.23</span>
         </div>
+      </div>
 
-        <div class="terminal-output"></div>
+      <div class="node capability" data-id="C-104">
+        <div class="label">SYSTEMS ARCHITECTURE</div>
+        <div class="latent">
+          <div class="line">Structure enforced before scale.</div>
+        </div>
+        <div class="micro">
+          <span class="coord">X:30 Y:60</span>
+          <span class="build">v1.23</span>
+        </div>
+      </div>
 
+      <!-- Additional capabilities -->
+      <div class="node capability" data-id="C-105">
+        <div class="label">AI WORKFLOWS</div>
+        <div class="latent">
+          <div class="line">Inference chains active.</div>
+        </div>
+        <div class="micro">
+          <span class="coord">X:36 Y:45</span>
+          <span class="build">v1.23</span>
+        </div>
+      </div>
+
+      <div class="node capability" data-id="C-106">
+        <div class="label">STREAMING / OVERLAY</div>
+        <div class="latent">
+          <div class="line">Live environments controlled.</div>
+        </div>
+        <div class="micro">
+          <span class="coord">X:42 Y:53</span>
+          <span class="build">v1.23</span>
+        </div>
+      </div>
+
+      <div class="node capability" data-id="C-107">
+        <div class="label">GAME DEVELOPMENT</div>
+        <div class="latent">
+          <div class="line">Simulation as literacy tool.</div>
+        </div>
+        <div class="micro">
+          <span class="coord">X:48 Y:47</span>
+          <span class="build">v1.23</span>
+        </div>
+      </div>
+
+      <div class="node capability" data-id="C-108">
+        <div class="label">CLIENT EXPERIENCE</div>
+        <div class="latent">
+          <div class="line">Process over presentation.</div>
+        </div>
+        <div class="micro">
+          <span class="coord">X:54 Y:41</span>
+          <span class="build">v1.23</span>
+        </div>
+      </div>
+
+      <div class="node capability" data-id="C-109">
+        <div class="label">PLATFORMS</div>
+        <div class="latent">
+          <div class="line">Environments, not pages.</div>
+        </div>
+        <div class="micro">
+          <span class="coord">X:60 Y:59</span>
+          <span class="build">v1.23</span>
+        </div>
+      </div>
+
+      <div class="node capability" data-id="C-110">
+        <div class="label">DOCUMENTATION</div>
+        <div class="latent">
+          <div class="line">Operational clarity encoded.</div>
+        </div>
+        <div class="micro">
+          <span class="coord">X:66 Y:36</span>
+          <span class="build">v1.23</span>
+        </div>
+      </div>
+
+      <div class="node capability" data-id="C-111">
+        <div class="label">ASSET DELIVERY</div>
+        <div class="latent">
+          <div class="line">Systems conclude cleanly.</div>
+        </div>
+        <div class="micro">
+          <span class="coord">X:72 Y:44</span>
+          <span class="build">v1.23</span>
+        </div>
+      </div>
+
+      <div class="node capability" data-id="C-112">
+        <div class="label">IDEAL CLIENTS</div>
+        <div class="latent">
+          <div class="line">Alignment is prerequisite.</div>
+        </div>
+        <div class="micro">
+          <span class="coord">X:78 Y:50</span>
+          <span class="build">v1.23</span>
+        </div>
       </div>
 
     </div>
 
-    <!-- IDLE INTELLIGENCE -->
-    <div id="observer">
-      <span class="blink">▍</span>
+    <!-- Terminal console -->
+    <div id="terminal">
+      <div class="terminal-status"><span class="state">ACCESS UNCERTAIN</span></div>
+      <div class="terminal-input locked">
+        <span class="caret">▍</span>
+        <input type="text" autocomplete="off" tabindex="-1">
+      </div>
+      <div class="terminal-output"></div>
     </div>
+
+    <!-- Observer intelligence -->
+    <div id="observer"><span class="blink">▍</span></div>
 
   </div>
+
+</div>
 
 </body>
 </html>
