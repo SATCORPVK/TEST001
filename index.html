@@ -1,1021 +1,387 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATCORP | Systems Design Intelligence</title>
-    <meta name="description" content="SATCORP designs sophisticated systems architectures for premium digital experiences. We engineer solutions, not just graphics.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --dark-bg: #0a0a0a;
-            --dark-card-bg: #111111;
-            --dark-text: #e0e0e0;
-            --dark-accent: #0af8ff;
-            --dark-accent-dim: #0af8ff22;
-            --light-bg: #f0f0f0;
-            --light-card-bg: #ffffff;
-            --light-text: #222222;
-            --light-accent: #0066ff;
-            --light-accent-dim: #0066ff22;
-            --transition-speed: 0.4s;
-            --border-radius: 6px;
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --spacing-xl: 8rem;
-        }
-
-        [data-theme="dark"] {
-            --bg-primary: var(--dark-bg);
-            --bg-secondary: var(--dark-card-bg);
-            --text-primary: var(--dark-text);
-            --accent-primary: var(--dark-accent);
-            --accent-dim: var(--dark-accent-dim);
-        }
-
-        [data-theme="light"] {
-            --bg-primary: var(--light-bg);
-            --bg-secondary: var(--light-card-bg);
-            --text-primary: var(--light-text);
-            --accent-primary: var(--light-accent);
-            --accent-dim: var(--light-accent-dim);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color var(--transition-speed);
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-sm);
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: var(--spacing-sm);
-            z-index: 1000;
-            background-color: transparent;
-            transition: background-color var(--transition-speed);
-            backdrop-filter: blur(5px);
-        }
-
-        header.scrolled {
-            background-color: var(--bg-secondary);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--accent-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo span {
-            margin-right: var(--spacing-xs);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: var(--spacing-md);
-        }
-
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: color var(--transition-speed);
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-primary);
-            transition: width var(--transition-speed);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            cursor: pointer;
-            font-size: 1.2rem;
-            margin-left: var(--spacing-md);
-            transition: color var(--transition-speed);
-        }
-
-        .theme-toggle:hover {
-            color: var(--accent-primary);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        #hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            z-index: 2;
-            max-width: 800px;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: var(--spacing-sm);
-            line-height: 1.2;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: var(--spacing-md);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .hero-cta {
-            display: inline-block;
-            background-color: var(--accent-primary);
-            color: var(--dark-bg);
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .hero-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(10, 248, 255, 0.3);
-        }
-
-        /* Skill Deck Section */
-        #skill-deck {
-            padding: var(--spacing-xl) 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-            color: var(--text-primary);
-            opacity: 0.8;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: var(--spacing-md);
-        }
-
-        .skill-card {
-            background-color: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-md);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(30px);
-            border: 1px solid var(--accent-dim);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(10, 248, 255, 0.1);
-        }
-
-        .skill-icon {
-            font-size: 2rem;
-            margin-bottom: var(--spacing-sm);
-            color: var(--accent-primary);
-        }
-
-        .skill-title {
-            font-size: 1.3rem;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .skill-description {
-            margin-bottom: var(--spacing-sm);
-            opacity: 0.9;
-        }
-
-        .skill-tools {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: var(--spacing-sm);
-        }
-
-        .tool-tag {
-            background-color: var(--accent-dim);
-            color: var(--accent-primary);
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: var(--spacing-xs);
-            margin-bottom: var(--spacing-xs);
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: var(--bg-secondary);
-            max-width: 800px;
-            width: 90%;
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius);
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: var(--spacing-sm);
-            right: var(--spacing-sm);
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color var(--transition-speed);
-        }
-
-        .modal-close:hover {
-            color: var(--accent-primary);
-        }
-
-        .modal-title {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .modal-body {
-            line-height: 1.7;
-        }
-
-        /* Particles Background */
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        /* Cursor Effect */
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: var(--accent-primary);
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s;
-        }
-
-        .cursor-follower {
-            position: fixed;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid var(--accent-primary);
-            pointer-events: none;
-            z-index: 9998;
-            mix-blend-mode: difference;
-            transform: translate(-50%, -50%);
-            transition: transform 0.3s;
-        }
-
-        /* Footer */
-        footer {
-            padding: var(--spacing-lg) 0;
-            text-align: center;
-            border-top: 1px solid var(--accent-dim);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .footer-links a {
-            color: var(--text-primary);
-            margin: 0 var(--spacing-sm);
-            text-decoration: none;
-            transition: color var(--transition-speed);
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-primary);
-        }
-
-        .copyright {
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--bg-secondary);
-                flex-direction: column;
-                padding: var(--spacing-md);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                margin: var(--spacing-sm) 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .theme-toggle {
-                margin-left: var(--spacing-sm);
-            }
-        }
-
-        /* Loading Animation */
-        #loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--dark-bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s;
-        }
-
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(10, 248, 255, 0.3);
-            border-top: 5px solid var(--dark-accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Skill Description Styles */
-        .skill-details {
-            margin-top: var(--spacing-md);
-        }
-
-        .skill-detail-item {
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-    </style>
+<meta charset="utf-8">
+<title>SATCORP – System Architects</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description"
+      content="SATCORP designs systems, not graphics.">
+<meta property="og:type" content="website">
+<meta property="og:title"
+      content="SATCORP – System Architects">
+<meta property="og:description"
+      content="SATCORP designs systems, not graphics.">
+<meta property="og:image"
+      content="https://via.placeholder.com/1200x630?text=SATCORP+OG+Image">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+<script defer src="script.js"></script>
 </head>
-<body data-theme="dark">
-    <!-- Loading Screen -->
-    <div id="loading">
-        <div class="loader"></div>
-    </div>
+<body>
+<!-- Custom cursor -->
+<div id="cursor"></div>
+<!-- Scroll progress indicator -->
+<div id="scroll-indicator"><div id="scroll-indicator-inner"></div></div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+<!-- Navigation -->
+<nav id="main-nav">
+<ul>
+  <li><a href="#hero">Home</a></li>
+  <li><a href="#core-identity">Core Identity</a></li>
+  <li><a href="#brand-systems">Brand Systems</a></li>
+  <li><a href="#web-ui-systems">Web/UI Systems</a></li>
+  <li><a href="#systems-architecture">Systems Architecture</a></li>
+  <li><a href="#streaming-overlay">Streaming/Overlay</a></li>
+  <li><a href="#ai-workflows">AI Workflows</a></li>
+  <li><a href="#game-development">Game Development</a></li>
+  <li><a href="#client-experience">Client Experience</a></li>
+  <li><a href="#platforms">Platforms</a></li>
+  <li><a href="#documentation">Documentation</a></li>
+  <li><a href="#asset-delivery">Asset Delivery</a></li>
+  <li><a href="#ideal-clients">Ideal Clients</a></li>
+  <li><a href="#contact">Contact</a></li>
+</ul>
+<div id="dark-mode-toggle">🌓</div>
+</nav>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">
-                    <span>SAT</span>CORP
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#skill-deck">Capabilities</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
-        </div>
-    </header>
+<!-- Hero -->
+<section id="hero" class="hero">
+<div class="hero-content">
+<h1>SATCORP</h1>
+<p>Designing Systems, Not Graphics</p>
+<a href="#core-identity" class="btn cta">Explore SATCORP Systems</a>
+</div>
+</section>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <!-- Animated Background -->
-        <div id="particles-js"></div>
-        
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">SYSTEMS DESIGN INTELLIGENCE</h1>
-                <p class="hero-subtitle">We architect sophisticated digital ecosystems that transform how businesses operate. SATCORP delivers precision-engineered solutions, not just visual designs.</p>
-                <a href="#skill-deck" class="hero-cta">Explore Capabilities</a>
-            </div>
-        </div>
-    </section>
+<!-- Skill Deck Sections -->
+<!-- Core Identity -->
+<section id="core-identity" class="skill-section">
+<h2>Core Identity</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Identity Frameworks"
+       data-desc="An integrated brand architecture that drives consistency across all touchpoints."
+       data-img="https://via.placeholder.com/400?text=Identity+Frameworks">
+    <h3>Identity Frameworks</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Strategic Design"
+       data-desc="Vision to execution mapping for holistic brand strategy."
+       data-img="https://via.placeholder.com/400?text=Strategic+Design">
+    <h3>Strategic Design</h3>
+  </div>
+  <div class="skill-card"
+       data-title="UX Foundations"
+       data-desc="Systems‑first UX methodology for scalable digital experiences."
+       data-img="https://via.placeholder.com/400?text=UX+Foundations">
+    <h3>UX Foundations</h3>
+  </div>
+</div>
+</section>
 
-    <!-- Skill Deck Section -->
-    <section id="skill-deck">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">PRECISION ENGINEERED CAPABILITIES</h2>
-                <p class="section-subtitle">Our comprehensive skill deck emphasizes systems thinking, technical precision, and concierge-level execution across all digital channels.</p>
-            </div>
-            
-            <div class="skills-grid">
-                <!-- Skill cards will be dynamically generated -->
-            </div>
-        </div>
-    </section>
+<!-- Brand Systems -->
+<section id="brand-systems" class="skill-section">
+<h2>Brand Systems</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Style Guides"
+       data-desc="Complete visual language framework for brand consistency."
+       data-img="https://via.placeholder.com/400?text=Style+Guides">
+    <h3>Style Guides</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Iconography"
+       data-desc="Scalable icon sets and iconography standards."
+       data-img="https://via.placeholder.com/400?text=Iconography">
+    <h3>Iconography</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Motion Branding"
+       data-desc="Animated brand experiences across media."
+       data-img="https://via.placeholder.com/400?text=Motion+Branding">
+    <h3>Motion Branding</h3>
+  </div>
+</div>
+</section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-links">
-                <a href="mailto:contact@satcorp.io">Contact</a>
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-            </div>
-            <p class="copyright">© 2023 SATCORP Systems Design Intelligence. All rights reserved.</p>
-        </div>
-    </footer>
+<!-- Web/UI Systems -->
+<section id="web-ui-systems" class="skill-section">
+<h2>Web/UI Systems</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Component Libraries"
+       data-desc="Reusable UI components with design tokens."
+       data-img="https://via.placeholder.com/400?text=Component+Libraries">
+    <h3>Component Libraries</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Responsive Design"
+       data-desc="Framework‑agnostic responsive strategies."
+       data-img="https://via.placeholder.com/400?text=Responsive+Design">
+    <h3>Responsive Design</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Accessibility"
+       data-desc="Design solutions meeting WCAG 2.1 AA+."
+       data-img="https://via.placeholder.com/400?text=Accessibility">
+    <h3>Accessibility</h3>
+  </div>
+</div>
+</section>
 
-    <!-- Modal for Skill Details -->
-    <div class="modal" id="skillModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <h3 class="modal-title" id="modalTitle"></h3>
-            <div class="modal-body" id="modalBody"></div>
-        </div>
-    </div>
+<!-- Systems Architecture -->
+<section id="systems-architecture" class="skill-section">
+<h2>Systems Architecture</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Microservices"
+       data-desc="Scalable backend design with containers & orchestration."
+       data-img="https://via.placeholder.com/400?text=Microservices">
+    <h3>Microservices</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Architectural Patterns"
+       data-desc="Design patterns for resilience and scaling."
+       data-img="https://via.placeholder.com/400?text=Architectural+Patterns">
+    <h3>Architectural Patterns</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Infrastructure as Code"
+       data-desc="Automated IaC using Terraform & CloudFormation."
+       data-img="https://via.placeholder.com/400?text=Infrastructure+as+Code">
+    <h3>Infrastructure as Code</h3>
+  </div>
+</div>
+</section>
 
-    <!-- Font Awesome for Icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <script>
-        // Skill deck data
-        const skillDeck = [
-            {
-                id: 1,
-                title: "Core Identity & Operator Value",
-                description: "Strategic thinking and system-level problem solving that prioritizes elegant, scalable solutions.",
-                icon: "fas fa-brain",
-                tools: ["Systems Thinking", "Strategic Planning", "Process Optimization"],
-                details: {
-                    capabilities: ["Architectural oversight", "Cross-functional integration", "Performance optimization"],
-                    deliverables: ["System blueprints", "Workflow diagrams", "Strategic roadmaps"],
-                    focus: "Creating cohesive systems that function at peak efficiency"
-                }
-            },
-            {
-                id: 2,
-                title: "Brand & Visual Systems",
-                description: "Comprehensive brand architectures that establish clear visual hierarchies and design languages.",
-                icon: "fas fa-palette",
-                tools: ["Figma", "Adobe Creative Suite", "Design Systems"],
-                details: {
-                    capabilities: ["Brand strategy", "Visual identity systems", "Design language development"],
-                    deliverables: ["Brand guidelines", "Component libraries", "Visual assets"],
-                    focus: "Creating visual consistency across all touchpoints"
-                }
-            },
-            {
-                id: 3,
-                title: "Web/UI Systems",
-                description: "Engineered interfaces optimized for performance, accessibility, and seamless user experiences.",
-                icon: "fas fa-code",
-                tools: ["HTML5/CSS3", "JavaScript", "React", "Vue.js"],
-                details: {
-                    capabilities: ["Responsive design", "Cross-browser compatibility", "Performance optimization"],
-                    deliverables: ["Web applications", "UI components", "Interactive prototypes"],
-                    focus: "Building interfaces that function flawlessly across all devices"
-                }
-            },
-            {
-                id: 4,
-                title: "Systems Architecture",
-                description: "Scalable backend infrastructures and API designs that power complex digital ecosystems.",
-                icon: "fas fa-server",
-                tools: ["Node.js", "Python", "AWS", "Docker"],
-                details: {
-                    capabilities: ["Microservices architecture", "Database design", "API development"],
-                    deliverables: ["System documentation", "Architecture diagrams", "Technical specifications"],
-                    focus: "Creating robust backend systems that scale with business needs"
-                }
-            },
-            {
-                id: 5,
-                title: "Streaming/Broadcast Overlays",
-                description: "Dynamic broadcast graphics and interactive overlays for live streaming and productions.",
-                icon: "fas fa-broadcast-tower",
-                tools: ["OBS Studio", "StreamElements", "Adobe After Effects"],
-                details: {
-                    capabilities: ["Real-time graphics", "Interactive elements", "Brand integration"],
-                    deliverables: ["Overlay packages", "Scene transitions", "Custom widgets"],
-                    focus: "Enhancing live broadcasts with professional, branded graphics"
-                }
-            },
-            {
-                id: 6,
-                title: "AI-Enhanced Workflows",
-                description: "Integrating artificial intelligence to automate processes and enhance creative capabilities.",
-                icon: "fas fa-robot",
-                tools: ["TensorFlow", "OpenAI API", "Custom ML Models"],
-                details: {
-                    capabilities: ["Process automation", "Predictive analytics", "Content generation"],
-                    deliverables: ["AI workflow diagrams", "Custom integrations", "Automated systems"],
-                    focus: "Leveraging AI to enhance efficiency and creative output"
-                }
-            },
-            {
-                id: 7,
-                title: "Game-Dev/World-Building Design",
-                description: "Immersive environments and interactive experiences with meticulous attention to detail.",
-                icon: "fas fa-gamepad",
-                tools: ["Unity", "Unreal Engine", "Blender"],
-                details: {
-                    capabilities: ["3D modeling", "Environment design", "Interactive storytelling"],
-                    deliverables: ["Game assets", "Environmental designs", "Interactive experiences"],
-                    focus: "Creating cohesive, immersive digital worlds"
-                }
-            },
-            {
-                id: 8,
-                title: "Client Experience & Concierge Skills",
-                description: "Personalized service approach that anticipates needs and delivers exceptional value.",
-                icon: "fas fa-concierge-bell",
-                tools: ["CRM Systems", "Project Management", "Client Communication"],
-                details: {
-                    capabilities: ["Needs assessment", "Project scoping", "Ongoing support"],
-                    deliverables: ["Client onboarding materials", "Project documentation", "Support systems"],
-                    focus: "Providing white-glove service that exceeds expectations"
-                }
-            },
-            {
-                id: 9,
-                title: "Platforms/Marketplaces",
-                description: "Developing sophisticated platforms that connect users and facilitate transactions.",
-                icon: "fas fa-shopping-cart",
-                tools: ["E-commerce Platforms", "Payment Gateways", "User Management"],
-                details: {
-                    capabilities: ["Platform architecture", "User experience design", "Payment integration"],
-                    deliverables: ["Marketplace platforms", "Seller dashboards", "Transaction systems"],
-                    focus: "Creating seamless platforms that facilitate commerce and connection"
-                }
-            },
-            {
-                id: 10,
-                title: "Documentation/Knowledge Systems",
-                description: "Structured information architectures that make complex systems understandable.",
-                icon: "fas fa-book",
-                tools: ["Technical Writing", "Information Architecture", "CMS Platforms"],
-                details: {
-                    capabilities: ["Documentation strategy", "Knowledge management", "Technical writing"],
-                    deliverables: ["User manuals", "API documentation", "Training materials"],
-                    focus: "Making complex systems accessible through clear documentation"
-                }
-            },
-            {
-                id: 11,
-                title: "Asset Packaging & Delivery",
-                description: "Systematic approach to organizing, versioning, and delivering digital assets.",
-                icon: "fas fa-box-open",
-                tools: ["Version Control", "Asset Management", "Delivery Systems"],
-                details: {
-                    capabilities: ["Asset organization", "Version control", "Delivery optimization"],
-                    deliverables: ["Asset packages", "Versioned releases", "Delivery systems"],
-                    focus: "Ensuring efficient and organized asset delivery"
-                }
-            },
-            {
-                id: 12,
-                title: "Ideal Clients",
-                description: "Businesses seeking transformative digital solutions with precision execution.",
-                icon: "fas fa-handshake",
-                tools: ["Strategic Partnerships", "Business Analysis", "Solution Design"],
-                details: {
-                    capabilities: ["Client assessment", "Solution scoping", "Partnership development"],
-                    deliverables: ["Partnership proposals", "Solution designs", "Strategic plans"],
-                    focus: "Building lasting partnerships with forward-thinking organizations"
-                }
-            }
-        ];
+<!-- Streaming / Overlay -->
+<section id="streaming-overlay" class="skill-section">
+<h2>Streaming / Overlay</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Live Streaming Architecture"
+       data-desc="Robust, low‑latency streaming solutions."
+       data-img="https://via.placeholder.com/400?text=Live+Streaming+Architecture">
+    <h3>Live Streaming Architecture</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Overlay Systems"
+       data-desc="Real‑time data overlays for broadcasts."
+       data-img="https://via.placeholder.com/400?text=Overlay+Systems">
+    <h3>Overlay Systems</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Interactive Tools"
+       data-desc="Audience engagement tools and APIs."
+       data-img="https://via.placeholder.com/400?text=Interactive+Tools">
+    <h3>Interactive Tools</h3>
+  </div>
+</div>
+</section>
 
-        // DOM Elements
-        const loadingScreen = document.getElementById('loading');
-        const themeToggle = document.getElementById('themeToggle');
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.querySelector('.nav-links');
-        const skillsGrid = document.querySelector('.skills-grid');
-        const skillModal = document.getElementById('skillModal');
-        const modalClose = document.getElementById('modalClose');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalBody = document.getElementById('modalBody');
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
+<!-- AI Workflows -->
+<section id="ai-workflows" class="skill-section">
+<h2>AI Workflows</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Data Pipelines"
+       data-desc="End‑to‑end data flow for AI models."
+       data-img="https://via.placeholder.com/400?text=Data+Pipelines">
+    <h3>Data Pipelines</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Model Deployment"
+       data-desc="MLOps pipelines to production."
+       data-img="https://via.placeholder.com/400?text=Model+Deployment">
+    <h3>Model Deployment</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Inference Optimization"
+       data-desc="Performance tuning for inference workloads."
+       data-img="https://via.placeholder.com/400?text=Inference+Optimization">
+    <h3>Inference Optimization</h3>
+  </div>
+</div>
+</section>
 
-        // Initialize the website
-        document.addEventListener('DOMContentLoaded', function() {
-            // Hide loading screen after 1.5 seconds
-            setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }, 1500);
+<!-- Game Development -->
+<section id="game-development" class="skill-section">
+<h2>Game Development</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Engine Architecture"
+       data-desc="Optimized engine design for cross‑platform."
+       data-img="https://via.placeholder.com/400?text=Game+Engine+Architecture">
+    <h3>Game Engine Architecture</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Gameplay Systems"
+       data-desc="Modular systems for core gameplay loops."
+       data-img="https://via.placeholder.com/400?text=Gameplay+Systems">
+    <h3>Gameplay Systems</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Pipeline Automation"
+       data-desc="Automated build and testing pipelines."
+       data-img="https://via.placeholder.com/400?text=Pipeline+Automation">
+    <h3>Pipeline Automation</h3>
+  </div>
+</div>
+</section>
 
-            // Initialize particles
-            initParticles();
-            
-            // Initialize skill deck
-            initSkillDeck();
-            
-            // Initialize animations
-            initAnimations();
-            
-            // Initialize custom cursor
-            initCustomCursor();
+<!-- Client Experience -->
+<section id="client-experience" class="skill-section">
+<h2>Client Experience</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Consultation Frameworks"
+       data-desc="Structured client intake and design sprints."
+       data-img="https://via.placeholder.com/400?text=Consultation+Frameworks">
+    <h3>Consultation Frameworks</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Project Delivery"
+       data-desc="Evolving deliverable timelines and KPI tracking."
+       data-img="https://via.placeholder.com/400?text=Project+Delivery">
+    <h3>Project Delivery</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Client Portals"
+       data-desc="Secure, real‑time project collaboration portals."
+       data-img="https://via.placeholder.com/400?text=Client+Portals">
+    <h3>Client Portals</h3>
+  </div>
+</div>
+</section>
 
-            // Theme toggle functionality
-            themeToggle.addEventListener('click', toggleTheme);
-            
-            // Mobile menu toggle
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-            
-            // Modal close functionality
-            modalClose.addEventListener('click', () => {
-                skillModal.style.display = 'none';
-            });
-            
-            // Close modal when clicking outside
-            window.addEventListener('click', (e) => {
-                if (e.target === skillModal) {
-                    skillModal.style.display = 'none';
-                }
-            });
-            
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                const header = document.querySelector('header');
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-        });
+<!-- Platforms -->
+<section id="platforms" class="skill-section">
+<h2>Platforms</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Web Platforms"
+       data-desc="High‑scalable web hosting & CDN strategies."
+       data-img="https://via.placeholder.com/400?text=Web+Platforms">
+    <h3>Web Platforms</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Mobile Platforms"
+       data-desc="Cross‑platform mobile app architecture."
+       data-img="https://via.placeholder.com/400?text=Mobile+Platforms">
+    <h3>Mobile Platforms</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Cloud Strategies"
+       data-desc="Hybrid, multi‑cloud deployment models."
+       data-img="https://via.placeholder.com/400?text=Cloud+Strategies">
+    <h3>Cloud Strategies</h3>
+  </div>
+</div>
+</section>
 
-        // Initialize particles.js
-        function initParticles() {
-            if (typeof particlesJS !== 'undefined') {
-                particlesJS('particles-js', {
-                    particles: {
-                        number: {
-                            value: 80,
-                            density: {
-                                enable: true,
-                                value_area: 800
-                            }
-                        },
-                        color: {
-                            value: "#0af8ff"
-                        },
-                        shape: {
-                            type: "circle",
-                            stroke: {
-                                width: 0,
-                                color: "#000000"
-                            }
-                        },
-                        opacity: {
-                            value: 0.5,
-                            random: true,
-                            anim: {
-                                enable: true,
-                                speed: 1,
-                                opacity_min: 0.1,
-                                sync: false
-                            }
-                        },
-                        size: {
-                            value: 3,
-                            random: true,
-                            anim: {
-                                enable: true,
-                                speed: 2,
-                                size_min: 0.1,
-                                sync: false
-                            }
-                        },
-                        line_linked: {
-                            enable: true,
-                            distance: 150,
-                            color: "#0af8ff",
-                            opacity: 0.4,
-                            width: 1
-                        },
-                        move: {
-                            enable: true,
-                            speed: 2,
-                            direction: "none",
-                            random: true,
-                            straight: false,
-                            out_mode: "out",
-                            bounce: false,
-                            attract: {
-                                enable: false,
-                                rotateX: 600,
-                                rotateY: 1200
-                            }
-                        }
-                    },
-                    interactivity: {
-                        detect_on: "canvas",
-                        events: {
-                            onhover: {
-                                enable: true,
-                                mode: "grab"
-                            },
-                            onclick: {
-                                enable: true,
-                                mode: "push"
-                            },
-                            resize: true
-                        },
-                        modes: {
-                            grab: {
-                                distance: 140,
-                                line_linked: {
-                                    opacity: 1
-                                }
-                            },
-                            push: {
-                                particles_nb: 4
-                            }
-                        }
-                    },
-                    retina_detect: true
-                });
-            }
-        }
+<!-- Documentation -->
+<section id="documentation" class="skill-section">
+<h2>Documentation</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Living Docs"
+       data-desc="Live, versioned documentation portals."
+       data-img="https://via.placeholder.com/400?text=Living+Docs">
+    <h3>Living Docs</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Design Systems Docs"
+       data-desc="Full documentation of design tokens and components."
+       data-img="https://via.placeholder.com/400?text=Design+Systems+Docs">
+    <h3>Design Systems Docs</h3>
+  </div>
+  <div class="skill-card"
+       data-title="API Documentation"
+       data-desc="Self‑documenting APIs with sandbox environments."
+       data-img="https://via.placeholder.com/400?text=API+Documentation">
+    <h3>API Documentation</h3>
+  </div>
+</div>
+</section>
 
-        // Initialize skill deck
-        function initSkillDeck() {
-            skillDeck.forEach(skill => {
-                const skillCard = document.createElement('div');
-                skillCard.className = 'skill-card';
-                skillCard.innerHTML = `
-                    <div class="skill-icon"><i class="${skill.icon}"></i></div>
-                    <h3 class="skill-title">${skill.title}</h3>
-                    <p class="skill-description">${skill.description}</p>
-                    <div class="skill-tools">
-                        ${skill.tools.map(tool => `<span class="tool-tag">${tool}</span>`).join('')}
-                    </div>
-                `;
-                
-                skillCard.addEventListener('click', () => openSkillModal(skill));
-                skillsGrid.appendChild(skillCard);
-            });
-        }
+<!-- Asset Delivery -->
+<section id="asset-delivery" class="skill-section">
+<h2>Asset Delivery</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Asset Management"
+       data-desc="Versioned, role‑based asset repositories."
+       data-img="https://via.placeholder.com/400?text=Asset+Management">
+    <h3>Asset Management</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Delivery Pipelines"
+       data-desc="Automated handover tools for assets & code."
+       data-img="https://via.placeholder.com/400?text=Delivery+Pipelines">
+    <h3>Delivery Pipelines</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Digital Asset Standards"
+       data-desc="Standardized workflows for all media types."
+       data-img="https://via.placeholder.com/400?text=Digital+Asset+Standards">
+    <h3>Digital Asset Standards</h3>
+  </div>
+</div>
+</section>
 
-        // Open skill modal
-        function openSkillModal(skill) {
-            modalTitle.textContent = skill.title;
-            modalBody.innerHTML = `
-                <p>${skill.description}</p>
-                <div class="skill-details">
-                    <div class="skill-detail-item">
-                        <div class="detail-title">Capabilities:</div>
-                        <div>${skill.details.capabilities.join(', ')}</div>
-                    </div>
-                    <div class="skill-detail-item">
-                        <div class="detail-title">Deliverables:</div>
-                        <div>${skill.details.deliverables.join(', ')}</div>
-                    </div>
-                    <div class="skill-detail-item">
-                        <div class="detail-title">Focus:</div>
-                        <div>${skill.details.focus}</div>
-                    </div>
-                </div>
-                <div class="skill-tools" style="margin-top: 20px;">
-                    ${skill.tools.map(tool => `<span class="tool-tag">${tool}</span>`).join('')}
-                </div>
-            `;
-            skillModal.style.display = 'flex';
-        }
+<!-- Ideal Clients -->
+<section id="ideal-clients" class="skill-section">
+<h2>Ideal Clients</h2>
+<div class="cards">
+  <div class="skill-card"
+       data-title="Enterprise Systems"
+       data-desc="Large‑scale, mission critical infrastructure."
+       data-img="https://via.placeholder.com/400?text=Enterprise+Systems">
+    <h3>Enterprise Systems</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Cross‑Industry Platforms"
+       data-desc="Platform solutions spanning multiple verticals."
+       data-img="https://via.placeholder.com/400?text=Cross+Industry+Platforms">
+    <h3>Cross‑Industry Platforms</h3>
+  </div>
+  <div class="skill-card"
+       data-title="Future‑Proof Tech"
+       data-desc="Advice on emerging tech for long‑term advantage."
+       data-img="https://via.placeholder.com/400?text=Future+Proof+Tech">
+    <h3>Future‑Proof Tech</h3>
+  </div>
+</div>
+</section>
 
-        // Initialize animations
-        function initAnimations() {
-            // Animate hero elements on load
-            const heroTitle = document.querySelector('.hero-title');
-            const heroSubtitle = document.querySelector('.hero-subtitle');
-            const heroCta = document.querySelector('.hero-cta');
-            
-            setTimeout(() => {
-                heroTitle.style.opacity = '1';
-                heroTitle.style.transform = 'translateY(0)';
-                
-                setTimeout(() => {
-                    heroSubtitle.style.opacity = '1';
-                    heroSubtitle.style.transform = 'translateY(0)';
-                    
-                    setTimeout(() => {
-                        heroCta.style.opacity = '1';
-                        heroCta.style.transform = 'translateY(0)';
-                    }, 300);
-                }, 300);
-            }, 500);
-            
-            // Animate skill cards on scroll
-            const skillCards = document.querySelectorAll('.skill-card');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            skillCards.forEach((card, index) => {
-                card.style.transitionDelay = `${index * 0.1}s`;
-                observer.observe(card);
-            });
-        }
+<!-- Modal – shared for all skill cards -->
+<div id="modal" class="modal" aria-hidden="true">
+<div class="modal-content">
+<button class="close-btn" aria-label="Close">&times;</button>
+<h3 id="modal-title"></h3>
+<p id="modal-desc"></p>
+<img id="modal-img" src="" alt="">
+</div>
+</div>
 
-        // Initialize custom cursor
-        function initCustomCursor() {
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-                
-                setTimeout(() => {
-                    cursorFollower.style.left = e.clientX + 'px';
-                    cursorFollower.style.top = e.clientY + 'px';
-                }, 100);
-            });
-            
-            // Change cursor on hover interactive elements
-            const interactiveElements = document.querySelectorAll('a, button, .skill-card');
-            interactiveElements.forEach(element => {
-                element.addEventListener('mouseenter', () => {
-                    cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.2)';
-                });
-                
-                element.addEventListener('mouseleave', () => {
-                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                    cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-                });
-            });
-        }
-
-        // Toggle theme
-        function toggleTheme() {
-            const currentTheme = document.body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.body.setAttribute('data-theme', newTheme);
-            
-            // Update theme toggle icon
-            const icon = themeToggle.querySelector('i');
-            icon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-            
-            // Update particles color if needed
-            if (typeof particlesJS !== 'undefined') {
-                // This would require reinitializing particles with new colors
-                // For simplicity, we're not implementing this now
-            }
-        }
-    </script>
+<!-- Footer / Contact -->
+<footer id="contact">
+<h2>Get In Touch</h2>
+<form action="https://formspree.io/f/yourFormID" method="POST">
+<input type="text" name="name" placeholder="Name" required>
+<input type="email" name="email" placeholder="Email" required>
+<textarea name="message" placeholder="Message" rows="5" required></textarea>
+<button type="submit">Send</button>
+</form>
+<div class="social-links">
+<a href="https://github.com/satcorp" aria-label="GitHub">GitHub</a>
+<a href="https://twitter.com/satcorp" aria-label="Twitter">Twitter</a>
+<a href="https://instagram.com/satcorp" aria-label="Instagram">Instagram</a>
+</div>
+<p class="legal">&copy; 2026 SATCORP. All rights reserved.</p>
+</footer>
 </body>
 </html>
