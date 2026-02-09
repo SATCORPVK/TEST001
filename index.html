@@ -1,115 +1,91 @@
-<!-- /index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATCORP | Operator Interface</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SATCORP Control Interface</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
-    <!-- BOOT SEQUENCE -->
-    <section id="boot-sequence">
-        <div class="boot-text">
-            <p>Initializing SATCORP Systems...</p>
-            <p>Loading Modules: Brand | Web | Architecture | Creative Tech | Broadcast | Game Design</p>
-            <p>Establishing Operator Link...</p>
-        </div>
-    </section>
 
-    <!-- Operator Overview -->
-    <section id="operator-overview" class="panel">
-        <h1>Operator Overview</h1>
-        <div class="overview-grid">
-            <div class="overview-block">
-                <h2>Mission</h2>
-                <p>Define the objective.<br>We design the mechanism.</p>
-            </div>
-            <div class="overview-block">
-                <h2>Status</h2>
-                <p>Operational.<br>Modules synchronized.</p>
-            </div>
-            <div class="overview-block">
-                <h2>Current Scope</h2>
-                <p>Clarity → Scope → Execution → Polish</p>
-            </div>
-        </div>
-    </section>
+  <!-- BOOT SEQUENCE -->
+  <section id="boot-sequence" class="section boot-sequence">
+    <div class="boot-screen">
+      <div class="boot-text">Initializing SATCORP Systems...</div>
+    </div>
+  </section>
 
-    <!-- Capability Matrix -->
-    <section id="capability-matrix" class="panel">
-        <h1>Capability Matrix</h1>
-        <div class="matrix-grid">
-            <div class="matrix-block">Brand Systems</div>
-            <div class="matrix-block">Web Systems</div>
-            <div class="matrix-block">Architecture & Workflow</div>
-            <div class="matrix-block">Creative Technology</div>
-            <div class="matrix-block">Broadcast & Overlay</div>
-            <div class="matrix-block">Game & World Design</div>
-            <div class="matrix-block">Client Experience</div>
-        </div>
-    </section>
+  <!-- Operator Overview -->
+  <section id="operator-overview" class="section operator-overview">
+    <h1>Operator Overview</h1>
+    <p>Define the objective.<br>We monitor, configure, and execute.</p>
+    <div class="overview-panels">
+      <div class="panel">Status: <span class="status active">Active</span></div>
+      <div class="panel">Tasks: <span class="status pending">Pending</span></div>
+      <div class="panel">Systems Online: <span class="status active">7/7</span></div>
+    </div>
+  </section>
 
-    <!-- Systems Pipeline -->
-    <section id="systems-pipeline" class="panel">
-        <h1>Systems Pipeline</h1>
-        <ol class="pipeline-list">
-            <li>Analysis</li>
-            <li>Design Protocol</li>
-            <li>Automation Integration</li>
-            <li>UI Deployment</li>
-            <li>Polish & Stabilize</li>
-        </ol>
-    </section>
+  <!-- Capability Matrix -->
+  <section id="capability-matrix" class="section capability-matrix">
+    <h1>Capability Matrix</h1>
+    <div class="matrix">
+      <div class="matrix-item">Brand Systems</div>
+      <div class="matrix-item">Web Systems</div>
+      <div class="matrix-item">Architecture & Workflow</div>
+      <div class="matrix-item">Creative Technology</div>
+      <div class="matrix-item">Broadcast & Overlay</div>
+      <div class="matrix-item">Game & World Design</div>
+      <div class="matrix-item">Client Experience</div>
+    </div>
+  </section>
 
-    <!-- Selected Operations -->
-    <section id="selected-operations" class="panel">
-        <h1>Selected Operations</h1>
-        <div class="operations-grid">
-            <div class="operation-card">
-                <h2>Brand Framework</h2>
-                <p>Identity systems, scalable visual doctrine, structured implementation.</p>
-            </div>
-            <div class="operation-card">
-                <h2>Web Command Interface</h2>
-                <p>Interactive dashboards, responsive systems, cinematic UI overlays.</p>
-            </div>
-            <div class="operation-card">
-                <h2>Automation Pipelines</h2>
-                <p>Backend logic, AI workflows, operational acceleration.</p>
-            </div>
-            <div class="operation-card">
-                <h2>Broadcast Overlay</h2>
-                <p>Real-time HUDs, alert systems, streaming interface precision.</p>
-            </div>
-        </div>
-    </section>
+  <!-- Systems Pipeline -->
+  <section id="systems-pipeline" class="section systems-pipeline">
+    <h1>Systems Pipeline</h1>
+    <div class="pipeline">
+      <div class="pipeline-stage">Clarity</div>
+      <div class="pipeline-stage">Scope</div>
+      <div class="pipeline-stage">Execution</div>
+      <div class="pipeline-stage">Polish</div>
+    </div>
+  </section>
 
-    <!-- Engagement Protocol -->
-    <section id="engagement-protocol" class="panel">
-        <h1>Engagement Protocol</h1>
-        <p>Operator access only. Define scope. Confirm objectives. Initiate protocol. Maintain security integrity.</p>
-    </section>
+  <!-- Selected Operations -->
+  <section id="selected-operations" class="section selected-operations">
+    <h1>Selected Operations</h1>
+    <div class="operations-grid">
+      <div class="operation-card">Interface Overhaul</div>
+      <div class="operation-card">Automated Workflow</div>
+      <div class="operation-card">Cinematic Web Dashboards</div>
+      <div class="operation-card">Real-time HUD Deployment</div>
+    </div>
+  </section>
 
-    <!-- Contact Interface -->
-    <section id="contact-interface" class="panel">
-        <h1>Contact Interface</h1>
-        <form id="contact-form">
-            <label for="name">Operator ID</label>
-            <input type="text" id="name" required>
+  <!-- Engagement Protocol -->
+  <section id="engagement-protocol" class="section engagement-protocol">
+    <h1>Engagement Protocol</h1>
+    <p>Structured, secure, concierge-level communication and alignment.<br>Define scope, confirm objectives, execute with precision.</p>
+  </section>
 
-            <label for="email">Secure Link</label>
-            <input type="email" id="email" required>
+  <!-- Contact Interface -->
+  <section id="contact-interface" class="section contact-interface">
+    <h1>Contact Interface</h1>
+    <form id="contact-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
 
-            <label for="message">Mission Brief</label>
-            <textarea id="message" required></textarea>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
 
-            <button type="submit">Transmit</button>
-        </form>
-    </section>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required></textarea>
 
-    <script src="script.js"></script>
+      <button type="submit">Transmit</button>
+    </form>
+  </section>
+
 </body>
 </html>
