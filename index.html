@@ -1,93 +1,170 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATCORP — Systems Design</title>
-    <meta name="description" content="SATCORP designs systems, not graphics. Concierge-level service and systems architecture for the modern stack.">
-    <link rel="stylesheet" href="styles.css">
+    <title>SATCORP NODE</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Background -->
-    <div id="vanta-bg"></div>
-    
-    <!-- Custom Cursor -->
-    <div id="custom-cursor"></div>
+    <div id="bootSequence">
+        <div class="boot-log">
+            <div class="log-line">INITIALIZING SATCORP NODE</div>
+            <div class="log-line">AUTHENTICATING USER</div>
+            <div class="log-line">LOADING OPERATOR PROFILE: ANU</div>
+            <div class="log-line">MOUNTING MODULES</div>
+            <div class="log-line">SYSTEM READY</div>
+        </div>
+    </div>
 
-    <!-- Navigation -->
-    <header class="navbar">
-        <div class="wordmark">SATCORP</div>
-        <nav>
-            <a href="#systems">Systems</a>
-            <a href="#contact">Contact</a>
-            <button id="theme-toggle">☀︎</button>
-        </nav>
-    </header>
+    <main id="interface" class="hidden">
+        <header class="operator-panel">
+            <div class="identity">
+                <h1>SATCORP</h1>
+                <p class="title">Concierge / System Architect / Creative Operation</p>
+                <p class="philosophy">We do not design visuals.<br>We design functioning structures.</p>
+            </div>
+            <div class="system-status">
+                <div class="status-indicator">ONLINE</div>
+                <div class="time-display" id="timeDisplay">--:--:--</div>
+            </div>
+        </header>
 
-    <!-- Hero -->
-    <section class="hero">
-        <h1>Systems thinking, delivered with concierge-level precision.</h1>
-        <p>We design systems, not graphics. From brand systems to streaming workflows—architecture, clarity, execution, polish.</p>
-        <a href="#systems" class="cta-button">Explore SATCORP Systems</a>
-    </section>
-
-    <!-- Skill Deck (Sample - Expand to 12) -->
-    <section id="systems" class="skill-deck">
-        <div class="container">
-            <h2>SATCORP Skill Deck</h2>
-            
-            <div class="skill-grid">
-                <div class="skill-card" data-skill="core">
-                    <h3>Core Identity</h3>
-                    <p>Foundational principles, positioning, and narrative architecture.</p>
-                    <button class="view-detail">View Details</button>
-                </div>
-                
-                <div class="skill-card" data-skill="brand">
-                    <h3>Brand Systems</h3>
-                    <p>Token-driven design language, typography, and color as executable specs.</p>
-                    <button class="view-detail">View Details</button>
-                </div>
-                
-                <div class="skill-card" data-skill="web">
-                    <h3>Web/UI Systems</h3>
-                    <p>Component libraries, accessibility, performance budgets.</p>
-                    <button class="view-detail">View Details</button>
-                </div>
-                
-                <div class="skill-card" data-skill="arch">
-                    <h3>Systems Architecture</h3>
-                    <p>Clear diagrams, contract-first APIs, and operational runbooks.</p>
-                    <button class="view-detail">View Details</button>
+        <section class="dashboard">
+            <div class="panel capability-matrix">
+                <h2>CAPABILITY MATRIX</h2>
+                <div class="modules">
+                    <div class="module" data-module="strategy">
+                        <div class="module-header">
+                            <span>Strategy Architecture</span>
+                            <div class="expand-indicator">+</div>
+                        </div>
+                        <div class="module-content">
+                            Operational frameworks and systemic planning for complex creative ecosystems.
+                        </div>
+                    </div>
+                    <div class="module" data-module="identity">
+                        <div class="module-header">
+                            <span>Identity Systems</span>
+                            <div class="expand-indicator">+</div>
+                        </div>
+                        <div class="module-content">
+                            Cohesive brand architecture and narrative infrastructure development.
+                        </div>
+                    </div>
+                    <div class="module" data-module="experience">
+                        <div class="module-header">
+                            <span>Experience Engineering</span>
+                            <div class="expand-indicator">+</div>
+                        </div>
+                        <div class="module-content">
+                            Interactive environment design and user journey optimization.
+                        </div>
+                    </div>
+                    <div class="module" data-module="interface">
+                        <div class="module-header">
+                            <span>Interface Design</span>
+                            <div class="expand-indicator">+</div>
+                        </div>
+                        <div class="module-content">
+                            Control system interfaces and operational dashboards.
+                        </div>
+                    </div>
+                    <div class="module" data-module="automation">
+                        <div class="module-header">
+                            <span>Automation Logic</span>
+                            <div class="expand-indicator">+</div>
+                        </div>
+                        <div class="module-content">
+                            Process automation and intelligent system workflows.
+                        </div>
+                    </div>
+                    <div class="module" data-module="creative">
+                        <div class="module-header">
+                            <span>Creative Direction</span>
+                            <div class="expand-indicator">+</div>
+                        </div>
+                        <div class="module-content">
+                            Vision articulation and creative system governance.
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Contact -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact</h2>
-            <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="message" placeholder="Inquiry" required></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </div>
-    </section>
+            <div class="panel operations-network">
+                <h2>OPERATIONS NETWORK</h2>
+                <div class="network-map">
+                    <div class="node" data-node="anu">
+                        <span>ANU·Ki-Ra Studios</span>
+                        <div class="node-info">Creative Research & Experimental Production</div>
+                    </div>
+                    <div class="node" data-node="kyrax">
+                        <span>KYRAX</span>
+                        <div class="node-info">Technical Infrastructure & System Architecture</div>
+                    </div>
+                    <div class="node" data-node="pulse">
+                        <span>PULSΞ</span>
+                        <div class="node-info">Interactive Experience & Interface Systems</div>
+                    </div>
+                    <div class="node" data-node="scopu">
+                        <span>SCOPU</span>
+                        <div class="node-info">Strategic Operations & Project Management</div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>© 2024 SATCORP. All rights reserved.</p>
-        </div>
-    </footer>
+            <div class="panel methodology">
+                <h2>METHODOLOGY SEQUENCE</h2>
+                <div class="timeline">
+                    <div class="step" data-step="observe">
+                        <div class="step-marker">01</div>
+                        <span>Observe</span>
+                        <div class="step-detail">Comprehensive environmental scanning and pattern recognition</div>
+                    </div>
+                    <div class="step" data-step="decode">
+                        <div class="step-marker">02</div>
+                        <span>Decode</span>
+                        <div class="step-detail">System analysis and operational requirement mapping</div>
+                    </div>
+                    <div class="step" data-step="architect">
+                        <div class="step-marker">03</div>
+                        <span>Architect</span>
+                        <div class="step-detail">Structural framework design and system blueprinting</div>
+                    </div>
+                    <div class="step" data-step="construct">
+                        <div class="step-marker">04</div>
+                        <span>Construct</span>
+                        <div class="step-detail">Precision implementation and system integration</div>
+                    </div>
+                    <div class="step" data-step="deploy">
+                        <div class="step-marker">05</div>
+                        <span>Deploy</span>
+                        <div class="step-detail">Operational activation and performance calibration</div>
+                    </div>
+                    <div class="step" data-step="evolve">
+                        <div class="step-marker">06</div>
+                        <span>Evolve</span>
+                        <div class="step-detail">Continuous optimization and adaptive refinement</div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+            <div class="panel contact-protocol">
+                <h2>CONTACT PROTOCOL</h2>
+                <div class="console">
+                    <div class="console-output" id="consoleOutput">
+                        > SYSTEM READY FOR TRANSMISSION
+                    </div>
+                    <div class="console-input">
+                        <span>></span>
+                        <input type="text" id="messageInput" placeholder="TYPE MESSAGE..." autocomplete="off">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
