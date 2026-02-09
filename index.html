@@ -1,183 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATCORP NODE</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SATCORP NODE</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div id="cognitive-interface">
-        <!-- Boot Sequence -->
-        <div id="initiation-sequence">
-            <div id="system-awakening">
-                <div class="awakening-line">SYSTEM AWAKENING</div>
-                <div class="awakening-line">SATCORP NODE PRIME</div>
-                <div class="awakening-line">PREPARING ENCOUNTER</div>
-            </div>
-        </div>
+<div id="boot">
+  <pre id="boot-log"></pre>
+</div>
 
-        <!-- Main Interface -->
-        <div id="operational-field" class="hidden">
-            <!-- Status Cortex -->
-            <div class="cortex-bar">
-                <div class="cortex-element">
-                    <span class="cognitive-indicator"></span>
-                    <span class="cortex-label">SYSTEM ACTIVE</span>
-                </div>
-                <div class="cortex-element" id="temporal-marker">
-                    <span class="cortex-data">--:--:--</span>
-                </div>
-                <div class="cortex-element">
-                    <span class="cortex-label">ENTROPY LEVEL:</span>
-                    <span class="cortex-data" id="entropy-value">0.023</span>
-                </div>
-            </div>
+<div id="system" class="hidden">
+  <header class="top-bar">
+    <div class="brand">SATCORP</div>
+    <div class="status">NODE ONLINE</div>
+  </header>
 
-            <!-- Core Identity - Centered for maximum impact -->
-            <section class="identity-core">
-                <div class="title-field">
-                    <h1 class="system-identity">SATCORP</h1>
-                    <div class="identity-annotation">CONCIERGE / SYSTEM ARCHITECT / CREATIVE OPERATION</div>
-                </div>
-                <div class="principle-statement">
-                    <div class="principle-line">WE DESIGN FUNCTIONING STRUCTURES</div>
-                    <div class="principle-line">NOT VISUAL DECORATION</div>
-                </div>
-            </section>
+  <main class="grid">
+    <section class="panel operator">
+      <h1>OPERATOR PANEL</h1>
+      <div class="identity">
+        <strong>SATCORP</strong>
+        <span>Concierge / System Architect / Creative Operation</span>
+      </div>
+      <p class="philosophy">
+        We do not design visuals.<br />
+        We design functioning structures.
+      </p>
+    </section>
 
-            <!-- Capability Matrix - Appears on proximity -->
-            <section class="matrix-field hidden" id="capability-field">
-                <div class="field-header">
-                    <span class="field-id">CAPABILITY MATRIX</span>
-                    <span class="field-status">ACTIVE</span>
-                </div>
-                <div class="matrix-grid">
-                    <div class="cognitive-module" data-module="strategy">
-                        <div class="module-core">
-                            <span class="module-signal"></span>
-                            <span class="module-title">STRATEGY ARCHITECTURE</span>
-                        </div>
-                        <div class="module-expansion">
-                            STRUCTURAL PLANNING OF OPERATIONAL SYSTEMS
-                        </div>
-                    </div>
-                    <div class="cognitive-module" data-module="identity">
-                        <div class="module-core">
-                            <span class="module-signal"></span>
-                            <span class="module-title">IDENTITY SYSTEMS</span>
-                        </div>
-                        <div class="module-expansion">
-                            COHESIVE ARCHITECTURES ACROSS OPERATIONAL LAYERS
-                        </div>
-                    </div>
-                    <div class="cognitive-module" data-module="experience">
-                        <div class="module-core">
-                            <span class="module-signal"></span>
-                            <span class="module-title">EXPERIENCE ENGINEERING</span>
-                        </div>
-                        <div class="module-expansion">
-                            CONSTRUCTION OF INTERACTIVE ENVIRONMENTS
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <section class="panel capabilities">
+      <h1>CAPABILITY MATRIX</h1>
+      <ul>
+        <li data-expand="strategy">Strategy Architecture</li>
+        <li data-expand="identity">Identity Systems</li>
+        <li data-expand="experience">Experience Engineering</li>
+        <li data-expand="interface">Interface Design</li>
+        <li data-expand="automation">Automation Logic</li>
+        <li data-expand="creative">Creative Direction</li>
+      </ul>
+      <div class="detail" id="cap-detail"></div>
+    </section>
 
-            <!-- Network Manifest - Appears after matrix -->
-            <section class="network-field hidden" id="network-field">
-                <div class="field-header">
-                    <span class="field-id">OPERATIONS NETWORK</span>
-                    <span class="field-status">SYNCHRONIZED</span>
-                </div>
-                <div class="network-manifest">
-                    <div class="network-entity" data-entity="anu">
-                        <span class="entity-id">ANU·Ki-Ra Studios</span>
-                        <span class="entity-function">CREATIVE RESEARCH</span>
-                    </div>
-                    <div class="network-entity" data-entity="kyrax">
-                        <span class="entity-id">KYRAX</span>
-                        <span class="entity-function">TECHNICAL INFRASTRUCTURE</span>
-                    </div>
-                    <div class="network-entity" data-entity="pulse">
-                        <span class="entity-id">PULSΞ</span>
-                        <span class="entity-function">RHYTHMIC IMPLEMENTATION</span>
-                    </div>
-                    <div class="network-entity" data-entity="scopu">
-                        <span class="entity-id">SCOPU</span>
-                        <span class="entity-function">STRATEGIC OBSERVATION</span>
-                    </div>
-                </div>
-            </section>
+    <section class="panel network">
+      <h1>OPERATIONS NETWORK</h1>
+      <div class="nodes">
+        <div data-node="ANU·Ki-Ra Studios">ANU·Ki-Ra</div>
+        <div data-node="KYRAX">KYRAX</div>
+        <div data-node="PULSΞ">PULSΞ</div>
+        <div data-node="SCOPU">SCOPU</div>
+      </div>
+      <div class="detail" id="net-detail"></div>
+    </section>
 
-            <!-- Methodology Sequence - Appears on demand -->
-            <section class="sequence-field hidden" id="sequence-field">
-                <div class="field-header">
-                    <span class="field-id">METHODOLOGY SEQUENCE</span>
-                    <span class="field-status">READY</span>
-                </div>
-                <div class="sequence-flow">
-                    <div class="flow-step" data-step="observe">OBSERVE</div>
-                    <div class="flow-step" data-step="decode">DECODE</div>
-                    <div class="flow-step" data-step="architect">ARCHITECT</div>
-                    <div class="flow-step" data-step="construct">CONSTRUCT</div>
-                    <div class="flow-step" data-step="deploy">DEPLOY</div>
-                    <div class="flow-step" data-step="evolve">EVOLVE</div>
-                </div>
-                <div class="sequence-reveal">
-                    <div class="reveal-content" id="reveal-observe">
-                        SYSTEMATIC ANALYSIS OF EXISTING STRUCTURES AND OPERATIONAL GAPS
-                    </div>
-                    <div class="reveal-content hidden" id="reveal-decode">
-                        TRANSLATION OF OBSERVATIONS INTO ACTIONABLE INTELLIGENCE
-                    </div>
-                    <div class="reveal-content hidden" id="reveal-architect">
-                        STRUCTURAL DESIGN OF SOLUTIONS WITH INTEGRATION CAPABILITIES
-                    </div>
-                    <div class="reveal-content hidden" id="reveal-construct">
-                        PRECISE IMPLEMENTATION WITH RIGOROUS QUALITY PROTOCOLS
-                    </div>
-                    <div class="reveal-content hidden" id="reveal-deploy">
-                        STRATEGIC ROLLOUT INTO OPERATIONAL ENVIRONMENTS
-                    </div>
-                    <div class="reveal-content hidden" id="reveal-evolve">
-                        CONTINUOUS OPTIMIZATION BASED ON PERFORMANCE METRICS
-                    </div>
-                </div>
-            </section>
+    <section class="panel methodology">
+      <h1>METHODOLOGY SEQUENCE</h1>
+      <div class="steps">
+        <span data-step="Observe">Observe</span>
+        <span data-step="Decode">Decode</span>
+        <span data-step="Architect">Architect</span>
+        <span data-step="Construct">Construct</span>
+        <span data-step="Deploy">Deploy</span>
+        <span data-step="Evolve">Evolve</span>
+      </div>
+      <div class="detail" id="method-detail"></div>
+    </section>
 
-            <!-- Contact Gate - Final layer -->
-            <section class="contact-field hidden" id="contact-field">
-                <div class="field-header">
-                    <span class="field-id">TRANSMISSION PROTOCOL</span>
-                    <span class="field-status" id="gate-status">EVALUATING</span>
-                </div>
-                <div class="gate-interface">
-                    <div class="gate-output">
-                        <div class="protocol-line">SATCORP NODE AWAITING TRANSMISSION</div>
-                        <div class="protocol-line" id="access-message">ACCESS UNCERTAIN</div>
-                    </div>
-                    <div class="gate-input">
-                        <span class="input-prompt">&gt;</span>
-                        <input type="text" id="transmission-gate" placeholder="" disabled>
-                        <div class="input-caret"></div>
-                    </div>
-                </div>
-                <div class="transmission-receipt hidden" id="transmission-receipt">
-                    <div class="receipt-line">TRANSMISSION RECEIVED</div>
-                    <div class="receipt-line">SATCORP WILL EVALUATE COMPATIBILITY</div>
-                    <div class="receipt-line" id="receipt-id">REF: #</div>
-                </div>
-            </section>
+    <section class="panel contact">
+      <h1>CONTACT PROTOCOL</h1>
+      <div class="console">
+        <div id="console-output"></div>
+        <input type="text" id="console-input" placeholder="ENTER TRANSMISSION…" />
+      </div>
+    </section>
+  </main>
+</div>
 
-            <!-- Idle State - Becomes more minimal -->
-            <div class="idle-state hidden" id="idle-state">
-                <div class="idle-identity">SATCORP</div>
-                <div class="idle-caret">_</div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
