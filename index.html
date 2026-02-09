@@ -1,106 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SATCORP | Concierge Systems</title>
-  <meta name="description" content="SATCORP – Concierge, System Architect, Creative Operator. Explore our premium skill deck.">
-  <link rel="stylesheet" href="style.css">
-  <!-- Vanta.js for animated background -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js"></script>
-  <!-- GSAP for scroll animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <base href="/">
+    <link rel="canonical" href="">
+    <title>Active Theory · Creative Digital Experiences</title>
+    
+    <!-- Meta -->
+    <meta name="description" content="">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Active Theory · Creative Digital Experiences">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="">
+    <meta property="twitter:title" content="Active Theory · Creative Digital Experiences">
+    <meta property="twitter:description" content="">
+    <meta property="twitter:image" content="">
+
+    <!-- Apple & Favicon -->
+    <meta name="apple-mobile-web-app-title" content="Active Theory">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/meta/.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/meta/32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/meta/16x16.png">
+    <link rel="manifest" href="assets/meta/manifest.json">
+    <link rel="mask-icon" href="assets/meta/safari-pinned-tab.svg" color="#333333">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#000000">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JS -->
+    <script defer src="script.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-J7TMDT4F8N');
+    </script>
 </head>
 <body>
-
-  <!-- Navigation HUD -->
-  <header class="hud">
-    <div class="logo">SATCORP</div>
-    <nav>
-      <ul>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#skill1">Identity</a></li>
-        <li><a href="#skill2">Brand Systems</a></li>
-        <li><a href="#skill3">Web/UI Systems</a></li>
-        <li><a href="#skill4">Architecture</a></li>
-        <li><a href="#skill5">Streaming</a></li>
-        <li><a href="#skill6">AI Workflows</a></li>
-        <li><a href="#skill7">Game Design</a></li>
-        <li><a href="#skill8">Client Experience</a></li>
-        <li><a href="#skill9">Platforms</a></li>
-        <li><a href="#skill10">Documentation</a></li>
-        <li><a href="#skill11">Assets</a></li>
-        <li><a href="#skill12">Ideal Clients</a></li>
-      </ul>
-    </nav>
-    <button id="darkModeToggle">🌙</button>
-  </header>
-
-  <!-- Hero Section -->
-  <section id="hero">
-    <div class="hero-content">
-      <h1>SATCORP</h1>
-      <p>Concierge / System Architect / Creative Operator</p>
-      <button id="cta-explore">Explore SATCORP Systems</button>
-    </div>
-  </section>
-
-  <!-- Skill Deck Sections -->
-  <!-- Repeat this block for each skill section (1–12) -->
-  <section class="skill" id="skill1">
-    <div class="skill-content">
-      <h2>Core Identity / Operator Value</h2>
-      <p>Defining SATCORP’s premium operational identity.</p>
-      <div class="cards">
-        <div class="card">
-          <h3>Precision</h3>
-          <p>Systematic problem-solving and creative execution.</p>
-        </div>
-        <div class="card">
-          <h3>Concierge Logic</h3>
-          <p>Tailored experiences for every client interaction.</p>
-        </div>
-        <!-- Add more cards as needed -->
-      </div>
-    </div>
-  </section>
-
-  <section class="skill" id="skill2">
-    <div class="skill-content">
-      <h2>Brand, Visual / Platform Systems</h2>
-      <p>High-end visual architectures and brand consistency systems.</p>
-      <div class="cards">
-        <div class="card"><h3>Identity Design</h3></div>
-        <div class="card"><h3>Platform Alignment</h3></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Add remaining skill sections (3–12) similarly -->
-
-  <!-- Footer -->
-  <footer>
-    <div class="contact-form">
-      <h3>Contact SATCORP</h3>
-      <form action="https://formspree.io/f/yourformid" method="POST">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="_replyto" placeholder="Email" required>
-        <textarea name="message" placeholder="Message" required></textarea>
-        <button type="submit">Send</button>
-      </form>
-    </div>
-    <div class="socials">
-      <a href="#"><img src="assets/icons/twitter.svg" alt="Twitter"></a>
-      <a href="#"><img src="assets/icons/linkedin.svg" alt="LinkedIn"></a>
-      <a href="#"><img src="assets/icons/github.svg" alt="GitHub"></a>
-    </div>
-    <div class="credits">
-      <p>© 2026 SATCORP. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+    <noscript>
+        <p style="background: black; color: white; font-size: 20px; display: inline; font-family: Helvetica, Arial, sans-serif; padding: 10px;">
+            Please enable javascript
+        </p>
+    </noscript>
 </body>
 </html>
