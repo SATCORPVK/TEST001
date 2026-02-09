@@ -1,1 +1,50 @@
+:root {
+    /* Dark mode colors */
+    --dark-bg: #0f0f12;
+    --dark-surface: #16161a;
+    --dark-card: #1e1e24;
+    --dark-text: #e2e2e8;
+    --dark-text-secondary: #a0a0ab;
+    
+    /* Accent colors */
+    --neon-purple: #8b5cf6;
+    --neon-blue: #0ea5e9;
+    --ember-orange: #f97316;
+    
+    /* Light mode colors */
+    --light-bg: #f8fafc;
+    --light-surface: #ffffff;
+    --light-card: #f1f5f9;
+    --light-text: #1e293b;
+    --light-text-secondary: #64748b;
+    
+    /* Typography */
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Spacing */
+    --section-padding: 80px;
+    --container-max-width: 1200px;
+    
+    /* Transitions */
+    --transition-fast: 0.3s ease;
+    --transition-medium: 0.5s ease;
+    
+    /* Current theme (default to dark) */
+    --bg: var(--dark-bg);
+    --surface: var(--dark-surface);
+    --card: var(--dark-card);
+    --text: var(--dark-text);
+    --text-secondary: var(--dark-text-secondary);
+}
 
+.light-mode {
+    --bg: var(--light-bg);
+    --surface: var(--light-surface);
+    --card: var(--light-card);
+    --text: var(--light-text);
+    --text-secondary: var(--light-text-secondary);
+}
+
+/* Rest of CSS content here (all from your <style> in original HTML) */
+...
