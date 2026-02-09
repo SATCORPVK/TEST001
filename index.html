@@ -1,57 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, viewport-fit=cover">
-    <base href="/">
-    <link rel="canonical" href="">
-    <title>Active Theory · Creative Digital Experiences</title>
-    
-    <!-- Meta -->
-    <meta name="description" content="">
-    <meta property="og:url" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Active Theory · Creative Digital Experiences">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="">
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="">
-    <meta property="twitter:title" content="Active Theory · Creative Digital Experiences">
-    <meta property="twitter:description" content="">
-    <meta property="twitter:image" content="">
-
-    <!-- Apple & Favicon -->
-    <meta name="apple-mobile-web-app-title" content="Active Theory">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/meta/.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/meta/32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/meta/16x16.png">
-    <link rel="manifest" href="assets/meta/manifest.json">
-    <link rel="mask-icon" href="assets/meta/safari-pinned-tab.svg" color="#333333">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="theme-color" content="#000000">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- JS -->
-    <script defer src="script.js"></script>
-
-    <!-- Google Analytics -->
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-J7TMDT4F8N');
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SATCORP — Systems Design</title>
+    <meta name="description" content="SATCORP designs systems, not graphics. Concierge-level service and systems architecture for the modern stack.">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <noscript>
-        <p style="background: black; color: white; font-size: 20px; display: inline; font-family: Helvetica, Arial, sans-serif; padding: 10px;">
-            Please enable javascript
-        </p>
-    </noscript>
+    <!-- Background -->
+    <div id="vanta-bg"></div>
+    
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="wordmark">SATCORP</div>
+        <nav>
+            <a href="#systems">Systems</a>
+            <a href="#contact">Contact</a>
+            <button id="theme-toggle">☀︎</button>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Systems thinking, delivered with concierge-level precision.</h1>
+        <p>We design systems, not graphics. From brand systems to streaming workflows—architecture, clarity, execution, polish.</p>
+        <a href="#systems" class="cta-button">Explore SATCORP Systems</a>
+    </section>
+
+    <!-- Skill Deck (Sample - Expand to 12) -->
+    <section id="systems" class="skill-deck">
+        <div class="container">
+            <h2>SATCORP Skill Deck</h2>
+            
+            <div class="skill-grid">
+                <div class="skill-card" data-skill="core">
+                    <h3>Core Identity</h3>
+                    <p>Foundational principles, positioning, and narrative architecture.</p>
+                    <button class="view-detail">View Details</button>
+                </div>
+                
+                <div class="skill-card" data-skill="brand">
+                    <h3>Brand Systems</h3>
+                    <p>Token-driven design language, typography, and color as executable specs.</p>
+                    <button class="view-detail">View Details</button>
+                </div>
+                
+                <div class="skill-card" data-skill="web">
+                    <h3>Web/UI Systems</h3>
+                    <p>Component libraries, accessibility, performance budgets.</p>
+                    <button class="view-detail">View Details</button>
+                </div>
+                
+                <div class="skill-card" data-skill="arch">
+                    <h3>Systems Architecture</h3>
+                    <p>Clear diagrams, contract-first APIs, and operational runbooks.</p>
+                    <button class="view-detail">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Inquiry" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2024 SATCORP. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
